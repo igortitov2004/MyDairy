@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new HomeFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+
             if(R.id.homeMainBottom==item.getItemId()){
                 replaceFragment(new HomeFragment());
             }
