@@ -3,6 +3,7 @@ package com.example.myowndairy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,10 +15,15 @@ import com.example.myowndairy.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+
     ActivityMainBinding binding;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
@@ -35,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new CalendarFragment());
             }
             if(R.id.settingsMainBottom == item.getItemId()){
+
                 replaceFragment(new SettingsFragment());
+
             }
             return true;
         });
