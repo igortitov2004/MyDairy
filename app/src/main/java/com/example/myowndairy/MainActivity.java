@@ -18,7 +18,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myowndairy.databinding.ActivityMainBinding;
-import com.example.myowndairy.databinding.CustomDialogSettingsBinding;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,10 +48,7 @@ public class MainActivity extends AppCompatActivity {
             if(R.id.settingsMainBottom == item.getItemId()){
 
                 replaceFragment(new SettingsFragment());
-
-
-
-
+                dialog = new Dialog(MainActivity.this);
             }
             return true;
         });
