@@ -3,6 +3,7 @@ package com.example.myowndairy;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,24 +15,30 @@ public class TaskFragment extends Fragment {
     Button calendarMainButton;
     Button addTask;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_task, container, false);
 
-        calendarMainButton=view.findViewById(R.id.calendarMainButton);
+        calendarMainButton = view.findViewById(R.id.calendarMainButton);
         addTask = view.findViewById(R.id.addTask);
 
         calendarMainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+
                 showDialogDataEdit();
             }
         });
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogAddTask();
+
+                Fragment createTaskFragment = new FragmentCreateTask();
+
+                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+                fm.replace(R.id.container,createTaskFragment).commit();
             }
         });
 
@@ -39,11 +46,12 @@ public class TaskFragment extends Fragment {
         return view;
     }
 
-    public void showDialogAddTask(){
-        DialogWindowCreateTask dialog = new DialogWindowCreateTask();
+    public void showCreateTaskFragment(){
 
-        dialog.show((getActivity().getSupportFragmentManager()),"custom");
+//        fm.replace(R.id.container,createTaskFragment).commit();
     }
+
+
 
     public void showDialogDataEdit(){
         DialogWindowCalendar dialog = new DialogWindowCalendar();

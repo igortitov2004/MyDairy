@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainColor"
+    android:id="@+id/createTaskFrag"
+   >
+
+    <TextView
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:paddingLeft="15dp"
+
+
+        android:paddingTop="15dp"
+        android:text="Добавление задачи"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginVertical="70dp"
+        android:inputType="text"
+        android:maxLength="40"
+        android:scrollbars="vertical">
+
+    </EditText>
+
+    <EditText
+        android:layout_width="357dp"
+        android:layout_height="50dp"
+        android:layout_marginVertical="145dp"
+        android:inputType="date"></EditText>
+
+
+    <EditText
+        android:layout_width="357dp"
+        android:layout_height="50dp"
+        android:layout_marginVertical="200dp"
+        android:inputType="time">
+
+    </EditText>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="120dp"
+        android:paddingLeft="5dp"
+
+
+        android:text="Выбор даты и времени"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="45dp"
+        android:paddingLeft="5dp"
+
+        android:text="Заголовок"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="401dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="295dp"
+        android:inputType="textMultiLine"
+        android:maxHeight="150dp"
+        android:maxLength="200"
+        android:scrollbars="vertical">
+
+    </EditText>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginVertical="260dp"
+        android:paddingLeft="5dp"
+
+        android:text="Описание"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonSetTaskTime"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginVertical="205dp"
+        android:layout_marginLeft="365dp"
+
+        android:background="@drawable/baseline_access_time_24" />
+
+    <Button
+        android:id="@+id/buttonSetTaskDate"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginVertical="150dp"
+        android:layout_marginLeft="365dp"
+
+        android:background="@drawable/baseline_calendar_month_24" />
+
+</RelativeLayout>
