@@ -39,8 +39,6 @@ public class TaskFragment extends Fragment {
         return view;
     }
 
-
-
     public void showDialogAddTask(){
         DialogWindowCreateTask dialog = new DialogWindowCreateTask();
 

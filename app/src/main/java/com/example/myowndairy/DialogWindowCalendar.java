@@ -10,9 +10,6 @@ import androidx.fragment.app.DialogFragment;
 import java.util.Calendar;
 
 public class DialogWindowCalendar extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-
-
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker

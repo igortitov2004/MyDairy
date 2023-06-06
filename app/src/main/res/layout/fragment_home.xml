@@ -27,7 +27,7 @@
             android:id="@+id/presentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="июнь, 15"
+            android:text="06.06.2023"
             android:textStyle="normal"
             android:textColor="@color/white"
             android:textSize="22sp"
