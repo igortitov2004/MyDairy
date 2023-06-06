@@ -1,18 +1,15 @@
 package com.example.myowndairy;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
-public class DialogWindowDateEdit extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class DialogWindowCalendar extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
 
 

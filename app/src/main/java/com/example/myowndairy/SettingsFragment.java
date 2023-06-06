@@ -38,8 +38,11 @@ public class SettingsFragment extends Fragment {
 //         dialog.show();
 //
 //    }
-    Button dateTimeSet;
+
     Button notificationsEdit;
+    Button languageEgit;
+
+    Button themesEdit;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,13 +53,22 @@ public class SettingsFragment extends Fragment {
 
 
         notificationsEdit = view.findViewById(R.id.buttonNotifications);
-//        dateTimeSet.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v){
-//
-////                showDialogStartDateTime(view);
-//            }
-//        });
+        languageEgit = view.findViewById(R.id.buttonLanguage);
+        themesEdit = view.findViewById(R.id.buttonTheme);
+
+        themesEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogThemes(view);
+            }
+        });
+        languageEgit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                showDialogLanguage(view);
+            }
+        });
         notificationsEdit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -70,6 +82,17 @@ public class SettingsFragment extends Fragment {
 
     public void showDialogNotifications(View view){
         DialogWindowNotifications dialog = new DialogWindowNotifications();
+
+        dialog.show((getActivity().getSupportFragmentManager()),"custom");
+    }
+    public void showDialogLanguage(View view){
+        DialogWindowLanguage dialog = new DialogWindowLanguage();
+
+        dialog.show((getActivity().getSupportFragmentManager()),"custom");
+    }
+
+    public void showDialogThemes(View view){
+        DialogWindowThemes dialog = new DialogWindowThemes();
 
         dialog.show((getActivity().getSupportFragmentManager()),"custom");
     }
