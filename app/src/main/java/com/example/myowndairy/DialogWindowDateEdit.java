@@ -14,7 +14,7 @@ import java.util.Calendar;
 
 public class DialogWindowDateEdit extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
-    DialogWindowDateTimeEdit dialogWindowDateTimeEdit;
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

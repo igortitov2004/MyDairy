@@ -1,15 +1,9 @@
 package com.example.myowndairy;
 
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
             if(R.id.homeMainBottom == item.getItemId()){
                 replaceFragment(new HomeFragment());
             }
-            if(R.id.calendarMainBottom == item.getItemId()){
-                replaceFragment(new CalendarFragment());
+            if(R.id.taskMainBottom == item.getItemId()){
+                replaceFragment(new TaskFragment());
             }
             if(R.id.settingsMainBottom == item.getItemId()){
 

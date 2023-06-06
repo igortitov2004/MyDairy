@@ -46,17 +46,17 @@ public class SettingsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        dateTimeSet = view.findViewById(R.id.buttonDate);
+//        dateTimeSet = view.findViewById(R.id.buttonDate);
 
 
         notificationsEdit = view.findViewById(R.id.buttonNotifications);
-        dateTimeSet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-
-                showDialogStartDateTime(view);
-            }
-        });
+//        dateTimeSet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v){
+//
+////                showDialogStartDateTime(view);
+//            }
+//        });
         notificationsEdit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -74,9 +74,9 @@ public class SettingsFragment extends Fragment {
         dialog.show((getActivity().getSupportFragmentManager()),"custom");
     }
 
-    public void showDialogStartDateTime(View view){
-        DialogWindowDateTimeEdit dialog = new DialogWindowDateTimeEdit();
-
-        dialog.show((getActivity().getSupportFragmentManager()),"custom");
-    }
+//    public void showDialogStartDateTime(View view){
+//        DialogWindowDateTimeEdit dialog = new DialogWindowDateTimeEdit();
+//
+//        dialog.show((getActivity().getSupportFragmentManager()),"custom");
+//    }
 }
