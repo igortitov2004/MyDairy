@@ -12,6 +12,7 @@ import android.widget.Button;
 
 public class TaskFragment extends Fragment {
     Button calendarMainButton;
+    Button addTask;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -19,11 +20,18 @@ public class TaskFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_task, container, false);
 
         calendarMainButton=view.findViewById(R.id.calendarMainButton);
+        addTask = view.findViewById(R.id.addTask);
 
         calendarMainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 showDialogDataEdit();
+            }
+        });
+        addTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogAddTask();
             }
         });
 
@@ -33,14 +41,14 @@ public class TaskFragment extends Fragment {
 
 
 
-//    public void showDialogTimeEdit(){
-//        DialogWindowTimeEdit dialog = new DialogWindowTimeEdit();
-//
-//        dialog.show((getActivity().getSupportFragmentManager()),"timePicker");
-//    }
+    public void showDialogAddTask(){
+        DialogWindowCreateTask dialog = new DialogWindowCreateTask();
+
+        dialog.show((getActivity().getSupportFragmentManager()),"custom");
+    }
 
     public void showDialogDataEdit(){
-        DialogWindowDateEdit dialog = new DialogWindowDateEdit();
+        DialogWindowCalendar dialog = new DialogWindowCalendar();
 
         dialog.show((getActivity().getSupportFragmentManager()),"dataPicker");
     }
