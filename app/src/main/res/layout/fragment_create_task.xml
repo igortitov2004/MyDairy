@@ -2,27 +2,35 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/mainColor"
     android:id="@+id/createTaskFrag"
-   >
+    tools:context=".FragmentCreateTask">
 
-    <TextView
-        android:layout_width="208dp"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/settingsToolBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="90dp"
-        android:paddingLeft="15dp"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/textSettingsToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавление задачи"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="normal"
+            android:layout_marginLeft="100dp"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
 
-        android:paddingTop="15dp"
-        android:text="Добавление задачи"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginVertical="70dp"
+        android:layout_marginVertical="80dp"
         android:inputType="text"
         android:maxLength="40"
         android:scrollbars="vertical">
@@ -32,14 +40,14 @@
     <EditText
         android:layout_width="357dp"
         android:layout_height="50dp"
-        android:layout_marginVertical="145dp"
+        android:layout_marginVertical="155dp"
         android:inputType="date"></EditText>
 
 
     <EditText
         android:layout_width="357dp"
         android:layout_height="50dp"
-        android:layout_marginVertical="200dp"
+        android:layout_marginVertical="205dp"
         android:inputType="time">
 
     </EditText>
@@ -48,7 +56,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="120dp"
+        android:layout_marginVertical="130dp"
         android:paddingLeft="5dp"
 
 
@@ -60,7 +68,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="45dp"
+        android:layout_marginVertical="55dp"
         android:paddingLeft="5dp"
 
         android:text="Заголовок"
@@ -70,7 +78,7 @@
     <EditText
         android:layout_width="401dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="295dp"
+        android:layout_marginVertical="290dp"
         android:inputType="textMultiLine"
         android:maxHeight="150dp"
         android:maxLength="200"
@@ -82,7 +90,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginVertical="260dp"
+        android:layout_marginVertical="256dp"
         android:paddingLeft="5dp"
 
         android:text="Описание"
@@ -93,7 +101,7 @@
         android:id="@+id/buttonSetTaskTime"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginVertical="205dp"
+        android:layout_marginVertical="215dp"
         android:layout_marginLeft="365dp"
 
         android:background="@drawable/baseline_access_time_24" />
@@ -102,7 +110,7 @@
         android:id="@+id/buttonSetTaskDate"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginVertical="150dp"
+        android:layout_marginVertical="160dp"
         android:layout_marginLeft="365dp"
 
         android:background="@drawable/baseline_calendar_month_24" />

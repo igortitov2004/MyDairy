@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
             if(R.id.settingsMainBottom == item.getItemId()){
 
                 replaceFragment(new SettingsFragment());
-                dialog = new Dialog(MainActivity.this);
             }
             return true;
         });

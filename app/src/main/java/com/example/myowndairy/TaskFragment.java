@@ -38,7 +38,7 @@ public class TaskFragment extends Fragment {
                 Fragment createTaskFragment = new FragmentCreateTask();
 
                 FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-                fm.replace(R.id.container,createTaskFragment).commit();
+                fm.replace(R.id.frame_layout,createTaskFragment).commit();
             }
         });
 
@@ -46,10 +46,7 @@ public class TaskFragment extends Fragment {
         return view;
     }
 
-    public void showCreateTaskFragment(){
 
-//        fm.replace(R.id.container,createTaskFragment).commit();
-    }
 
 
 
