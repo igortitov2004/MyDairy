@@ -7,30 +7,48 @@
     android:background="@color/mainColor"
     tools:context=".TaskFragment">
 
-<TextView
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginVertical="14dp"
-    android:textSize="20sp"
-    android:textStyle="italic"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Добавить задачу"/>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/taskToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/textTaskToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Задачи"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="normal"
+            android:layout_marginLeft="165dp"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добавить задачу"
+        android:layout_marginTop="65dp"
+        android:layout_marginLeft="10dp"/>
+
     <Button
         android:id="@+id/addTask"
-
         android:layout_width="40dp"
         android:layout_height="40dp"
-
-        android:layout_marginVertical="10dp"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="175dp"
         android:background="@drawable/baseline_playlist_add_24" />
+
     <Button
         android:id="@+id/calendarMainButton"
         android:onClick="showDialogDataEdit"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginVertical="10dp"
         android:layout_marginLeft="355dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/baseline_calendar_month_24" />
 
 </RelativeLayout>

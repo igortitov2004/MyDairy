@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +15,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.myowndairy.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-
     ActivityMainBinding binding;
     Button show;
     Dialog dialog;

@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/mainColor"
     tools:context=".SettingsFragment"
-    android:id="@+id/fragSettings"
-    >
+    android:id="@+id/fragSettings">
 
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/buttonDate"-->
 <!--        android:onClick="showDialogStartDateTime"-->
 <!--        android:layout_width="match_parent"-->
@@ -21,6 +20,24 @@
 <!--        android:drawableLeft="@drawable/baseline_access_time_24"-->
 <!--        android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"-->
 <!--        android:text="Дата и время" />-->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/settingsToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/textSettingsToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Настройки"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="normal"
+            android:layout_marginLeft="150dp"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <Button
         android:id="@+id/buttonTheme"
