@@ -45,34 +45,13 @@ public class TaskFragment extends Fragment {
 
         return view;
     }
-//    public void showDialogCalendar(){
-//        DialogWindowCalendar dialog = new DialogWindowCalendar();
-//
-//        dialog.show((getActivity().getSupportFragmentManager()),"dataPicker");
-//    }
+
 
     public void showDialogCalendarForChoiceTask(){
         DialogWindowCalendarForChoiceTask dialog = new DialogWindowCalendarForChoiceTask();
 
         dialog.show((getActivity().getSupportFragmentManager()),"dataPicker");
     }
-//    public static CalendarFragment newInstance(String param1, String param2) {
-//        CalendarFragment fragment = new CalendarFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
-//
+
 
 }

@@ -2,6 +2,7 @@ package com.example.myowndairy;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -49,9 +50,6 @@ public class SettingsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-//        dateTimeSet = view.findViewById(R.id.buttonDate);
-
-
         notificationsEdit = view.findViewById(R.id.buttonNotifications);
         languageEgit = view.findViewById(R.id.buttonLanguage);
         themesEdit = view.findViewById(R.id.buttonTheme);
@@ -59,43 +57,30 @@ public class SettingsFragment extends Fragment {
         themesEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogThemes(view);
+                showSettingsDialog(new DialogWindowThemes());
             }
         });
         languageEgit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-
-                showDialogLanguage(view);
+                showSettingsDialog(new DialogWindowLanguage());
             }
         });
         notificationsEdit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                showDialogNotifications(view);
+                showSettingsDialog(new DialogWindowNotifications());
             }
         });
 
         return view;
     }
 
-
-    public void showDialogNotifications(View view){
-        DialogWindowNotifications dialog = new DialogWindowNotifications();
-
-        dialog.show((getActivity().getSupportFragmentManager()),"custom");
-    }
-    public void showDialogLanguage(View view){
-        DialogWindowLanguage dialog = new DialogWindowLanguage();
-
-        dialog.show((getActivity().getSupportFragmentManager()),"custom");
+    public void showSettingsDialog(DialogFragment dialogFragment){
+        dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
     }
 
-    public void showDialogThemes(View view){
-        DialogWindowThemes dialog = new DialogWindowThemes();
 
-        dialog.show((getActivity().getSupportFragmentManager()),"custom");
-    }
 
 //    public void showDialogStartDateTime(View view){
 //        DialogWindowDateTimeEdit dialog = new DialogWindowDateTimeEdit();

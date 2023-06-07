@@ -41,21 +41,21 @@ public class FragmentCreateTask extends DialogFragment {
         confirmTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogConfirmTask();
+                showDialog(new DialogWindowForConfirmTask());
             }
         });
 
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogDate(view);
+                showDialog(new DialogWindowCalendar());
             }
         });
 
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogTime(view);
+                showDialog(new DialogWindowTime());
             }
         });
 
@@ -63,36 +63,24 @@ public class FragmentCreateTask extends DialogFragment {
         setTaskDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                showDialogDate(view);
+                showDialog(new DialogWindowCalendar());
             }
         });
 
         setTaskTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogTime(view);
+                showDialog(new DialogWindowTime());
             }
         });
         return view;
     }
 
-    
 
-    public void showDialogConfirmTask(){
-        DialogWindowForConfirmTask dialog = new DialogWindowForConfirmTask();
 
-        dialog.show((getActivity().getSupportFragmentManager()),"custom");
-    }
 
-    public void showDialogDate(View view){
-        DialogWindowCalendar dialog = new DialogWindowCalendar();
+   public void showDialog(DialogFragment dialogFragment){
+       dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
+   }
 
-        dialog.show((getActivity().getSupportFragmentManager()),"timePicker");
-    }
-
-    public void showDialogTime(View view){
-        DialogWindowTime dialog = new DialogWindowTime();
-
-        dialog.show((getActivity().getSupportFragmentManager()),"datePicker");
-    }
 }
