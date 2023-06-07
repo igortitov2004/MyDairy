@@ -23,6 +23,14 @@
             android:textStyle="normal"
             android:layout_marginLeft="100dp"/>
 
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/baseline_check_24">
+
+        </Button>
+
     </androidx.appcompat.widget.Toolbar>
 
 
@@ -38,6 +46,7 @@
     </EditText>
 
     <EditText
+        android:id="@+id/setDate"
         android:layout_width="357dp"
         android:layout_height="50dp"
         android:layout_marginVertical="155dp"
@@ -45,6 +54,7 @@
 
 
     <EditText
+        android:id="@+id/setTime"
         android:layout_width="357dp"
         android:layout_height="50dp"
         android:layout_marginVertical="205dp"
@@ -57,7 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="130dp"
-        android:paddingLeft="5dp"
+        android:layout_marginLeft="8dp"
+
 
 
         android:text="Выбор даты и времени"
@@ -69,19 +80,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="55dp"
-        android:paddingLeft="5dp"
+        android:layout_marginLeft="8dp"
 
         android:text="Заголовок"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
     <EditText
-        android:layout_width="401dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="290dp"
+        android:layout_marginVertical="280dp"
         android:inputType="textMultiLine"
-        android:maxHeight="150dp"
-        android:maxLength="200"
+        android:maxHeight="200dp"
+        android:maxLength="500"
         android:scrollbars="vertical">
 
     </EditText>
@@ -89,9 +100,10 @@
     <TextView
 
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginVertical="256dp"
-        android:paddingLeft="5dp"
+        android:layout_marginLeft="8dp"
+
 
         android:text="Описание"
         android:textColor="@color/black"
@@ -114,5 +126,6 @@
         android:layout_marginLeft="365dp"
 
         android:background="@drawable/baseline_calendar_month_24" />
+
 
 </RelativeLayout>

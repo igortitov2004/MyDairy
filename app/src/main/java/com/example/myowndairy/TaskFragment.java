@@ -28,7 +28,7 @@ public class TaskFragment extends Fragment {
             @Override
             public void onClick(View v){
 
-                showDialogDataEdit();
+                showDialogCalendar();
             }
         });
         addTask.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ public class TaskFragment extends Fragment {
 
 
 
-    public void showDialogDataEdit(){
+    public void showDialogCalendar(){
         DialogWindowCalendar dialog = new DialogWindowCalendar();
 
         dialog.show((getActivity().getSupportFragmentManager()),"dataPicker");

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,8 @@ public class FragmentCreateTask extends DialogFragment {
 //
 //        return builder.create();
 //    }
+EditText setDate;
+    EditText setTime;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +49,27 @@ public class FragmentCreateTask extends DialogFragment {
 
         setTaskDate=view.findViewById(R.id.buttonSetTaskDate);
         setTaskTime=view.findViewById(R.id.buttonSetTaskTime);
+
+
+        setDate = view.findViewById(R.id.setDate);
+        setTime = view.findViewById(R.id.setTime);
+        setTime.setFocusable(false);
+        setDate.setFocusable(false);
+
+        setDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogDate(view);
+            }
+        });
+
+        setTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogTime(view);
+            }
+        });
+
 
         setTaskDate.setOnClickListener(new View.OnClickListener() {
             @Override

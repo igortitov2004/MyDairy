@@ -6,13 +6,15 @@
     android:layout_height="match_parent"
     android:background="@color/mainColor"
     android:id="@+id/taskFrag"
-    tools:context=".TaskFragment">
+    tools:context=".TaskFragment"
+    android:tag="tasks">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/taskToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary">
+        android:background="?attr/colorPrimary"
+        >
 
         <TextView
             android:id="@+id/textTaskToolBar"
@@ -23,6 +25,8 @@
             android:textSize="22sp"
             android:textStyle="normal"
             android:layout_marginLeft="165dp"/>
+
+
 
     </androidx.appcompat.widget.Toolbar>
 
