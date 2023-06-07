@@ -7,7 +7,7 @@
     android:background="@color/mainColor"
     android:id="@+id/taskFrag"
     tools:context=".TaskFragment"
-    android:tag="tasks">
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/taskToolBar"

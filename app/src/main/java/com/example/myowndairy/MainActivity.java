@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new TaskFragment());
             }
             if(R.id.settingsMainBottom == item.getItemId()){
-
                 replaceFragment(new SettingsFragment());
             }
             return true;

@@ -1,5 +1,6 @@
 package com.example.myowndairy;
 
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +16,6 @@ public class TaskFragment extends Fragment {
     Button calendarMainButton;
     Button addTask;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class TaskFragment extends Fragment {
             @Override
             public void onClick(View v){
 
-                showDialogCalendar();
+                showDialogCalendarForChoiceTask();
             }
         });
         addTask.setOnClickListener(new View.OnClickListener() {
@@ -45,13 +45,14 @@ public class TaskFragment extends Fragment {
 
         return view;
     }
+//    public void showDialogCalendar(){
+//        DialogWindowCalendar dialog = new DialogWindowCalendar();
+//
+//        dialog.show((getActivity().getSupportFragmentManager()),"dataPicker");
+//    }
 
-
-
-
-
-    public void showDialogCalendar(){
-        DialogWindowCalendar dialog = new DialogWindowCalendar();
+    public void showDialogCalendarForChoiceTask(){
+        DialogWindowCalendarForChoiceTask dialog = new DialogWindowCalendarForChoiceTask();
 
         dialog.show((getActivity().getSupportFragmentManager()),"dataPicker");
     }

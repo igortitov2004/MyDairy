@@ -2,43 +2,24 @@ package com.example.myowndairy;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-public class FragmentCreateTask extends DialogFragment {
+import com.example.myowndairy.databinding.ActivityMainBinding;
+import com.google.android.material.button.MaterialButton;
 
+public class FragmentCreateTask extends DialogFragment {
     Button setTaskDate;
     Button setTaskTime;
-//    @NonNull
-//    @Override
-//    public Dialog onCreateDialog(Bundle savedInstanceState){
-//
-//
-//
-//        View view =
-//
-//        builder.setView(R.layout.fragment_dialog_window_task_creation)
-//                .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.cancel();
-//                    }
-//                })
-//                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//        return builder.create();
-//    }
-EditText setDate;
+    Button confirmTask;
+    EditText setDate;
     EditText setTime;
 
     @Override
@@ -47,14 +28,22 @@ EditText setDate;
 
         View view = inflater.inflate(R.layout.fragment_create_task, container, false);
 
-        setTaskDate=view.findViewById(R.id.buttonSetTaskDate);
-        setTaskTime=view.findViewById(R.id.buttonSetTaskTime);
-
+        setTaskDate = view.findViewById(R.id.buttonSetTaskDate);
+        setTaskTime = view.findViewById(R.id.buttonSetTaskTime);
+        confirmTask = view.findViewById(R.id.buttonConfirmTask);
 
         setDate = view.findViewById(R.id.setDate);
         setTime = view.findViewById(R.id.setTime);
+
         setTime.setFocusable(false);
         setDate.setFocusable(false);
+
+        confirmTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogConfirmTask();
+            }
+        });
 
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,16 +73,19 @@ EditText setDate;
                 showDialogTime(view);
             }
         });
-
-
-
-
         return view;
+    }
+
+    
+
+    public void showDialogConfirmTask(){
+        DialogWindowForConfirmTask dialog = new DialogWindowForConfirmTask();
+
+        dialog.show((getActivity().getSupportFragmentManager()),"custom");
     }
 
     public void showDialogDate(View view){
         DialogWindowCalendar dialog = new DialogWindowCalendar();
-
 
         dialog.show((getActivity().getSupportFragmentManager()),"timePicker");
     }
