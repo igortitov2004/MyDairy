@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 public class DialogWindowLanguage extends DialogFragment {
+
+
+    private String selectedLanguage;
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -24,18 +27,19 @@ public class DialogWindowLanguage extends DialogFragment {
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int item) {
-                                Toast.makeText(
-                                        getActivity(),
-                                        "Выбран язык: "
-                                                + languageNamesArray[item],
-                                        Toast.LENGTH_SHORT).show();
+                                selectedLanguage = languageNamesArray[item];
                             }
                         })
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // User clicked OK, so save the mSelectedItems results somewhere
-                        // or return them to the component that opened the dialog
+                        if(selectedLanguage!=null){
+                            Toast.makeText(
+                                    getActivity(),
+                                    "Выбран язык: "
+                                            + selectedLanguage,
+                                    Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 })

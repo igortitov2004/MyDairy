@@ -16,8 +16,9 @@ import com.example.myowndairy.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    Button show;
-    Dialog dialog;
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         MenuItem startItem = binding.bottomNavigationView.getMenu().findItem(R.id.homeMainBottom);
         startItem.setChecked(true);
 
+
+
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if(R.id.homeMainBottom == item.getItemId()){
                 replaceFragment(new HomeFragment());
@@ -43,7 +46,10 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+
     }
+
+
 
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();

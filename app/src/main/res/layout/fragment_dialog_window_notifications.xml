@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="135dp"
+    android:layout_height="140dp"
     android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
@@ -27,10 +27,12 @@
             android:id="@+id/switchNotifications"
             android:layout_width="match_parent"
             android:layout_height="37dp"
-            android:text="Уведомления"
+            android:text="Выключены"
             android:textSize="16sp"
             android:paddingLeft="15dp"
             android:layout_marginTop="50dp"/>
+
+
 
     </androidx.cardview.widget.CardView>
 

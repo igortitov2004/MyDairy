@@ -17,7 +17,7 @@ public class DialogWindowForConfirmTask extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
-        final String[] languageNamesArray = {"English", "Русский"};
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Вы уверены?")
