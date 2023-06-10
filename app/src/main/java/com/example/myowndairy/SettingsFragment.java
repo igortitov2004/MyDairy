@@ -43,6 +43,7 @@ public class SettingsFragment extends Fragment {
     Button notificationsEdit;
     Button languageEgit;
 
+
     Button themesEdit;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,9 +55,15 @@ public class SettingsFragment extends Fragment {
         languageEgit = view.findViewById(R.id.buttonLanguage);
         themesEdit = view.findViewById(R.id.buttonTheme);
 
+
+
+
+
         themesEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 showSettingsDialog(new DialogWindowThemes());
             }
         });

@@ -3,6 +3,15 @@
     <string name="title_activity_settings">SettingsActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="task_1">Задача 1</string>
+    <string name="task_2">Задача 2</string>
+    <string name="task_3">Задача 3</string>
+    <string name="task_4">Задача 4</string>
+    <string name="task_5">Задача 5</string>
+    <string name="task_6">Задача 6</string>
+    <string name="task_7">Задача 7</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

@@ -7,6 +7,8 @@
     android:background="@color/mainColor"
     tools:context=".HomeFragment">
 
+
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/homeToolBar"
         android:layout_width="match_parent"

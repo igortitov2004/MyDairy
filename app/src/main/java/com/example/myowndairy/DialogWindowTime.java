@@ -20,7 +20,7 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current time as the default values for the picker
         final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int hour = c.get(Calendar.HOUR_OF_DAY+3);
         int minute = c.get(Calendar.MINUTE);
 
 
