@@ -4,40 +4,37 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class DialogWindowForConfirmTask extends DialogFragment {
+public class DialogWindowForReturn extends DialogFragment {
 
 
-   public Fragment fragment;
+    public Fragment fragment;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
+
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Вы уверены?")
+        builder.setTitle("Вы уверены? Данные не будут сохранены")
 
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                       replaceFragment(fragment);
+                        replaceFragment(fragment);
 
-                        Toast.makeText(
-                                getActivity(),
-                                "Задача cохранена!",
-                                Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                             dialog.cancel();
+                        dialog.cancel();
                     }
                 });
 
@@ -48,12 +45,4 @@ public class DialogWindowForConfirmTask extends DialogFragment {
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frame_layout,fragment).commit();
     }
-
-    public void replaceFragment2(){
-        Fragment fragment = new HomeFragment();
-        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-        fm.replace(R.id.frame_layout,fragment).commit();
-    }
-
-
 }
