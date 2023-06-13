@@ -13,12 +13,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class DialogWindowForConfirmTask extends DialogFragment {
 
-
-   public Fragment fragment;
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
+
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Вы уверены?")
@@ -26,11 +25,11 @@ public class DialogWindowForConfirmTask extends DialogFragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                       replaceFragment(fragment);
+                       replaceFragment(new TaskFragment());
 
                         Toast.makeText(
                                 getActivity(),
-                                "Задача cохранена!",
+                                "Задача успешно добавлена!",
                                 Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -45,12 +44,6 @@ public class DialogWindowForConfirmTask extends DialogFragment {
     }
 
     public void replaceFragment(Fragment fragment){
-        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-        fm.replace(R.id.frame_layout,fragment).commit();
-    }
-
-    public void replaceFragment2(){
-        Fragment fragment = new HomeFragment();
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frame_layout,fragment).commit();
     }

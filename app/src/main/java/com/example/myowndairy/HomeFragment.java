@@ -1,16 +1,12 @@
 package com.example.myowndairy;
 
-import android.app.LauncherActivity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,8 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,13 +35,9 @@ public class HomeFragment extends Fragment {
     TextView dayText;
     TextView dateText;
 
-    FloatingActionButton addTaskToday;
-
     ArrayList<Tasks> tasksArrayList;
     private String[] tasksHeading;
     private RecyclerView recyclerview;
-
-    ConstraintLayout item;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,23 +45,9 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
-
-
         toolbar = view.findViewById(R.id.homeToolBar);
         dayText = toolbar.findViewById(R.id.presentDay);
         dateText = toolbar.findViewById(R.id.presentDate);
-        addTaskToday = view.findViewById(R.id.addTaskToday);
-
-        addTaskToday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment createEditTaskFragment = new FragmentCreateTaskToday();
-
-                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-                fm.replace(R.id.frame_layout,createEditTaskFragment).commit();
-            }
-        });
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
 
@@ -98,7 +74,6 @@ public class HomeFragment extends Fragment {
         MyAdapterForHome myAdapterForHome = new MyAdapterForHome(getContext(),tasksArrayList);
         recyclerview.setAdapter(myAdapterForHome);
         myAdapterForHome.notifyDataSetChanged();
-
     }
 
     private void dataInitialize() {
@@ -109,16 +84,13 @@ public class HomeFragment extends Fragment {
                 "АЛИМПУС",
                 "ТВИМС",
                 "МИКЭМС"
+
         };
 
         for (int counter=0;counter<tasksHeading.length;counter++){
             Tasks tasks = new Tasks(tasksHeading[counter]);
             tasksArrayList.add(tasks);
         }
-    }
-
-    public void showDialog(DialogFragment dialogFragment){
-        dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
     }
 
 }

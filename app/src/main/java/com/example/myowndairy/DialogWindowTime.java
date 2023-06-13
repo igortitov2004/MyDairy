@@ -17,7 +17,6 @@ import java.util.Date;
 public class DialogWindowTime extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
     EditText setTextTime;
 
-    int timeField;
 
 
     @Override
@@ -37,7 +36,7 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
         String timeStr = "" + hourOfDay + ":" + minute ;
         try {
             Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
-            setTextTime = getActivity().findViewById(timeField);
+            setTextTime = getActivity().findViewById(R.id.setTime);
             setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
         } catch (ParseException e) {
             throw new RuntimeException(e);

@@ -30,8 +30,6 @@ public class TaskFragment extends Fragment {
     private String[] tasksHeading;
     private RecyclerView recyclerview;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
