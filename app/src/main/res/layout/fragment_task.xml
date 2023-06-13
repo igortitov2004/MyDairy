@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,8 +13,10 @@
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="100dp"
-        tools:listitem="@layout/task_item"/>
+        android:layout_marginTop="105dp"
+
+
+        tools:listitem="@layout/task_item" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/taskToolBar"
@@ -42,26 +44,27 @@
         android:textStyle="italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Добавить задачу"
+        android:text="Календарь"
 
         android:layout_marginTop="65dp"
         android:layout_marginLeft="10dp"/>
 
     <Button
-        android:id="@+id/addTask"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="175dp"
-        android:background="@drawable/baseline_playlist_add_24" />
-
-    <Button
         android:id="@+id/calendarMainButton"
-        android:onClick="showDialogDataEdit"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="355dp"
+        android:layout_marginLeft="120dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/baseline_calendar_month_24" />
 
-</RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:backgroundTint="@color/teal_200"
+        android:layout_marginTop="640dp"
+        android:layout_marginLeft="330dp"
+        android:clickable="true"
+        android:src="@drawable/baseline_add_24" />
+</FrameLayout>

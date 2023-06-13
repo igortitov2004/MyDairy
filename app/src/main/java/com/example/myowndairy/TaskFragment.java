@@ -15,12 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 
 public class TaskFragment extends Fragment {
     Button calendarMainButton;
-    Button addTask;
+
+
+    FloatingActionButton addTask;
 
     ArrayList<Tasks> tasksArrayList;
     private String[] tasksHeading;
@@ -75,28 +79,25 @@ public class TaskFragment extends Fragment {
     }
 
     private void dataInitialize() {
-
         tasksArrayList = new ArrayList<>();
         tasksHeading = new String[]{
                 getString(R.string.task_1),
-        getString(R.string.task_2),
-        getString(R.string.task_3),
-        getString(R.string.task_4),
-        getString(R.string.task_5),
-//                getString(R.string.task_6),
-//                getString(R.string.task_6),
-//                getString(R.string.task_6),
-//                getString(R.string.task_6),
-//                getString(R.string.task_6),
-        getString(R.string.task_6),
-        getString(R.string.task_7)
-        };
+                getString(R.string.task_2),
+                getString(R.string.task_3),
+                getString(R.string.task_4),
+                getString(R.string.task_5),
+                getString(R.string.task_6),
+                getString(R.string.task_6),
+                getString(R.string.task_6),
+                getString(R.string.task_6),
+                getString(R.string.task_6),
+                getString(R.string.task_6),
+                getString(R.string.task_7)
+           };
 
-        for (int counter=0;counter<tasksHeading.length;counter++){
+        for (int counter = 0;counter < tasksHeading.length;counter++){
             Tasks tasks = new Tasks(tasksHeading[counter]);
             tasksArrayList.add(tasks);
         }
-
-
     }
 }

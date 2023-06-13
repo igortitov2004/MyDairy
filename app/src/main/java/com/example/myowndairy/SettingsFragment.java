@@ -41,7 +41,7 @@ public class SettingsFragment extends Fragment {
 //    }
 
     Button notificationsEdit;
-    Button languageEgit;
+    Button languageEdit;
 
 
     Button themesEdit;
@@ -52,7 +52,7 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         notificationsEdit = view.findViewById(R.id.buttonNotifications);
-        languageEgit = view.findViewById(R.id.buttonLanguage);
+        languageEdit = view.findViewById(R.id.buttonLanguage);
         themesEdit = view.findViewById(R.id.buttonTheme);
 
 
@@ -67,7 +67,7 @@ public class SettingsFragment extends Fragment {
                 showSettingsDialog(new DialogWindowThemes());
             }
         });
-        languageEgit.setOnClickListener(new View.OnClickListener() {
+        languageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 showSettingsDialog(new DialogWindowLanguage());

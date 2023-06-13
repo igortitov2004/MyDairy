@@ -24,24 +24,10 @@ public class FragmentCreateTask extends DialogFragment {
     Button setTaskTime;
     Button confirmTask;
     EditText setDate;
+
+
+
     EditText setTime;
-
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//
-//        int id = item.getItemId();
-//        switch (id) {
-//            case android.R.id.home:
-//                showDialog(new DialogWindowCalendarForChoiceTask());
-//                return true;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
 
     ActivityMainBinding binding;
 
@@ -53,10 +39,6 @@ public class FragmentCreateTask extends DialogFragment {
 
 
         View view = inflater.inflate(R.layout.fragment_create_task, container, false);
-
-
-
-
 
 
         setTaskDate = view.findViewById(R.id.buttonSetTaskDate);

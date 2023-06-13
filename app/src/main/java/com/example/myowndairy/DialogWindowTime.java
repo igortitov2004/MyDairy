@@ -16,6 +16,9 @@ import java.util.Date;
 
 public class DialogWindowTime extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
     EditText setTextTime;
+
+
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current time as the default values for the picker
