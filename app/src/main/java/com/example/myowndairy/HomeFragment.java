@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements RecycleViewInterface{
 
 
     Date date = new Date();
@@ -95,7 +95,7 @@ public class HomeFragment extends Fragment {
         recyclerview = view.findViewById(R.id.recycleViewForHome);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerview.setHasFixedSize(true);
-        MyAdapterForHome myAdapterForHome = new MyAdapterForHome(getContext(),tasksArrayList);
+        MyAdapterForHome myAdapterForHome = new MyAdapterForHome(this,getContext(),tasksArrayList);
         recyclerview.setAdapter(myAdapterForHome);
         myAdapterForHome.notifyDataSetChanged();
 
@@ -121,4 +121,10 @@ public class HomeFragment extends Fragment {
         dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
     }
 
+    @Override
+    public void onItemClick(int position) {
+        Fragment editTaskFragment= new FragmentEditTask();
+        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+        fm.replace(R.id.frame_layout,editTaskFragment).commit();
+    }
 }
