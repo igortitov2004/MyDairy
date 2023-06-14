@@ -36,7 +36,6 @@ public class HomeFragment extends Fragment {
 
 
     Date date = new Date();
-
     Toolbar toolbar;
     TextView dayText;
     TextView dateText;
@@ -78,12 +77,12 @@ public class HomeFragment extends Fragment {
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setTitle("");
 
-
+        String dayOfWeek = new SimpleDateFormat("EEEE", new Locale("RU")).format(date);
+        dayOfWeek = dayOfWeek.substring(0,1).toUpperCase() + dayOfWeek.substring(1);
 
         dateText.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
-        dayText.setText(new SimpleDateFormat("EEEE", new Locale("RU")).format(date));
+        dayText.setText(dayOfWeek);
 
-        // Inflate the layout for this fragment
         return view;
     }
 
@@ -120,5 +119,4 @@ public class HomeFragment extends Fragment {
     public void showDialog(DialogFragment dialogFragment){
         dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
     }
-
 }

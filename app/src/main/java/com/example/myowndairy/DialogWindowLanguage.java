@@ -33,7 +33,7 @@ public class DialogWindowLanguage extends DialogFragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        if(selectedLanguage!=null){
+                        if(selectedLanguage != null){
                             Toast.makeText(
                                     getActivity(),
                                     "Выбран язык: "

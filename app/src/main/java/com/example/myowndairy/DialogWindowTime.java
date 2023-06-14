@@ -19,7 +19,6 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
 
     int timeField;
 
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current time as the default values for the picker

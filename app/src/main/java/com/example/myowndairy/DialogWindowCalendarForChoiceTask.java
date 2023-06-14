@@ -14,8 +14,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DialogWindowCalendarForChoiceTask extends DialogFragment implements DatePickerDialog.OnDateSetListener{
-
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker

@@ -12,15 +12,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class DialogWindowForReturn extends DialogFragment {
 
-
     public Fragment fragment;
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Вы уверены? Данные не будут сохранены")
 
@@ -28,7 +23,6 @@ public class DialogWindowForReturn extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         replaceFragment(fragment);
-
                     }
                 })
                 .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
