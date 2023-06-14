@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/mainColor"
+    android:id="@+id/editTaskFrag"
+    tools:context=".FragmentEditTask">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/settingsToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/textSettingsToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Изменение задачи"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="normal"
+            android:layout_marginLeft="100dp"/>
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+
+    <EditText
+        android:id="@+id/headerEdit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginVertical="80dp"
+        android:inputType="text"
+        android:maxLength="40"
+        android:scrollbars="vertical">
+
+    </EditText>
+
+
+
+
+    <EditText
+        android:id="@+id/setTimeToday"
+        android:layout_width="357dp"
+        android:layout_height="50dp"
+        android:layout_marginVertical="155dp"
+        android:inputType="time">
+
+    </EditText>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="130dp"
+        android:layout_marginLeft="8dp"
+
+
+
+        android:text="Выбор времени"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="55dp"
+        android:layout_marginLeft="8dp"
+
+        android:text="Заголовок"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="230dp"
+        android:inputType="textMultiLine"
+        android:maxHeight="200dp"
+        android:maxLength="500"
+        android:scrollbars="vertical">
+
+    </EditText>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="205dp"
+        android:layout_marginLeft="8dp"
+
+
+        android:text="Описание"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonConfirmTaskEdit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginLeft="360dp"
+        android:background="@drawable/baseline_check_24"/>
+
+    <Button
+        android:id="@+id/editTaskBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/baseline_arrow_back_24">
+
+    </Button>
+
+    <Button
+        android:id="@+id/buttonSetTaskTimeEdit"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginVertical="160dp"
+        android:layout_marginLeft="365dp"
+
+        android:background="@drawable/baseline_access_time_24" />
+
+
+
+
+</RelativeLayout>
