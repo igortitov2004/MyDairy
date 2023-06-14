@@ -100,10 +100,7 @@ public class FragmentCreateTask extends DialogFragment {
     }
 
 
-
-
    public void showDialog(DialogFragment dialogFragment){
        dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
    }
-
 }

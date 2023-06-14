@@ -54,6 +54,4 @@ public class DialogWindowForConfirmTask extends DialogFragment {
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frame_layout,fragment).commit();
     }
-
-
 }

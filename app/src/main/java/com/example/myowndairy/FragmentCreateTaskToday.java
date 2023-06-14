@@ -12,17 +12,10 @@ import androidx.fragment.app.DialogFragment;
 
 
 public class FragmentCreateTaskToday extends DialogFragment {
-
     Button setTaskTime;
     Button confirmTask;
-
     Button returnToFragmemt;
-
-
-
-
     EditText setTime;
-
     DialogWindowTime dialogWindowTime = new DialogWindowTime();
     DialogWindowForReturn dialogWindowForReturn = new DialogWindowForReturn();
     DialogWindowForConfirmTask dialogWindowForConfirmTask = new DialogWindowForConfirmTask();
@@ -31,10 +24,7 @@ public class FragmentCreateTaskToday extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.fragment_create_task_today, container, false);
-
-
 
         setTaskTime = view.findViewById(R.id.buttonSetTaskTimeToday);
         confirmTask = view.findViewById(R.id.buttonConfirmTaskToday);
@@ -81,9 +71,6 @@ public class FragmentCreateTaskToday extends DialogFragment {
         });
         return view;
     }
-
-
-
 
     public void showDialog(DialogFragment dialogFragment){
         dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
