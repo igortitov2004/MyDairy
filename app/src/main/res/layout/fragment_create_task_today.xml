@@ -17,7 +17,7 @@
             android:id="@+id/textSettingsToolBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Изменение задачи"
+            android:text="Добавление задачи"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="normal"

@@ -1,6 +1,5 @@
 package com.example.myowndairy;
 
-import android.app.LauncherActivity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,18 +20,13 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements RecycleViewInterface {
 
 
     Date date = new Date();
@@ -47,7 +41,9 @@ public class HomeFragment extends Fragment {
     private String[] tasksHeading;
     private RecyclerView recyclerview;
 
-    ConstraintLayout item;
+    Tasks tasks;
+
+    FragmentEditTask fragmentEditTask = new FragmentEditTask();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +62,8 @@ public class HomeFragment extends Fragment {
         addTaskToday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Fragment createEditTaskFragment = new FragmentCreateTaskToday();
 
                 FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
@@ -95,7 +93,7 @@ public class HomeFragment extends Fragment {
         recyclerview = view.findViewById(R.id.recycleViewForHome);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerview.setHasFixedSize(true);
-        MyAdapterForHome myAdapterForHome = new MyAdapterForHome(getContext(),tasksArrayList);
+        MyAdapterForHome myAdapterForHome = new MyAdapterForHome(this, getContext(),tasksArrayList);
         recyclerview.setAdapter(myAdapterForHome);
         myAdapterForHome.notifyDataSetChanged();
 
@@ -121,4 +119,10 @@ public class HomeFragment extends Fragment {
         dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
     }
 
+    @Override
+    public void onItemClick(int position) {
+        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+        fm.replace(R.id.frame_layout,fragmentEditTask).commit();
+
+    }
 }

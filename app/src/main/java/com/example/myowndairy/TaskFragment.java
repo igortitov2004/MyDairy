@@ -20,7 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 
-public class TaskFragment extends Fragment {
+public class TaskFragment extends Fragment implements RecycleViewInterface {
     Button calendarMainButton;
 
 
@@ -29,6 +29,8 @@ public class TaskFragment extends Fragment {
     ArrayList<Tasks> tasksArrayList;
     private String[] tasksHeading;
     private RecyclerView recyclerview;
+
+
 
 
 
@@ -75,7 +77,7 @@ public class TaskFragment extends Fragment {
         recyclerview = view.findViewById(R.id.recycleView);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerview.setHasFixedSize(true);
-        MyAdapter myAdapter = new MyAdapter(getContext(),tasksArrayList);
+        MyAdapter myAdapter = new MyAdapter(this, getContext(),tasksArrayList);
         recyclerview.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
     }
@@ -101,5 +103,19 @@ public class TaskFragment extends Fragment {
             Tasks tasks = new Tasks(tasksHeading[counter]);
             tasksArrayList.add(tasks);
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+
+//        Fragment createTaskFragment = new FragmentCreateTaskToday();
+//
+//
+//
+//        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+//        fm.replace(R.id.frame_layout,createTaskFragment).commit();
+
+
     }
 }

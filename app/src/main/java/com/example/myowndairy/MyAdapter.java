@@ -9,16 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.imageview.ShapeableImageView;
-
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+
+    private final RecycleViewInterface recycleViewInterface;
     Context context;
     ArrayList<Tasks> tasksArrayList;
 
 
-    public MyAdapter(Context context,ArrayList<Tasks> tasksArrayList){
+    public MyAdapter(RecycleViewInterface recycleViewInterface, Context context, ArrayList<Tasks> tasksArrayList){
+        this.recycleViewInterface = recycleViewInterface;
         this.context = context;
         this.tasksArrayList = tasksArrayList;
 
@@ -28,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(context).inflate(R.layout.task_item,parent,false);
-        return new MyViewHolder(v);
+        return new MyViewHolder(v,recycleViewInterface);
     }
 
     @Override
@@ -46,9 +47,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvHeading;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView,RecycleViewInterface recycleViewInterface) {
             super(itemView);
             tvHeading = itemView.findViewById(R.id.tvHeading);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(recycleViewInterface!=null){
+                        int pos = getAdapterPosition();
+                        if(pos !=RecyclerView.NO_POSITION){
+                            recycleViewInterface.onItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
     }
 }
