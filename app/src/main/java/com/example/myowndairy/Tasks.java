@@ -1,8 +1,57 @@
 package com.example.myowndairy;
 
+import java.sql.Time;
+import java.util.Date;
+
 public class Tasks{
-    String heading;
-    public Tasks(String heading) {
+    public String getHeading() {
+
+        return heading;
+    }
+
+    public String getDate() {
+
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setHeading(String heading) {
         this.heading = heading;
     }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    String heading;
+
+    String date;
+    String time;
+
+    String description;
+
+    public Tasks(String heading,String date,String time,String description) {
+
+        this.heading = heading;
+        this.date = date;
+        this.time = time;
+        this.description = description;
+    }
+
+
 }

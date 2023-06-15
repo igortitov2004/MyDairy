@@ -20,7 +20,15 @@ public class FragmentEditTask extends DialogFragment {
 
     EditText setTime;
 
-    EditText headerEdit;
+    EditText setDescription;
+
+    String descriptionText;
+
+    String headerText;
+
+    String timeText;
+
+    public  EditText headerEdit;
 
 
 
@@ -38,13 +46,17 @@ public class FragmentEditTask extends DialogFragment {
         setTaskTime = view.findViewById(R.id.buttonSetTaskTimeEdit);
         confirmTask = view.findViewById(R.id.buttonConfirmTaskEdit);
         returnToFragmemt = view.findViewById(R.id.editTaskBack);
-
         headerEdit = view.findViewById(R.id.headerEdit);
-
+        setDescription = view.findViewById(R.id.setDescription);
 
         setTime = view.findViewById(R.id.setTimeToday);
 
         setTime.setFocusable(false);
+
+        headerEdit.setText(headerText);
+        setTime.setText(timeText);
+        setDescription.setText(descriptionText);
+
 
         returnToFragmemt.setOnClickListener(new View.OnClickListener() {
             @Override

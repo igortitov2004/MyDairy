@@ -13,40 +13,37 @@
 
 
     <TextView
-        android:id="@+id/tvHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="Задание 1"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
+        android:id="@+id/numberOfTasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="60dp"
         android:layout_marginVertical="10dp"
-        android:text="Дата 1"
+        android:text="1 задача"
         android:textColor="@color/black"
         android:textSize="16dp"
         android:inputType="date"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+      />
 
-
-
-    <CheckBox
+    <TextView
+        android:id="@+id/taskDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="5dp"
-        android:layout_marginRight="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginVertical="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Дата"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+
 
     <View
         android:layout_width="match_parent"

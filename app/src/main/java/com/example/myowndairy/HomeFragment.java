@@ -1,6 +1,7 @@
 package com.example.myowndairy;
 
 import android.app.LauncherActivity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -34,29 +38,34 @@ import java.util.Locale;
 
 public class HomeFragment extends Fragment implements RecycleViewInterface{
 
-
     Date date = new Date();
 
     Toolbar toolbar;
     TextView dayText;
     TextView dateText;
 
+    Tasks tasks;
+
     FloatingActionButton addTaskToday;
 
     ArrayList<Tasks> tasksArrayList;
     private String[] tasksHeading;
+
+   private String[] tasksDate;
+    private String[] tasksTime;
+    private String[] tasksDescription;
+
     private RecyclerView recyclerview;
 
     ConstraintLayout item;
 
+//    FragmentEditTask fragmentEditTask = new FragmentEditTask();
+FragmentEditTask editTaskFragment= new FragmentEditTask();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-
-
 
         toolbar = view.findViewById(R.id.homeToolBar);
         dayText = toolbar.findViewById(R.id.presentDay);
@@ -103,6 +112,7 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
 
     private void dataInitialize() {
         tasksArrayList = new ArrayList<>();
+
         tasksHeading = new String[]{
                 "БЖЧ",
                 "МИСРЭТ",
@@ -111,8 +121,25 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
                 "МИКЭМС"
         };
 
+        tasksTime = new String[]{
+                "12.00",
+                "13.00",
+                "14.00",
+                "15.00",
+                "16.00"
+
+        };
+
+        tasksDescription = new String[]{
+                "Подышать",
+                "Поесть",
+                "Попить",
+                "Полежать",
+                "Походить"
+        };
+
         for (int counter=0;counter<tasksHeading.length;counter++){
-            Tasks tasks = new Tasks(tasksHeading[counter]);
+            Tasks tasks = new Tasks(tasksHeading[counter],"сегодня",tasksTime[counter],tasksDescription[counter]);
             tasksArrayList.add(tasks);
         }
     }
@@ -121,10 +148,16 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
         dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
     }
 
+
     @Override
-    public void onItemClick(int position) {
-        Fragment editTaskFragment= new FragmentEditTask();
+    public void onItemClick(Tasks tasks) {
+
+        editTaskFragment.headerText = tasks.getHeading();
+        editTaskFragment.timeText = tasks.getTime();
+        editTaskFragment.descriptionText = tasks.getDescription();
+
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frame_layout,editTaskFragment).commit();
+
     }
 }

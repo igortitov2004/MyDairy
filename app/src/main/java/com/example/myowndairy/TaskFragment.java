@@ -30,7 +30,9 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
     private String[] tasksHeading;
     private RecyclerView recyclerview;
 
-
+    private String[] tasksDate;
+    private String[] tasksTime;
+    private String[] tasksDescription;
 
 
 
@@ -89,33 +91,43 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
                 getString(R.string.task_2),
                 getString(R.string.task_3),
                 getString(R.string.task_4),
-                getString(R.string.task_5),
-                getString(R.string.task_6),
-                getString(R.string.task_6),
-                getString(R.string.task_6),
-                getString(R.string.task_6),
-                getString(R.string.task_6),
-                getString(R.string.task_6),
-                getString(R.string.task_7)
+                getString(R.string.task_5)
            };
 
+        tasksDate = new String[]{
+                "12.03.2023",
+                "13.03.2023",
+                "14.03.2023",
+                "15.03.2023",
+                "16.03.2023"
+        };
+
+        tasksTime = new String[]{
+                "12.00",
+                "13.00",
+                "14.00",
+                "15.00",
+                "16.00"
+
+        };
+
+        tasksDescription = new String[]{
+                "Подышать",
+                "Поесть",
+                "Попить",
+                "Полежать",
+                "Походить"
+        };
+
         for (int counter = 0;counter < tasksHeading.length;counter++){
-            Tasks tasks = new Tasks(tasksHeading[counter]);
+            Tasks tasks = new Tasks(tasksHeading[counter],tasksDate[counter],tasksTime[counter],tasksDescription[counter]);
             tasksArrayList.add(tasks);
         }
     }
 
+
     @Override
-    public void onItemClick(int position) {
-
-
-//        Fragment createTaskFragment = new FragmentCreateTaskToday();
-//
-//
-//
-//        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-//        fm.replace(R.id.frame_layout,createTaskFragment).commit();
-
+    public void onItemClick(Tasks tasks) {
 
     }
 }

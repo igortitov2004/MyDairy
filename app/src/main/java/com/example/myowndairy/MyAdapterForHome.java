@@ -7,15 +7,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapterForHome extends RecyclerView.Adapter<MyAdapterForHome.MyViewHolder>{
 
-    private final RecycleViewInterface recycleViewInterface;
+    private RecycleViewInterface recycleViewInterface;
     Context context;
-    ArrayList<Tasks> tasksArrayList;
+    List<Tasks> tasksArrayList;
 
 
     public MyAdapterForHome(RecycleViewInterface recycleViewInterface, Context context, ArrayList<Tasks> tasksArrayList){
@@ -29,13 +31,21 @@ public class MyAdapterForHome extends RecyclerView.Adapter<MyAdapterForHome.MyVi
     public MyAdapterForHome.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(context).inflate(R.layout.task_item_today,parent,false);
-        return new MyAdapterForHome.MyViewHolder(v,recycleViewInterface);
+        return new MyAdapterForHome.MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Tasks tasks = tasksArrayList.get(position);
-        holder.tvHeadingToday.setText(tasks.heading);
+
+        holder.tvHeadingToday.setText(tasksArrayList.get(position).getHeading());
+        holder.time.setText(tasksArrayList.get(position).getTime());
+        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recycleViewInterface.onItemClick(tasksArrayList.get(position));
+            }
+        });
+
     }
 
 
@@ -47,21 +57,14 @@ public class MyAdapterForHome extends RecyclerView.Adapter<MyAdapterForHome.MyVi
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvHeadingToday;
+        TextView time;
+        ConstraintLayout constraintLayout;
 
-        public MyViewHolder(@NonNull View itemView,RecycleViewInterface recycleViewInterface) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvHeadingToday = itemView.findViewById(R.id.tvHeadingToday);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(recycleViewInterface!=null){
-                        int pos = getAdapterPosition();
-                        if(pos !=RecyclerView.NO_POSITION){
-                            recycleViewInterface.onItemClick(pos);
-                        }
-                    }
-                }
-            });
+            time = itemView.findViewById(R.id.taskTime);
+            constraintLayout = itemView.findViewById(R.id.taskItemToday);
         }
     }
 }

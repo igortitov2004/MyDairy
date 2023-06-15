@@ -1,5 +1,5 @@
 package com.example.myowndairy;
 
 public interface RecycleViewInterface {
-    void onItemClick(int position);
+    void onItemClick(Tasks tasks);
 }

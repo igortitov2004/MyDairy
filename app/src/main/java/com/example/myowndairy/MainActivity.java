@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         MenuItem startItem = binding.bottomNavigationView.getMenu().findItem(R.id.homeMainBottom);
         startItem.setChecked(true);
 
-
-
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if(R.id.homeMainBottom == item.getItemId()){
                 replaceFragment(new HomeFragment());

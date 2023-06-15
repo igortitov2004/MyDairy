@@ -34,7 +34,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
          Tasks tasks = tasksArrayList.get(position);
-         holder.tvHeading.setText(tasks.heading);
+//         holder.numberOfTasks.setText(tasks.heading);
+         holder.date.setText(tasks.date);
 
     }
 
@@ -44,11 +45,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tvHeading;
+        TextView numberOfTasks;
+
+        TextView date;
+         TextView time;
+         TextView description;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvHeading = itemView.findViewById(R.id.tvHeading);
+//            numberOfTasks = itemView.findViewById(R.id.numberOfTasks);
+            date = itemView.findViewById(R.id.taskDate);
         }
     }
 }

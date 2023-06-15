@@ -8,7 +8,7 @@
     android:layout_marginHorizontal="2dp"
     android:background="@drawable/round_corners"
     android:foreground="?android:attr/selectableItemBackground"
-    android:id="@+id/taskItem">
+    android:id="@+id/taskItemToday">
 
 
     <TextView
@@ -40,6 +40,7 @@
     <!--        app:layout_constraintTop_toTopOf="parent"/>-->
 
     <TextView
+        android:id="@+id/taskTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="60dp"
