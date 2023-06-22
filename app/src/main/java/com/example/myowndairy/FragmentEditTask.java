@@ -30,11 +30,22 @@ public class FragmentEditTask extends DialogFragment {
 
     public  EditText headerEdit;
 
+    HomeFragment homeFragment;
+
 
 
     DialogWindowTime dialogWindowTime = new DialogWindowTime();
     DialogWindowForReturn dialogWindowForReturn = new DialogWindowForReturn();
     DialogWindowForConfirmTask dialogWindowForConfirmTask = new DialogWindowForConfirmTask();
+
+
+    public FragmentEditTask(HomeFragment homeFragment){
+        this.homeFragment = homeFragment;
+    }
+
+    public FragmentEditTask(){
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,14 +73,14 @@ public class FragmentEditTask extends DialogFragment {
             @Override
             public void onClick(View v) {
                 showDialog(dialogWindowForReturn);
-                dialogWindowForReturn.fragment = new HomeFragment();
+                dialogWindowForReturn.fragment = homeFragment;
             }
         });
         confirmTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialog(dialogWindowForConfirmTask);
-                dialogWindowForConfirmTask.fragment = new HomeFragment();
+                dialogWindowForConfirmTask.fragment = homeFragment;
 
             }
         });

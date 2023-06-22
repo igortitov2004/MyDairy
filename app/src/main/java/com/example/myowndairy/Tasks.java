@@ -3,7 +3,7 @@ package com.example.myowndairy;
 import java.sql.Time;
 import java.util.Date;
 
-public class Tasks{
+public class Tasks {
     public String getHeading() {
 
         return heading;
@@ -51,6 +51,11 @@ public class Tasks{
         this.date = date;
         this.time = time;
         this.description = description;
+    }
+
+    public Tasks() {
+
+
     }
 
 

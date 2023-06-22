@@ -14,13 +14,18 @@ import com.google.android.material.imageview.ShapeableImageView;
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+
+
+
+    private RecycleViewInterface recycleViewInterface;
     Context context;
     ArrayList<Tasks> tasksArrayList;
 
 
-    public MyAdapter(Context context,ArrayList<Tasks> tasksArrayList){
+    public MyAdapter(Context context,ArrayList<Tasks> tasksArrayList,RecycleViewInterface recycleViewInterface){
         this.context = context;
         this.tasksArrayList = tasksArrayList;
+        this.recycleViewInterface = recycleViewInterface;
 
     }
     @NonNull

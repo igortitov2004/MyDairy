@@ -22,6 +22,8 @@ public class FragmentCreateTask extends DialogFragment {
     EditText setDate;
     Button returnToFragment;
 
+
+
     EditText setTime;
 
    DialogWindowTime dialogWindowTime = new DialogWindowTime();

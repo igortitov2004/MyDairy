@@ -2,6 +2,8 @@ package com.example.myowndairy;
 
 import android.app.LauncherActivity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +25,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myowndairy.DB.DBHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
@@ -48,7 +52,40 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
 
     FloatingActionButton addTaskToday;
 
-    ArrayList<Tasks> tasksArrayList;
+    ArrayList<Tasks> tasksArrayList = new ArrayList<>() ;
+
+
+//    public HomeFragment(){
+//        this.tasksHeading = new String[]{
+//                "БЖЧ",
+//                "МИСРЭТ",
+//                "АЛИМПУС",
+//                "ТВИМС",
+//                "МИКЭМС"
+//        };
+//
+//        this.tasksTime = new String[]{
+//                "12.00",
+//                "13.00",
+//                "14.00",
+//                "15.00",
+//                "16.00"
+//
+//        };
+//
+//        this.tasksDescription = new String[]{
+//                "Подышать",
+//                "Поесть",
+//                "Попить",
+//                "Полежать",
+//                "Походить"
+//        };
+//
+//        for (int counter=0;counter<tasksHeading.length;counter++){
+//            Tasks tasks = new Tasks(tasksHeading[counter],"сегодня",tasksTime[counter],tasksDescription[counter]);
+//            tasksArrayList.add(tasks);
+//        }
+//    }
     private String[] tasksHeading;
 
    private String[] tasksDate;
@@ -57,13 +94,27 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
 
     private RecyclerView recyclerview;
 
+
+//    DBHelper dbHelper;
+//
+//    SQLiteDatabase database;
+    FragmentCreateTaskToday createEditTaskFragment = new FragmentCreateTaskToday(this);
+
     ConstraintLayout item;
+    DialogWindowForConfirmTask dialogWindowForConfirmTask;
 
 //    FragmentEditTask fragmentEditTask = new FragmentEditTask();
-FragmentEditTask editTaskFragment= new FragmentEditTask();
+    FragmentEditTask editTaskFragment = new FragmentEditTask(this);
+
+
+    DBHelper dbHelperHome;
+
+    SQLiteDatabase databaseHome;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        dbHelperHome =new DBHelper(this);
+        databaseHome =dbHelperHome.getReadableDatabase();
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -72,15 +123,17 @@ FragmentEditTask editTaskFragment= new FragmentEditTask();
         dateText = toolbar.findViewById(R.id.presentDate);
         addTaskToday = view.findViewById(R.id.addTaskToday);
 
+        dataInitialize();
+
         addTaskToday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment createEditTaskFragment = new FragmentCreateTaskToday();
-
                 FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
                 fm.replace(R.id.frame_layout,createEditTaskFragment).commit();
             }
         });
+
+
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
 
@@ -92,7 +145,12 @@ FragmentEditTask editTaskFragment= new FragmentEditTask();
         dateText.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
         dayText.setText(new SimpleDateFormat("EEEE", new Locale("RU")).format(date));
 
+//        createEditTaskFragment.dataInitialize();
+
         // Inflate the layout for this fragment
+//        dbHelper = new DBHelper(this);
+
+
         return view;
     }
 
@@ -100,49 +158,20 @@ FragmentEditTask editTaskFragment= new FragmentEditTask();
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dataInitialize();
-        recyclerview = view.findViewById(R.id.recycleViewForHome);
+//        dataInitialize();
+        recyclerview = getActivity().findViewById(R.id.recycleViewForHome);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerview.setHasFixedSize(true);
         MyAdapterForHome myAdapterForHome = new MyAdapterForHome(this,getContext(),tasksArrayList);
         recyclerview.setAdapter(myAdapterForHome);
         myAdapterForHome.notifyDataSetChanged();
 
+
+
+
     }
 
-    private void dataInitialize() {
-        tasksArrayList = new ArrayList<>();
 
-        tasksHeading = new String[]{
-                "БЖЧ",
-                "МИСРЭТ",
-                "АЛИМПУС",
-                "ТВИМС",
-                "МИКЭМС"
-        };
-
-        tasksTime = new String[]{
-                "12.00",
-                "13.00",
-                "14.00",
-                "15.00",
-                "16.00"
-
-        };
-
-        tasksDescription = new String[]{
-                "Подышать",
-                "Поесть",
-                "Попить",
-                "Полежать",
-                "Походить"
-        };
-
-        for (int counter=0;counter<tasksHeading.length;counter++){
-            Tasks tasks = new Tasks(tasksHeading[counter],"сегодня",tasksTime[counter],tasksDescription[counter]);
-            tasksArrayList.add(tasks);
-        }
-    }
 
     public void showDialog(DialogFragment dialogFragment){
         dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
@@ -151,13 +180,47 @@ FragmentEditTask editTaskFragment= new FragmentEditTask();
 
     @Override
     public void onItemClick(Tasks tasks) {
+        FragmentEditTask fragmentEditTask = new FragmentEditTask(this);
 
-        editTaskFragment.headerText = tasks.getHeading();
-        editTaskFragment.timeText = tasks.getTime();
-        editTaskFragment.descriptionText = tasks.getDescription();
+        fragmentEditTask.headerText = tasks.getHeading();
+        fragmentEditTask.timeText = tasks.getTime();
+        fragmentEditTask.descriptionText = tasks.getDescription();
+        editTaskFragment = fragmentEditTask;
 
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frame_layout,editTaskFragment).commit();
 
+    }
+
+//    public void addItem(){
+//        tasksArrayList.add(createEditTaskFragment.tasks);
+//        MyAdapterForHome myAdapterForHome = new MyAdapterForHome(this,getContext(),tasksArrayList);
+//        recyclerview.setAdapter(myAdapterForHome);
+//    }
+
+    public void dataInitialize() {
+        tasksArrayList.clear();
+
+        Cursor cursor = databaseHome.query(DBHelper.TABLE_TASKS, null,null,null,null,null,null);
+        if(cursor.moveToFirst()){
+
+            int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
+            int headerIndex = cursor.getColumnIndex(DBHelper.KEY_HEADER);
+            int dateIndex = cursor.getColumnIndex(DBHelper.KEY_DATE);
+            int timeIndex = cursor.getColumnIndex(DBHelper.KEY_TIME);
+            int descriptionIndex = cursor.getColumnIndex(DBHelper.KEY_DESCRIPTION);
+            do{
+                Tasks tasks = new Tasks(cursor.getString(headerIndex),cursor.getString(dateIndex),
+                        cursor.getString(timeIndex),cursor.getString(descriptionIndex));
+                tasksArrayList.add(tasks);
+
+            }while (cursor.moveToNext());
+
+        }else{
+            Log.d("mLog", "0 rows");
+        }
+
+        cursor.close();
+        dbHelperHome.close();
     }
 }

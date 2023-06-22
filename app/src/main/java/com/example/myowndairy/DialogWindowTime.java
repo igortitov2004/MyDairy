@@ -15,6 +15,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DialogWindowTime extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+    public EditText getSetTextTime() {
+        return setTextTime;
+    }
+
     EditText setTextTime;
 
     int timeField;

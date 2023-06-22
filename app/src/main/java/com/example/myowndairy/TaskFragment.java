@@ -79,7 +79,7 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
         recyclerview = view.findViewById(R.id.recycleView);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerview.setHasFixedSize(true);
-        MyAdapter myAdapter = new MyAdapter(getContext(),tasksArrayList);
+        MyAdapter myAdapter = new MyAdapter(getContext(),tasksArrayList,this);
         recyclerview.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
     }
