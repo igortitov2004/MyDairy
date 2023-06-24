@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -58,12 +59,15 @@ public class MyAdapterForHome extends RecyclerView.Adapter<MyAdapterForHome.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvHeadingToday;
         TextView time;
+
+        Button deleteTask;
         ConstraintLayout constraintLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvHeadingToday = itemView.findViewById(R.id.tvHeadingToday);
             time = itemView.findViewById(R.id.taskTime);
+
             constraintLayout = itemView.findViewById(R.id.taskItemToday);
         }
     }

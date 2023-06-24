@@ -120,7 +120,7 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
         };
 
         for (int counter = 0;counter < tasksHeading.length;counter++){
-            Tasks tasks = new Tasks(tasksHeading[counter],tasksDate[counter],tasksTime[counter],tasksDescription[counter]);
+            Tasks tasks = new Tasks(counter,tasksHeading[counter],tasksDate[counter],tasksTime[counter],tasksDescription[counter]);
             tasksArrayList.add(tasks);
         }
     }

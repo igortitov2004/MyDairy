@@ -38,15 +38,27 @@ public class Tasks {
         this.description = description;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     String heading;
+
+
+
+    int id;
 
     String date;
     String time;
 
     String description;
 
-    public Tasks(String heading,String date,String time,String description) {
-
+    public Tasks(int id,String heading,String date,String time,String description) {
+        this.id = id;
         this.heading = heading;
         this.date = date;
         this.time = time;

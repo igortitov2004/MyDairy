@@ -123,7 +123,9 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
         dateText = toolbar.findViewById(R.id.presentDate);
         addTaskToday = view.findViewById(R.id.addTaskToday);
 
-        dataInitialize();
+
+
+        dataShow();
 
         addTaskToday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,17 +173,15 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
 
     }
 
-
-
     public void showDialog(DialogFragment dialogFragment){
         dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
     }
-
 
     @Override
     public void onItemClick(Tasks tasks) {
         FragmentEditTask fragmentEditTask = new FragmentEditTask(this);
 
+        fragmentEditTask.idTask = tasks.getId();
         fragmentEditTask.headerText = tasks.getHeading();
         fragmentEditTask.timeText = tasks.getTime();
         fragmentEditTask.descriptionText = tasks.getDescription();
@@ -198,10 +198,10 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
 //        recyclerview.setAdapter(myAdapterForHome);
 //    }
 
-    public void dataInitialize() {
+    public void dataShow() {
         tasksArrayList.clear();
 
-        Cursor cursor = databaseHome.query(DBHelper.TABLE_TASKS, null,null,null,null,null,null);
+        Cursor cursor = databaseHome.query(DBHelper.TABLE_TASKS, null,null,null,null,null,DBHelper.KEY_TIME);
         if(cursor.moveToFirst()){
 
             int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
@@ -210,7 +210,7 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
             int timeIndex = cursor.getColumnIndex(DBHelper.KEY_TIME);
             int descriptionIndex = cursor.getColumnIndex(DBHelper.KEY_DESCRIPTION);
             do{
-                Tasks tasks = new Tasks(cursor.getString(headerIndex),cursor.getString(dateIndex),
+                Tasks tasks = new Tasks(cursor.getInt(idIndex),cursor.getString(headerIndex),cursor.getString(dateIndex),
                         cursor.getString(timeIndex),cursor.getString(descriptionIndex));
                 tasksArrayList.add(tasks);
 

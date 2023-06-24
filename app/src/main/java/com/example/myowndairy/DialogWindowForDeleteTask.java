@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,50 +11,22 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.util.Date;
+import com.example.myowndairy.DB.DBHelper;
 
-public class DialogWindowForConfirmTask extends DialogFragment{
+public class DialogWindowForDeleteTask extends DialogFragment {
 
+    public Fragment fragment;
 
-   public Fragment fragment;
+    FragmentEditTask fragmentEditTask;
 
-
-  Tasks tasks = new Tasks();
-   DialogWindowTime dialogWindowTime;
-
-   FragmentCreateTaskToday fragmentCreateTaskToday;
-
-   FragmentEditTask fragmentEditTask;
-
-   Fragment editableFragment;
-
-
-HomeFragment homeFragment;
-
-    public DialogWindowForConfirmTask(FragmentCreateTaskToday fragmentCreateTaskToday) {
-        this.fragmentCreateTaskToday = fragmentCreateTaskToday;
-    }
-
-    public DialogWindowForConfirmTask(FragmentEditTask fragmentEditTask) {
+    public DialogWindowForDeleteTask(FragmentEditTask fragmentEditTask) {
         this.fragmentEditTask = fragmentEditTask;
     }
-
-    public DialogWindowForConfirmTask(){
-
-    }
-
-//    public DialogWindowForConfirmTask(HomeFragment homeFragment) {
-//        this.homeFragment = homeFragment;
-//    }
-
-
 
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Вы уверены?")
@@ -65,28 +35,22 @@ HomeFragment homeFragment;
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                       if(editableFragment == homeFragment.createEditTaskFragment){
-                           fragmentCreateTaskToday.saveTask();
-                           fragmentCreateTaskToday.setTime.setText("");
-                           fragmentCreateTaskToday.heading.setText("");
-                           fragmentCreateTaskToday.description.setText("");
-                       } else if(editableFragment == homeFragment.editTaskFragment){
-                           fragmentEditTask.saveTask();
-                        }
-
                         replaceFragment(fragment);
+
+                        // Удаление задачи из БД
+                        fragmentEditTask.database.delete(DBHelper.TABLE_TASKS,DBHelper.KEY_ID + "= "+ fragmentEditTask.idTask , null);
 
                         Toast.makeText(
                                 getActivity(),
-                                "Задача cохранена!",
+                                "Задача удалена!",
                                 Toast.LENGTH_SHORT).show();
 
-                    }
+                       }
                 })
                 .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                             dialog.cancel();
+                        dialog.cancel();
                     }
                 });
 
@@ -94,6 +58,12 @@ HomeFragment homeFragment;
     }
 
     public void replaceFragment(Fragment fragment){
+        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+        fm.replace(R.id.frame_layout,fragment).commit();
+    }
+
+    public void replaceFragment2(){
+        Fragment fragment = new HomeFragment();
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frame_layout,fragment).commit();
     }

@@ -126,6 +126,14 @@
         android:layout_marginLeft="365dp"
 
         android:background="@drawable/baseline_access_time_24" />
+    <Button
+        android:id="@+id/deleteTask"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="DEL"
+        android:layout_marginLeft="300dp">
+
+    </Button>
 
 
 

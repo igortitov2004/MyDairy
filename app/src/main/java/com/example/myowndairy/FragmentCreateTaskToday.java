@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.myowndairy.DB.DBHelper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,11 +30,17 @@ public class FragmentCreateTaskToday extends DialogFragment {
     HomeFragment homeFragment;
     DialogWindowTime dialogWindowTime = new DialogWindowTime();
     DialogWindowForReturn dialogWindowForReturn = new DialogWindowForReturn();
-    DialogWindowForConfirmTask dialogWindowForConfirmTask = new DialogWindowForConfirmTask();
+    DialogWindowForConfirmTask dialogWindowForConfirmTask = new DialogWindowForConfirmTask(this);
 
     public FragmentCreateTaskToday(HomeFragment homeFragment) {
         this.homeFragment = homeFragment;
     }
+
+//    public FragmentCreateTaskToday() {
+//
+//    }
+
+
 
     public EditText getHeading() {
         return heading;
@@ -51,6 +58,8 @@ public class FragmentCreateTaskToday extends DialogFragment {
     DBHelper dbHelper;
 
     SQLiteDatabase database;
+
+
 
 
 
@@ -75,9 +84,9 @@ public class FragmentCreateTaskToday extends DialogFragment {
 
         setTime.setFocusable(false);
 
+//        dataCheck();
 
 
-        ContentValues contentValues = new ContentValues();
 
 
 
@@ -98,27 +107,11 @@ public class FragmentCreateTaskToday extends DialogFragment {
         confirmTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                tasks = new Tasks();
-//                tasks.setTime(setTime.getText().toString());
-//                tasks.setDate("12.02.2023");
-//                tasks.setHeading(heading.getText().toString());
-//                tasks.setDescription(description.getText().toString());
 
-                contentValues.put(DBHelper.KEY_HEADER,heading.getText().toString());
-                contentValues.put(DBHelper.KEY_DATE,"12/12/2023");
-                contentValues.put(DBHelper.KEY_TIME, setTime.getText().toString());
-                contentValues.put(DBHelper.KEY_DESCRIPTION,description.getText().toString());
-                database.insert(DBHelper.TABLE_TASKS,null,contentValues);
-
-                setTime.setText("");
-                heading.setText("");
-                description.setText("");
-//              heading.getText().toString();
-//              description.getText().toString();
                 showDialog(dialogWindowForConfirmTask);
                 dialogWindowForConfirmTask.fragment = homeFragment;
                 dialogWindowForConfirmTask.homeFragment = homeFragment;
-
+                dialogWindowForConfirmTask.editableFragment = homeFragment.createEditTaskFragment;
 
 
             }
@@ -173,5 +166,15 @@ public class FragmentCreateTaskToday extends DialogFragment {
 
         cursor.close();
         dbHelper.close();
+    }
+
+    public void saveTask(){
+        Date date = new Date();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.KEY_HEADER,heading.getText().toString());
+        contentValues.put(DBHelper.KEY_DATE,new SimpleDateFormat("dd/MM/yyyy").format(date));
+        contentValues.put(DBHelper.KEY_TIME, setTime.getText().toString());
+        contentValues.put(DBHelper.KEY_DESCRIPTION,description.getText().toString());
+        database.insert(DBHelper.TABLE_TASKS,null,contentValues);
     }
 }
