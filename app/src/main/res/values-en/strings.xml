@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">MyOwnDairy</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string-array name="repeatMenu">
+        <item>No repeat</item>
+        <item>Once a day</item>
+        <item>Once a week</item>
+        <item>Once a month</item>
+        <item>Once a year</item>
+        <item>Other...</item>
+    </string-array>
+
+    <string name="task_1">Task 1</string>
+    <string name="task_2">Task 2</string>
+    <string name="task_3">Task 3</string>
+    <string name="task_4">Task 4</string>
+    <string name="task_5">Task 5</string>
+    <string name="task_6">Task 6</string>
+    <string name="task_7">Task 7</string>
+
+    <!--Константы для страницы Задачи-->
+    <string name="CONST_NAME_TASKS_PAGE">Tasks</string>
+    <string name="CONST_NAME_CALENDAR">Calendar</string>
+
+    <!--Константы для страницы Главная-->
+    <string name="CONST_NAME_HOME_PAGE">Home</string>
+
+    <!--Константы для страницы Настройки-->
+    <string name="CONST_NAME_SETTINGS_PAGE">Settings</string>
+    <string name="CONST_NAME_LANGUAGE">Language</string>
+    <string name="CONST_NAME_THEME">Theme</string>
+    <string name="CONST_NAME_NOTIFICATIONS">Notifications</string>
+
+    <!--Константы для фрагментов изменения и добавления задач-->
+    <string name="CONST_NAME_ADD_TASK">Adding a task</string>
+    <string name="CONST_NAME_EDIT_TASK">Editing a task</string>
+    <string name="CONST_NAME_HEADER">Header</string>
+    <string name="CONST_NAME_DATE_AND_TIME">Date and time</string>
+    <string name="CONST_NAME_TIME">Time</string>
+    <string name="CONST_NAME_DESCRIPTION">Description</string>
+    <string name="CONST_NAME_REPEAT">Repeat</string>
+
+    <!--Константы для диалоговых окон-->
+    <string name="CONST_NAME_OK">OK</string>
+    <string name="CONST_NAME_CANCEL">CANCEL</string>
+    <string name="CONST_NAME_THEME_SELECTION">Choose a theme</string>
+
+    <string name="CONST_NAME_LANGUAGE_SELECTION">Choose a language</string>
+    <string name="CONST_NAME_ENGLISH">English</string>
+    <string name="CONST_NAME_RUSSIAN">Русский</string>
+
+    <string name="CONST_NAME_NOTIFICATION_SETTINGS">Notification settings</string>
+    <string name="CONST_NAME_NOTIFICATIONS_ON">On</string>
+    <string name="CONST_NAME_NOTIFICATIONS_OFF">Off</string>
+
+    <string name="CONST_NAME_CONFIRMATION">Are you sure?</string>
+    <string name="CONST_NAME_CONFIRMATION_RETURN">Are you sure? Changes will not be saved!</string>
+
+    <string name="CONST_NAME_TASK_SAVED">Task saved</string>
+    <string name="CONST_NAME_TASK_DELETED">Task deleted</string>
+    <string name="CONST_NAME_SELECTED_LANGUAGE">Selected language</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+</resources>

@@ -3,16 +3,16 @@
 
     <item
         android:id="@+id/taskMainBottom"
-        android:title="Задачи"
+        android:title="@string/CONST_NAME_TASKS_PAGE"
         android:icon="@drawable/baseline_tasks_24"/>
     <item
         android:id="@+id/homeMainBottom"
-        android:title="Главная"
+        android:title="@string/CONST_NAME_HOME_PAGE"
         android:icon="@drawable/baseline_home_24"
         />
     <item
         android:id="@+id/settingsMainBottom"
-        android:title="Настройки"
+        android:title="@string/CONST_NAME_SETTINGS_PAGE"
         android:icon="@drawable/baseline_settings_24"
         />
 </menu>

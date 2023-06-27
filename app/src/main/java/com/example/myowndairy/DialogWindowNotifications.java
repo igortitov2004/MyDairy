@@ -16,12 +16,17 @@ import androidx.fragment.app.DialogFragment;
 public class DialogWindowNotifications extends DialogFragment {
     Switch aSwitch;
     String switchValue = "";
-    private final String on = "Включены";
-    private final String off = "Выключены";
+    private String on;
+
+    private String off;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
+
+        on = getString(R.string.CONST_NAME_NOTIFICATIONS_ON);
+
+        off = getString(R.string.CONST_NAME_NOTIFICATIONS_OFF);
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -46,28 +51,26 @@ public class DialogWindowNotifications extends DialogFragment {
         });
 
         builder.setView(view)
-                .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.CONST_NAME_OK), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(switchValue == on){
                             Toast.makeText(
                                     getActivity(),
-                                    "Уведомления " + on,
+                                    getString(R.string.CONST_NAME_NOTIFICATIONS)+" " + on,
                                     Toast.LENGTH_SHORT).show();
                         }else if(switchValue == off){
                             Toast.makeText(
                                     getActivity(),
-                                    "Уведомления " + off,
+                                    getString(R.string.CONST_NAME_NOTIFICATIONS)+" "+ off,
                                     Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.CONST_NAME_CANCEL), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-
+                        dialog.cancel();
                     }
                 });
         return builder.create();

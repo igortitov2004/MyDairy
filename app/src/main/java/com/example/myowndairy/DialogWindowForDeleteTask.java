@@ -29,9 +29,9 @@ public class DialogWindowForDeleteTask extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Вы уверены?")
+        builder.setTitle(getString(R.string.CONST_NAME_CONFIRMATION))
 
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.CONST_NAME_OK), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
@@ -42,12 +42,12 @@ public class DialogWindowForDeleteTask extends DialogFragment {
 
                         Toast.makeText(
                                 getActivity(),
-                                "Задача удалена!",
+                                getString(R.string.CONST_NAME_TASK_DELETED),
                                 Toast.LENGTH_SHORT).show();
 
                        }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.CONST_NAME_CANCEL), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();

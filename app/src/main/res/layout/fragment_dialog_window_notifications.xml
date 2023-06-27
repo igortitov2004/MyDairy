@@ -17,8 +17,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Настройка уведомлений"
-            android:textStyle="bold"
+            android:text="@string/CONST_NAME_NOTIFICATION_SETTINGS"
+
             android:textSize="18sp"
             android:paddingTop="15dp"
             android:paddingLeft="15dp"/>
@@ -27,12 +27,10 @@
             android:id="@+id/switchNotifications"
             android:layout_width="match_parent"
             android:layout_height="37dp"
-            android:text="Выключены"
+            android:text="@string/CONST_NAME_NOTIFICATIONS_OFF"
             android:textSize="16sp"
             android:paddingLeft="15dp"
             android:layout_marginTop="50dp"/>
-
-
 
     </androidx.cardview.widget.CardView>
 

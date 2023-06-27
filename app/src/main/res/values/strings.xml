@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyOwnDairy</string>
+    <string name="app_name">Ежедневник</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -21,5 +21,59 @@
     <string name="task_5">Задача 5</string>
     <string name="task_6">Задача 6</string>
     <string name="task_7">Задача 7</string>
+
+    <!--Константы для страницы Задачи-->
+    <string name="CONST_NAME_TASKS_PAGE">Задачи</string>
+    <string name="CONST_NAME_CALENDAR">Календарь</string>
+
+    <!--Константы для страницы Главная-->
+    <string name="CONST_NAME_HOME_PAGE">Главная</string>
+
+    <!--Константы для страницы Настройки-->
+    <string name="CONST_NAME_SETTINGS_PAGE">Настройки</string>
+    <string name="CONST_NAME_LANGUAGE">Язык</string>
+    <string name="CONST_NAME_THEME">Тема</string>
+    <string name="CONST_NAME_NOTIFICATIONS">Уведомления</string>
+
+    <!--Константы для фрагментов изменения и добавления задач-->
+    <string name="CONST_NAME_ADD_TASK">Добавление задачи</string>
+    <string name="CONST_NAME_EDIT_TASK">Изменение задачи</string>
+    <string name="CONST_NAME_HEADER">Заголовок</string>
+    <string name="CONST_NAME_DATE_AND_TIME">Дата и время</string>
+    <string name="CONST_NAME_TIME">Время</string>
+    <string name="CONST_NAME_DESCRIPTION">Описание</string>
+    <string name="CONST_NAME_REPEAT">Повтор</string>
+
+    <!--Константы для диалоговых окон-->
+    <string name="CONST_NAME_OK">ОК</string>
+    <string name="CONST_NAME_CANCEL">ОТМЕНА</string>
+
+    <string name="CONST_NAME_THEME_SELECTION">Выберите тему</string>
+
+    <string name="CONST_NAME_LANGUAGE_SELECTION">Выберите язык</string>
+    <string name="CONST_NAME_ENGLISH">English</string>
+    <string name="CONST_NAME_RUSSIAN">Русский</string>
+
+    <string name="CONST_NAME_NOTIFICATION_SETTINGS">Настройка уведомлений</string>
+    <string name="CONST_NAME_NOTIFICATIONS_ON">Включены</string>
+    <string name="CONST_NAME_NOTIFICATIONS_OFF">Выключены</string>
+
+    <string name="CONST_NAME_CONFIRMATION">Вы уверены?</string>
+    <string name="CONST_NAME_CONFIRMATION_RETURN">Вы уверены? Изменения не будут сохранены!</string>
+
+    <string name="CONST_NAME_TASK_SAVED">Задача сохранена</string>
+    <string name="CONST_NAME_TASK_DELETED">Задача удалена</string>
+    <string name="CONST_NAME_SELECTED_LANGUAGE">Выбран язык</string>
+
+
+
+
+
+
+
+
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

@@ -4,16 +4,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import java.util.Date;
 
 public class DialogWindowForConfirmTask extends DialogFragment{
 
@@ -59,13 +55,13 @@ HomeFragment homeFragment;
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Вы уверены?")
+        builder.setTitle(getString(R.string.CONST_NAME_CONFIRMATION))
 
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.CONST_NAME_OK), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                       if(editableFragment == homeFragment.createEditTaskFragment){
+                       if(editableFragment == homeFragment.fragmentCreateTaskToday){
                            fragmentCreateTaskToday.saveTask();
                            fragmentCreateTaskToday.setTime.setText("");
                            fragmentCreateTaskToday.heading.setText("");
@@ -78,12 +74,12 @@ HomeFragment homeFragment;
 
                         Toast.makeText(
                                 getActivity(),
-                                "Задача cохранена!",
+                                getString(R.string.CONST_NAME_TASK_SAVED),
                                 Toast.LENGTH_SHORT).show();
 
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.CONST_NAME_CANCEL), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                              dialog.cancel();

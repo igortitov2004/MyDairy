@@ -29,7 +29,7 @@
             android:id="@+id/textTaskToolBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Задачи"
+            android:text="@string/CONST_NAME_TASKS_PAGE"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="normal"
@@ -44,7 +44,7 @@
         android:textStyle="italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Календарь"
+        android:text="@string/CONST_NAME_CALENDAR"
 
         android:layout_marginTop="65dp"
         android:layout_marginLeft="10dp"/>

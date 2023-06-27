@@ -15,7 +15,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.myowndairy.DB.DBHelper;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -107,13 +106,10 @@ public class FragmentCreateTaskToday extends DialogFragment {
         confirmTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 showDialog(dialogWindowForConfirmTask);
                 dialogWindowForConfirmTask.fragment = homeFragment;
                 dialogWindowForConfirmTask.homeFragment = homeFragment;
-                dialogWindowForConfirmTask.editableFragment = homeFragment.createEditTaskFragment;
-
-
+                dialogWindowForConfirmTask.editableFragment = homeFragment.fragmentCreateTaskToday;
             }
         });
 

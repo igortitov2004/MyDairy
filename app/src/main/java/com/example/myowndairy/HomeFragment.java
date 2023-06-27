@@ -1,7 +1,5 @@
 package com.example.myowndairy;
 
-import android.app.LauncherActivity;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,21 +19,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myowndairy.DB.DBHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -98,7 +88,7 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
 //    DBHelper dbHelper;
 //
 //    SQLiteDatabase database;
-    FragmentCreateTaskToday createEditTaskFragment = new FragmentCreateTaskToday(this);
+    FragmentCreateTaskToday fragmentCreateTaskToday = new FragmentCreateTaskToday(this);
 
     ConstraintLayout item;
     DialogWindowForConfirmTask dialogWindowForConfirmTask;
@@ -131,7 +121,7 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
             @Override
             public void onClick(View v) {
                 FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
-                fm.replace(R.id.frame_layout,createEditTaskFragment).commit();
+                fm.replace(R.id.frame_layout, fragmentCreateTaskToday).commit();
             }
         });
 

@@ -22,17 +22,17 @@ public class DialogWindowThemes extends DialogFragment {
 
 
         builder.setView(R.layout.fragment_dialog_window_themes)
-                .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.CONST_NAME_OK), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
 
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.CONST_NAME_CANCEL), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        themeEdit.setCompoundDrawablesWithIntrinsicBounds(R.drawable.baseline_palette_24, 0, R.drawable.baseline_keyboard_arrow_right_24, 0);
+                        dialog.cancel();
 
                     }
                 });

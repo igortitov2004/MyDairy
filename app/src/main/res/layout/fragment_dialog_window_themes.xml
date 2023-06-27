@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
             android:paddingTop="15dp"
-            android:text="Выбор темы"
+            android:text="@string/CONST_NAME_THEME_SELECTION"
             android:textSize="18sp"
             android:textStyle="bold" />
 

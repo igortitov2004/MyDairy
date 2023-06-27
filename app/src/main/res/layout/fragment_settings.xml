@@ -19,7 +19,7 @@
             android:id="@+id/textSettingsToolBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Настройки"
+            android:text="@string/CONST_NAME_SETTINGS_PAGE"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="normal"
@@ -46,7 +46,7 @@
         android:layout_marginVertical="147dp"
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/round_corners"
-        android:text="Тема"
+        android:text="@string/CONST_NAME_THEME"
         android:paddingLeft="5dp"
         android:drawableLeft="@drawable/baseline_palette_24"
         android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"/>
@@ -57,7 +57,7 @@
         android:layout_marginVertical="204dp"
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/round_corners"
-        android:text="Язык"
+        android:text="@string/CONST_NAME_LANGUAGE"
         android:paddingLeft="5dp"
         android:drawableLeft="@drawable/baseline_language_24"
         android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"/>
@@ -68,7 +68,7 @@
         android:layout_marginVertical="261dp"
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/round_corners"
-        android:text="Уведомления"
+        android:text="@string/CONST_NAME_NOTIFICATIONS"
         android:paddingLeft="5dp"
         android:drawableLeft="@drawable/baseline_notifications_active_24"
         android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"/>

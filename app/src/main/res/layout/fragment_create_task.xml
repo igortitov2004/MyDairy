@@ -17,7 +17,7 @@
             android:id="@+id/textSettingsToolBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Добавление задачи"
+            android:text="@string/CONST_NAME_ADD_TASK"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="normal"
@@ -64,7 +64,7 @@
 
 
 
-        android:text="Выбор даты и времени"
+        android:text="@string/CONST_NAME_DATE_AND_TIME"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -74,7 +74,7 @@
         android:layout_marginVertical="55dp"
         android:layout_marginLeft="8dp"
 
-        android:text="Заголовок"
+        android:text="@string/CONST_NAME_HEADER"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="256dp"
         android:layout_marginLeft="8dp"
-        android:text="Описание"
+        android:text="@string/CONST_NAME_DESCRIPTION"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -137,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="480dp"
         android:layout_marginLeft="8dp"
-        android:text="Повтор"
+        android:text="@string/CONST_NAME_REPEAT"
         android:textColor="@color/black"
         android:textSize="18sp"/>
 
