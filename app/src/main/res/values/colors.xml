@@ -10,4 +10,20 @@
     <color name="navBarColor">#C9EBA8</color>
     <color name="buttonColor">#ACE5DE</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="color1">#00B25C</color>
+    <color name="color2">#36D88A</color>
+    <color name="color3">#61D89F</color>
+    <color name="color4">#218359</color>
+
+    <color name="color5">#0776A0</color>
+    <color name="color6">#3AA6D0</color>
+    <color name="color7">#62B1D0</color>
+    <color name="color8">#226078</color>
+
+    <color name="color9">#640CAB</color>
+    <color name="color10">#9240D5</color>
+    <color name="color11">#A468D5</color>
+    <color name="color12">#582781</color>
+
 </resources>

@@ -40,7 +40,7 @@ public class FragmentEditTask extends DialogFragment {
 
     String timeText;
 
-    int idTask;
+    public int idTask;
 
     public  EditText headerEdit;
 
@@ -66,7 +66,7 @@ public class FragmentEditTask extends DialogFragment {
 
     DBHelper dbHelper;
 
-    SQLiteDatabase database;
+    public SQLiteDatabase database;
 
 
 
