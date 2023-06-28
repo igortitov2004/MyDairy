@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.Dialogs;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -20,8 +20,7 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
     }
 
     EditText setTextTime;
-
-    int timeField;
+    public int timeField;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

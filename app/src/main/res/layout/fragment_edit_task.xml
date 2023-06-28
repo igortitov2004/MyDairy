@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/mainColor"
     android:id="@+id/editTaskFrag"
-    tools:context=".FragmentEditTask">
+    tools:context=".HomePage.FragmentEditTask">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/settingsToolBar"

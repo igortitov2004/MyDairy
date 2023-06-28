@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.HomePage;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,6 +21,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myowndairy.DB.DBHelper;
+import com.example.myowndairy.Interfaces.RecycleViewInterface;
+import com.example.myowndairy.HomePage.Adapter.MyAdapterForHome;
+import com.example.myowndairy.R;
+import com.example.myowndairy.Model.Tasks;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
@@ -30,7 +33,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class HomeFragment extends Fragment implements RecycleViewInterface{
+public class HomeFragment extends Fragment implements RecycleViewInterface {
 
     Date date = new Date();
 
@@ -45,56 +48,13 @@ public class HomeFragment extends Fragment implements RecycleViewInterface{
     ArrayList<Tasks> tasksArrayList = new ArrayList<>() ;
 
 
-//    public HomeFragment(){
-//        this.tasksHeading = new String[]{
-//                "БЖЧ",
-//                "МИСРЭТ",
-//                "АЛИМПУС",
-//                "ТВИМС",
-//                "МИКЭМС"
-//        };
-//
-//        this.tasksTime = new String[]{
-//                "12.00",
-//                "13.00",
-//                "14.00",
-//                "15.00",
-//                "16.00"
-//
-//        };
-//
-//        this.tasksDescription = new String[]{
-//                "Подышать",
-//                "Поесть",
-//                "Попить",
-//                "Полежать",
-//                "Походить"
-//        };
-//
-//        for (int counter=0;counter<tasksHeading.length;counter++){
-//            Tasks tasks = new Tasks(tasksHeading[counter],"сегодня",tasksTime[counter],tasksDescription[counter]);
-//            tasksArrayList.add(tasks);
-//        }
-//    }
-    private String[] tasksHeading;
-
-   private String[] tasksDate;
-    private String[] tasksTime;
-    private String[] tasksDescription;
-
     private RecyclerView recyclerview;
 
 
-//    DBHelper dbHelper;
-//
-//    SQLiteDatabase database;
-    FragmentCreateTaskToday fragmentCreateTaskToday = new FragmentCreateTaskToday(this);
 
-    ConstraintLayout item;
-    DialogWindowForConfirmTask dialogWindowForConfirmTask;
+    public FragmentCreateTaskToday fragmentCreateTaskToday = new FragmentCreateTaskToday(this);
 
-//    FragmentEditTask fragmentEditTask = new FragmentEditTask();
-    FragmentEditTask editTaskFragment = new FragmentEditTask(this);
+    public FragmentEditTask editTaskFragment = new FragmentEditTask(this);
 
 
     DBHelper dbHelperHome;

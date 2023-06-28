@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/mainColor"
     android:id="@+id/createTaskFrag"
-    tools:context=".FragmentCreateTask">
+    tools:context=".TasksPage.FragmentCreateTask">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/settingsToolBar"

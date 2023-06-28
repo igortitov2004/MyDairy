@@ -1,9 +1,8 @@
-package com.example.myowndairy;
+package com.example.myowndairy.HomePage;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,11 @@ import android.widget.EditText;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.myowndairy.DB.DBHelper;
+import com.example.myowndairy.Dialogs.DialogWindowForConfirmTask;
+import com.example.myowndairy.Dialogs.DialogWindowForDeleteTask;
+import com.example.myowndairy.Dialogs.DialogWindowForReturn;
+import com.example.myowndairy.Dialogs.DialogWindowTime;
+import com.example.myowndairy.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.HomePage.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,21 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myowndairy.Interfaces.RecycleViewInterface;
+import com.example.myowndairy.R;
+import com.example.myowndairy.Model.Tasks;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapterForHome extends RecyclerView.Adapter<MyAdapterForHome.MyViewHolder>{
-
     private RecycleViewInterface recycleViewInterface;
     Context context;
     List<Tasks> tasksArrayList;
-
-
     public MyAdapterForHome(RecycleViewInterface recycleViewInterface, Context context, ArrayList<Tasks> tasksArrayList){
         this.recycleViewInterface = recycleViewInterface;
         this.context = context;
         this.tasksArrayList = tasksArrayList;
-
     }
     @NonNull
     @Override
@@ -34,7 +34,6 @@ public class MyAdapterForHome extends RecyclerView.Adapter<MyAdapterForHome.MyVi
         View v = LayoutInflater.from(context).inflate(R.layout.task_item_today,parent,false);
         return new MyAdapterForHome.MyViewHolder(v);
     }
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
@@ -46,28 +45,19 @@ public class MyAdapterForHome extends RecyclerView.Adapter<MyAdapterForHome.MyVi
                 recycleViewInterface.onItemClick(tasksArrayList.get(position));
             }
         });
-
     }
-
-
-
     @Override
     public int getItemCount() {
         return tasksArrayList.size();
     }
-
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvHeadingToday;
         TextView time;
-
-        Button deleteTask;
         ConstraintLayout constraintLayout;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvHeadingToday = itemView.findViewById(R.id.tvHeadingToday);
             time = itemView.findViewById(R.id.taskTime);
-
             constraintLayout = itemView.findViewById(R.id.taskItemToday);
         }
     }

@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.SettingsPage;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+
+import com.example.myowndairy.R;
 
 public class DialogWindowThemes extends DialogFragment {
 

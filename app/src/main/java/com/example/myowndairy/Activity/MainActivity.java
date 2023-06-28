@@ -1,10 +1,11 @@
-package com.example.myowndairy;
+package com.example.myowndairy.Activity;
 
-import android.app.Dialog;
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,17 +13,25 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.myowndairy.HomePage.HomeFragment;
+import com.example.myowndairy.Interfaces.SetLanguageInterface;
+import com.example.myowndairy.R;
+import com.example.myowndairy.SettingsPage.SettingsFragment;
+import com.example.myowndairy.TasksPage.TaskFragment;
 import com.example.myowndairy.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
-    ActivityMainBinding binding;
+import java.util.Locale;
 
+public class MainActivity extends AppCompatActivity implements SetLanguageInterface {
+    ActivityMainBinding binding;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        loadLocale();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
@@ -54,5 +63,21 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void setLocal(String langCode){
+        Locale locale = new Locale(langCode);
+        locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration,resources.getDisplayMetrics());
+    }
+
+    private void loadLocale(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = sharedPreferences.getString("My_Lang","");
+        setLocal(language);
     }
 }

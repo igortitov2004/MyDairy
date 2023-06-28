@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/mainColor"
     android:id="@+id/taskFrag"
-    tools:context=".TaskFragment"
+    tools:context=".TasksPage.TaskFragment"
     >
 
     <androidx.recyclerview.widget.RecyclerView

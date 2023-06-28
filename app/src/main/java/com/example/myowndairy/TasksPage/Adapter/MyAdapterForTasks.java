@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.TasksPage.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,11 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.imageview.ShapeableImageView;
+import com.example.myowndairy.Interfaces.RecycleViewInterface;
+import com.example.myowndairy.R;
+import com.example.myowndairy.Model.Tasks;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class MyAdapterForTasks extends RecyclerView.Adapter<MyAdapterForTasks.MyViewHolder> {
 
 
 
@@ -22,7 +24,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     ArrayList<Tasks> tasksArrayList;
 
 
-    public MyAdapter(Context context,ArrayList<Tasks> tasksArrayList,RecycleViewInterface recycleViewInterface){
+    public MyAdapterForTasks(Context context, ArrayList<Tasks> tasksArrayList, RecycleViewInterface recycleViewInterface){
         this.context = context;
         this.tasksArrayList = tasksArrayList;
         this.recycleViewInterface = recycleViewInterface;
@@ -40,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
          Tasks tasks = tasksArrayList.get(position);
 //         holder.numberOfTasks.setText(tasks.heading);
-         holder.date.setText(tasks.date);
+         holder.date.setText(tasks.getDate());
 
     }
 

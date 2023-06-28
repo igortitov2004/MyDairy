@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.Model;
 
 import java.sql.Time;
 import java.util.Date;
@@ -52,7 +52,7 @@ public class Tasks {
 
     int id;
 
-    String date;
+    public String date;
     String time;
 
     String description;

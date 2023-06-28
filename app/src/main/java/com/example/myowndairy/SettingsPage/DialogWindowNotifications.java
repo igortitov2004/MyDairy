@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.SettingsPage;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+
+import com.example.myowndairy.R;
 
 public class DialogWindowNotifications extends DialogFragment {
     Switch aSwitch;

@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.TasksPage;
 
 
 import android.os.Bundle;
@@ -15,6 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.myowndairy.Dialogs.DialogWindowCalendarForChoiceTask;
+import com.example.myowndairy.Interfaces.RecycleViewInterface;
+import com.example.myowndairy.TasksPage.Adapter.MyAdapterForTasks;
+import com.example.myowndairy.R;
+import com.example.myowndairy.Model.Tasks;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -79,9 +84,9 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
         recyclerview = view.findViewById(R.id.recycleView);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerview.setHasFixedSize(true);
-        MyAdapter myAdapter = new MyAdapter(getContext(),tasksArrayList,this);
-        recyclerview.setAdapter(myAdapter);
-        myAdapter.notifyDataSetChanged();
+        MyAdapterForTasks myAdapterForTasks = new MyAdapterForTasks(getContext(),tasksArrayList,this);
+        recyclerview.setAdapter(myAdapterForTasks);
+        myAdapterForTasks.notifyDataSetChanged();
     }
 
     private void dataInitialize() {

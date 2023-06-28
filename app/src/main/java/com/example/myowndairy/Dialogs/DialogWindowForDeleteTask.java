@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,48 +11,25 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class DialogWindowForConfirmTask extends DialogFragment{
+import com.example.myowndairy.DB.DBHelper;
+import com.example.myowndairy.HomePage.FragmentEditTask;
+import com.example.myowndairy.HomePage.HomeFragment;
+import com.example.myowndairy.R;
 
+public class DialogWindowForDeleteTask extends DialogFragment {
 
-   public Fragment fragment;
+    public Fragment fragment;
 
+    FragmentEditTask fragmentEditTask;
 
-  Tasks tasks = new Tasks();
-   DialogWindowTime dialogWindowTime;
-
-   FragmentCreateTaskToday fragmentCreateTaskToday;
-
-   FragmentEditTask fragmentEditTask;
-
-   Fragment editableFragment;
-
-
-HomeFragment homeFragment;
-
-    public DialogWindowForConfirmTask(FragmentCreateTaskToday fragmentCreateTaskToday) {
-        this.fragmentCreateTaskToday = fragmentCreateTaskToday;
-    }
-
-    public DialogWindowForConfirmTask(FragmentEditTask fragmentEditTask) {
+    public DialogWindowForDeleteTask(FragmentEditTask fragmentEditTask) {
         this.fragmentEditTask = fragmentEditTask;
     }
-
-    public DialogWindowForConfirmTask(){
-
-    }
-
-//    public DialogWindowForConfirmTask(HomeFragment homeFragment) {
-//        this.homeFragment = homeFragment;
-//    }
-
-
 
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.CONST_NAME_CONFIRMATION))
@@ -61,28 +38,22 @@ HomeFragment homeFragment;
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                       if(editableFragment == homeFragment.fragmentCreateTaskToday){
-                           fragmentCreateTaskToday.saveTask();
-                           fragmentCreateTaskToday.setTime.setText("");
-                           fragmentCreateTaskToday.heading.setText("");
-                           fragmentCreateTaskToday.description.setText("");
-                       } else if(editableFragment == homeFragment.editTaskFragment){
-                           fragmentEditTask.saveTask();
-                        }
-
                         replaceFragment(fragment);
+
+                        // Удаление задачи из БД
+                        fragmentEditTask.database.delete(DBHelper.TABLE_TASKS,DBHelper.KEY_ID + "= "+ fragmentEditTask.idTask , null);
 
                         Toast.makeText(
                                 getActivity(),
-                                getString(R.string.CONST_NAME_TASK_SAVED),
+                                getString(R.string.CONST_NAME_TASK_DELETED),
                                 Toast.LENGTH_SHORT).show();
 
-                    }
+                       }
                 })
                 .setNegativeButton(getString(R.string.CONST_NAME_CANCEL), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                             dialog.cancel();
+                        dialog.cancel();
                     }
                 });
 
@@ -90,6 +61,12 @@ HomeFragment homeFragment;
     }
 
     public void replaceFragment(Fragment fragment){
+        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+        fm.replace(R.id.frame_layout,fragment).commit();
+    }
+
+    public void replaceFragment2(){
+        Fragment fragment = new HomeFragment();
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frame_layout,fragment).commit();
     }

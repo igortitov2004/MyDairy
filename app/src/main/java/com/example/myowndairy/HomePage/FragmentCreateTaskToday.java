@@ -1,4 +1,4 @@
-package com.example.myowndairy;
+package com.example.myowndairy.HomePage;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -14,6 +14,11 @@ import android.widget.EditText;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.myowndairy.DB.DBHelper;
+import com.example.myowndairy.Dialogs.DialogWindowForConfirmTask;
+import com.example.myowndairy.Dialogs.DialogWindowForReturn;
+import com.example.myowndairy.Dialogs.DialogWindowTime;
+import com.example.myowndairy.R;
+import com.example.myowndairy.Model.Tasks;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,7 +28,7 @@ public class FragmentCreateTaskToday extends DialogFragment {
     Button setTaskTime;
     Button confirmTask;
     Button returnToFragmemt;
-    EditText setTime;
+    public EditText setTime;
     Tasks tasks;
 
     HomeFragment homeFragment;
@@ -51,8 +56,8 @@ public class FragmentCreateTaskToday extends DialogFragment {
 
 
 
-    EditText heading;
-    EditText description;
+    public  EditText heading;
+    public EditText description;
 
     DBHelper dbHelper;
 

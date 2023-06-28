@@ -1,18 +1,20 @@
-package com.example.myowndairy;
+package com.example.myowndairy.TasksPage;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 
 import androidx.fragment.app.DialogFragment;
+
+import com.example.myowndairy.Dialogs.DialogWindowCalendar;
+import com.example.myowndairy.Dialogs.DialogWindowTime;
+import com.example.myowndairy.Dialogs.DialogWindowForConfirmTask;
+import com.example.myowndairy.Dialogs.DialogWindowForReturn;
+import com.example.myowndairy.R;
 
 
 public class FragmentCreateTask extends DialogFragment {
@@ -73,7 +75,6 @@ public class FragmentCreateTask extends DialogFragment {
                 showDialog(new DialogWindowCalendar());
             }
         });
-
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

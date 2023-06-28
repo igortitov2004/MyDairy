@@ -5,8 +5,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.myowndairy.FragmentCreateTaskToday;
-
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
