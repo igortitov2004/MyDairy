@@ -89,29 +89,30 @@
         android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"/>
 
 
-
     <Switch
         android:id="@+id/themeSwitch"
-        android:layout_width="392dp"
+        android:layout_width="373dp"
         android:layout_height="47dp"
+
+        android:layout_centerHorizontal="true"
+
         android:layout_marginVertical="147dp"
-        android:layout_marginLeft="10dp"
-        android:paddingLeft="5dp"
 
         android:background="@drawable/round_corners"
-
         android:drawableLeft="@drawable/baseline_palette_24"
-        >
+        android:paddingLeft="5dp">
 
 
     </Switch>
     <TextView
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TEXT"
         android:textSize="14sp"
         android:textAllCaps="true"
         android:text="@string/CONST_NAME_THEME"
+
         android:layout_marginVertical="160dp"
-        android:layout_marginLeft="187dp"/>
+        />
 </RelativeLayout>
