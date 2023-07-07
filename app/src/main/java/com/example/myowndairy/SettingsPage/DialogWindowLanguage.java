@@ -1,5 +1,6 @@
 package com.example.myowndairy.SettingsPage;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -22,17 +23,22 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
 
     private String selectedLanguage;
 
+    private int checkedItem;
+
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
         final String[] languageNamesArray = {getString(R.string.CONST_NAME_ENGLISH), getString(R.string.CONST_NAME_RUSSIAN)};
+       // для установки активности языка в меню
+        getLanguage();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle(getString(R.string.CONST_NAME_LANGUAGE_SELECTION))
                 // добавляем переключатели
-                .setSingleChoiceItems(languageNamesArray, -1,
+                .setSingleChoiceItems(languageNamesArray, checkedItem,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
@@ -85,6 +91,16 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
         editor.putString("My_Lang",langCode);
         editor.apply();
 
+    }
+
+    private void getLanguage(){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = sharedPreferences.getString("My_Lang","");
+        if(language=="en"){
+            checkedItem=0;
+        }else{
+            checkedItem=1;
+        }
     }
 
 }

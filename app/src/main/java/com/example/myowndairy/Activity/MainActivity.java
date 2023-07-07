@@ -1,6 +1,7 @@
 package com.example.myowndairy.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -9,12 +10,14 @@ import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myowndairy.HomePage.HomeFragment;
 import com.example.myowndairy.Interfaces.SetLanguageInterface;
+import com.example.myowndairy.Interfaces.SetThemeInterface;
 import com.example.myowndairy.R;
 import com.example.myowndairy.SettingsPage.SettingsFragment;
 import com.example.myowndairy.TasksPage.TaskFragment;
@@ -22,8 +25,11 @@ import com.example.myowndairy.databinding.ActivityMainBinding;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements SetLanguageInterface {
+public class MainActivity extends AppCompatActivity implements SetLanguageInterface, SetThemeInterface {
     ActivityMainBinding binding;
+
+    SharedPreferences sharedPreferences;
+
 
 
     @Override
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements SetLanguageInterf
 
         loadLocale();
 
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
@@ -40,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements SetLanguageInterf
 
         MenuItem startItem = binding.bottomNavigationView.getMenu().findItem(R.id.homeMainBottom);
         startItem.setChecked(true);
+
+        setTheme();
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if(R.id.homeMainBottom == item.getItemId()){
@@ -79,5 +88,17 @@ public class MainActivity extends AppCompatActivity implements SetLanguageInterf
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = sharedPreferences.getString("My_Lang","");
         setLocal(language);
+    }
+
+    @Override
+    public void setTheme() {
+        boolean themeMode;
+        sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        themeMode = sharedPreferences.getBoolean("night",false);
+        if(themeMode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+
+
     }
 }

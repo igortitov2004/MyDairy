@@ -4,7 +4,7 @@
     android:id="@+id/home_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainColor"
+    style="@style/SCREEN"
     tools:context=".HomePage.HomeFragment">
 
 
@@ -13,8 +13,8 @@
         android:id="@+id/homeToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:background="?attr/colorPrimary">
+        style="@style/TOOLBAR"
+        >
 
 
 
@@ -23,8 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Понедельник"
-            android:textStyle="normal"
-            android:textColor="@color/white"
+            style="@style/TEXT"
+            android:textStyle="bold"
+
             android:textSize="22sp"
             android:layout_marginLeft="10dp"/>
 
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="06.06.2023"
             android:textStyle="normal"
-            android:textColor="@color/white"
+            style="@style/TEXT"
             android:textSize="22sp"
             android:layout_gravity="right"
             android:layout_marginRight="10dp"/>
@@ -47,7 +48,8 @@
         android:layout_height="wrap_content"
         android:focusable="true"
         android:onClick="addItem"
-        android:backgroundTint="@color/teal_200"
+
+        android:backgroundTint="@color/color4"
         android:layout_marginTop="640dp"
         android:layout_marginLeft="330dp"
         android:clickable="true"

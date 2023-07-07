@@ -4,11 +4,11 @@
     android:layout_height="60dp"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    style="@style/BUTTON"
     android:layout_margin="8dp"
     android:id="@+id/item"
     android:layout_marginHorizontal="2dp"
-    android:background="@drawable/round_corners"
+
     android:foreground="?android:attr/selectableItemBackground">
 
 
@@ -19,10 +19,11 @@
         android:layout_marginRight="60dp"
         android:layout_marginVertical="10dp"
         android:text="1 задача"
-        android:textColor="@color/black"
+        style="@style/TEXT"
+
         android:textSize="16dp"
         android:inputType="date"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
       />
@@ -35,7 +36,7 @@
         android:layout_marginVertical="10dp"
         android:layout_marginLeft="10dp"
         android:text="Дата"
-        android:textColor="@color/black"
+        style="@style/TEXT"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainColor"
+    style="@style/SCREEN"
     android:id="@+id/taskFrag"
     tools:context=".TasksPage.TaskFragment"
     >
@@ -22,7 +22,7 @@
         android:id="@+id/taskToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        style="@style/TOOLBAR"
         >
 
         <TextView
@@ -30,10 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/CONST_NAME_TASKS_PAGE"
-            android:textColor="@color/white"
+            style="@style/TEXT"
             android:textSize="22sp"
-            android:textStyle="normal"
-            android:layout_marginLeft="165dp"/>
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
 
 
 
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusable="true"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="@color/color4"
         android:layout_marginTop="640dp"
         android:layout_marginLeft="330dp"
         android:clickable="true"

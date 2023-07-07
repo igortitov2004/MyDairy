@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainColor"
+
+    style="@style/SCREEN"
     tools:context=".SettingsPage.SettingsFragment"
     android:id="@+id/fragSettings"
     >
@@ -13,17 +14,18 @@
         android:id="@+id/settingsToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary">
+        style="@style/TOOLBAR">
 
         <TextView
             android:id="@+id/textSettingsToolBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:text="@string/CONST_NAME_SETTINGS_PAGE"
-            android:textColor="@color/white"
+
             android:textSize="22sp"
-            android:textStyle="normal"
-            android:layout_marginLeft="150dp"/>
+
+            android:layout_gravity="center"/>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -39,37 +41,77 @@
 <!--        android:drawableLeft="@drawable/baseline_access_time_24"-->
 <!--        android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"-->
 <!--        android:text="Дата и время" />-->
-    <Button
-        android:id="@+id/buttonTheme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="147dp"
-        android:layout_marginHorizontal="10dp"
-        android:background="@drawable/round_corners"
-        android:text="@string/CONST_NAME_THEME"
-        android:paddingLeft="5dp"
-        android:drawableLeft="@drawable/baseline_palette_24"
-        android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"/>
+
+
+
+
+<!--    <Button-->
+<!--        android:id="@+id/buttonTheme"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginVertical="147dp"-->
+<!--        android:layout_marginHorizontal="10dp"-->
+<!--        style="@style/BUTTON"-->
+<!--        -->
+<!--        android:text="@string/CONST_NAME_THEME"-->
+<!--        android:paddingLeft="5dp"-->
+<!--        android:drawableLeft="@drawable/baseline_palette_24"/>-->
+<!--        android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"-->
+
+
+
     <Button
         android:id="@+id/buttonLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="204dp"
         android:layout_marginHorizontal="10dp"
-        android:background="@drawable/round_corners"
+        style="@style/BUTTON"
+
         android:text="@string/CONST_NAME_LANGUAGE"
         android:paddingLeft="5dp"
         android:drawableLeft="@drawable/baseline_language_24"
         android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"/>
+
+
     <Button
         android:id="@+id/buttonNotifications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="261dp"
         android:layout_marginHorizontal="10dp"
-        android:background="@drawable/round_corners"
+        style="@style/BUTTON"
+
+
         android:text="@string/CONST_NAME_NOTIFICATIONS"
         android:paddingLeft="5dp"
         android:drawableLeft="@drawable/baseline_notifications_active_24"
         android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"/>
+
+
+
+    <Switch
+        android:id="@+id/themeSwitch"
+        android:layout_width="392dp"
+        android:layout_height="47dp"
+        android:layout_marginVertical="147dp"
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="5dp"
+
+        android:background="@drawable/round_corners"
+
+        android:drawableLeft="@drawable/baseline_palette_24"
+        >
+
+
+    </Switch>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TEXT"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:text="@string/CONST_NAME_THEME"
+        android:layout_marginVertical="160dp"
+        android:layout_marginLeft="187dp"/>
 </RelativeLayout>

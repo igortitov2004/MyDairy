@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/mainColor"
+    style="@style/SCREEN"
     android:id="@+id/createTaskFrag"
     tools:context=".TasksPage.FragmentCreateTask">
 
@@ -11,17 +11,18 @@
         android:id="@+id/settingsToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary">
+       style="@style/TOOLBAR">
 
         <TextView
             android:id="@+id/textSettingsToolBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:text="@string/CONST_NAME_ADD_TASK"
-            android:textColor="@color/white"
             android:textSize="22sp"
-            android:textStyle="normal"
-            android:layout_marginLeft="100dp"/>
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -61,11 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="130dp"
         android:layout_marginLeft="8dp"
-
-
-
+        style="@style/TEXT"
         android:text="@string/CONST_NAME_DATE_AND_TIME"
-        android:textColor="@color/black"
         android:textSize="18sp" />
 
     <TextView
@@ -73,9 +71,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="55dp"
         android:layout_marginLeft="8dp"
-
+        style="@style/TEXT"
         android:text="@string/CONST_NAME_HEADER"
-        android:textColor="@color/black"
         android:textSize="18sp" />
 
     <EditText
@@ -95,8 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="256dp"
         android:layout_marginLeft="8dp"
+        style="@style/TEXT"
         android:text="@string/CONST_NAME_DESCRIPTION"
-        android:textColor="@color/black"
         android:textSize="18sp" />
 
     <Button
@@ -137,8 +134,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="480dp"
         android:layout_marginLeft="8dp"
+        style="@style/TEXT"
         android:text="@string/CONST_NAME_REPEAT"
-        android:textColor="@color/black"
         android:textSize="18sp"/>
 
     <Spinner
@@ -146,6 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="500dp"
+        style="@style/TEXT"
         android:layout_marginLeft="15dp"
         android:entries="@array/repeatMenu" />
 

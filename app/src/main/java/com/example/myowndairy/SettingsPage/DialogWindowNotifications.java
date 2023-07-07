@@ -45,7 +45,7 @@ public class DialogWindowNotifications extends DialogFragment {
                 if(isChecked){
                     aSwitch.setText(on);
                     switchValue=on;
-                }else{
+                }else {
                     aSwitch.setText(off);
                     switchValue=off;
                 }
