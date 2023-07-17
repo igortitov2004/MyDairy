@@ -58,7 +58,6 @@ public class SettingsFragment extends Fragment implements SetThemeInterface {
             }
         });
 
-
         languageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -85,18 +84,8 @@ public class SettingsFragment extends Fragment implements SetThemeInterface {
         sharedPreferences = getActivity().getSharedPreferences("MODE", Context.MODE_PRIVATE);
         theme = sharedPreferences.getBoolean("night",false);
         if(theme){
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             themeSwitch.setChecked(true);
-
         }
     }
 
-
-
-
-//    public void showDialogStartDateTime(View view){
-//        DialogWindowDateTimeEdit dialog = new DialogWindowDateTimeEdit();
-//
-//        dialog.show((getActivity().getSupportFragmentManager()),"custom");
-//    }
 }

@@ -7,6 +7,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.myowndairy.HomePage.HomeFragment;
+import com.example.myowndairy.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,5 +33,27 @@ public class DialogWindowCalendarForChoiceTask extends DialogFragment implements
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
+        if(month==12){
+            month=1;
+        }else {
+            month++;
+        }
+        HomeFragment homeFragment = new HomeFragment();
+        String dateStr = "" + dayOfMonth + "/" + month + "/" + year;
+        String str;
+        try {
+            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateStr);
+
+            str = new SimpleDateFormat("dd/MM/yyyy").format(date);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        homeFragment.textDayTask = str;
+        replaceFragment(homeFragment);
+    }
+
+    private void replaceFragment(Fragment fragment){
+        FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+        fm.replace(R.id.frame_layout,fragment).commit();
     }
 }

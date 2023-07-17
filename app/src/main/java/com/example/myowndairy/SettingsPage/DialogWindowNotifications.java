@@ -16,10 +16,9 @@ import androidx.fragment.app.DialogFragment;
 import com.example.myowndairy.R;
 
 public class DialogWindowNotifications extends DialogFragment {
-    Switch aSwitch;
-    String switchValue = "";
+    private Switch aSwitch;
+    private String switchValue = "";
     private String on;
-
     private String off;
 
     @NonNull

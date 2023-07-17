@@ -37,18 +37,65 @@ public class MainActivity extends AppCompatActivity implements SetLanguageInterf
 
         super.onCreate(savedInstanceState);
 
+//        createNotificationChannel();
+
+
         loadLocale();
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
+
+
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
+
+
+
 
         MenuItem startItem = binding.bottomNavigationView.getMenu().findItem(R.id.homeMainBottom);
         startItem.setChecked(true);
 
+        replaceFragment(new HomeFragment());
+
+
+
         setTheme();
+
+//        Button button = findViewById(R.id.notifButton);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Calendar calendar = Calendar.getInstance();
+////                calendar.setTimeInMillis(System.currentTimeMillis());
+//                calendar.set(Calendar.HOUR_OF_DAY,12);
+//                calendar.set(Calendar.MINUTE,10);
+//                calendar.set(Calendar.SECOND,0);
+//                calendar.set(Calendar.MILLISECOND,0);
+////                calendar.set(Calendar.MINUTE,0);
+////                calendar.set(Calendar.MILLISECOND,0);
+//
+//
+//
+//                Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
+//
+//
+//                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+//                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//
+//
+//                long curTime = System.currentTimeMillis();
+//                long interval = 1000*10;
+//
+//                alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+////                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+//
+//
+//
+//                Toast.makeText(MainActivity.this,"URA",Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if(R.id.homeMainBottom == item.getItemId()){
@@ -63,7 +110,24 @@ public class MainActivity extends AppCompatActivity implements SetLanguageInterf
             return true;
         });
 
+
+
+
     }
+
+//    private void createNotificationChannel() {
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+//            CharSequence name = "DairyChannel";
+//            String description = "Channel for alarm manager";
+//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+//            NotificationChannel channel = new NotificationChannel("Dairy",name,importance);
+//            channel.setDescription(description);
+//
+//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+//
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//    }
 
 
 

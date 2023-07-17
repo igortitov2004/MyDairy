@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,39 +28,31 @@ import com.example.myowndairy.R;
 import com.example.myowndairy.Model.Tasks;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 
 public class HomeFragment extends Fragment implements RecycleViewInterface {
-
-    Date date = new Date();
-
-    Toolbar toolbar;
-    TextView dayText;
-    TextView dateText;
-
-    Tasks tasks;
-
-    FloatingActionButton addTaskToday;
-
-    ArrayList<Tasks> tasksArrayList = new ArrayList<>() ;
-
-
+    private Date date = new Date();
+    private Toolbar toolbar;
+    private TextView dayText;
+    private TextView dateText;
+    private FloatingActionButton addTaskToday;
+    private ArrayList<Tasks> tasksArrayList = new ArrayList<>() ;
     private RecyclerView recyclerview;
-
-
-
     public FragmentCreateTaskToday fragmentCreateTaskToday = new FragmentCreateTaskToday(this);
-
     public FragmentEditTask editTaskFragment = new FragmentEditTask(this);
+    private DBHelper dbHelperHome;
+    private SQLiteDatabase databaseHome;
 
+    public String textDayTask;
 
-    DBHelper dbHelperHome;
-
-    SQLiteDatabase databaseHome;
+    private LocalDate taskDate;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +66,20 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         dateText = toolbar.findViewById(R.id.presentDate);
         addTaskToday = view.findViewById(R.id.addTaskToday);
 
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+
+        activity.setSupportActionBar(toolbar);
+        activity.getSupportActionBar().setTitle("");
+
+        if(textDayTask==null){
+            dateText.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
+        } else{
+            dateText.setText(textDayTask);
+        }
+
+
+        //разобраться со днем недели
+        dayText.setText(new SimpleDateFormat("EEEE", new Locale("RU")).format(date));
 
 
         dataShow();
@@ -87,21 +94,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
 
 
 
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-        activity.setSupportActionBar(toolbar);
-        activity.getSupportActionBar().setTitle("");
-
-
-
-        dateText.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
-        dayText.setText(new SimpleDateFormat("EEEE", new Locale("RU")).format(date));
-
-//        createEditTaskFragment.dataInitialize();
-
-        // Inflate the layout for this fragment
-//        dbHelper = new DBHelper(this);
-
 
         return view;
     }
@@ -110,7 +102,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        dataInitialize();
         recyclerview = getActivity().findViewById(R.id.recycleViewForHome);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerview.setHasFixedSize(true);
@@ -118,13 +109,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         recyclerview.setAdapter(myAdapterForHome);
         myAdapterForHome.notifyDataSetChanged();
 
-
-
-
-    }
-
-    public void showDialog(DialogFragment dialogFragment){
-        dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
     }
 
     @Override
@@ -142,12 +126,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
 
     }
 
-//    public void addItem(){
-//        tasksArrayList.add(createEditTaskFragment.tasks);
-//        MyAdapterForHome myAdapterForHome = new MyAdapterForHome(this,getContext(),tasksArrayList);
-//        recyclerview.setAdapter(myAdapterForHome);
-//    }
-
     public void dataShow() {
         tasksArrayList.clear();
 
@@ -162,7 +140,30 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
             do{
                 Tasks tasks = new Tasks(cursor.getInt(idIndex),cursor.getString(headerIndex),cursor.getString(dateIndex),
                         cursor.getString(timeIndex),cursor.getString(descriptionIndex));
-                tasksArrayList.add(tasks);
+//                dataRefresh(cursor.getString(dateIndex).split("/"));
+//                if(dateCheck.compareTo(new Date())==0){
+//                    if(textDayTask==null){
+//                        if(cursor.getString(dateIndex).equals(new SimpleDateFormat("dd/MM/yyyy").format(date))){
+//                            tasksArrayList.add(tasks);
+//                        }
+//                    } else {
+//                        if(cursor.getString(dateIndex).equals(textDayTask)){
+//                            tasksArrayList.add(tasks);
+//                        }
+//                    }
+//                }
+
+                if(textDayTask==null){
+                    if(cursor.getString(dateIndex).equals(new SimpleDateFormat("dd/MM/yyyy").format(date))){
+                        tasksArrayList.add(tasks);
+                    }
+                } else {
+                    if(cursor.getString(dateIndex).equals(textDayTask)){
+                        tasksArrayList.add(tasks);
+                    }
+                }
+
+
 
             }while (cursor.moveToNext());
 
@@ -173,4 +174,15 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         cursor.close();
         dbHelperHome.close();
     }
+
+//    private Date dateCheck;
+//    private void dataRefresh(String[] array){
+//        String timeStr = "" + array[0] + ":" + array[1] ;
+//
+//        try {
+//            dateCheck = new SimpleDateFormat("HH:mm").parse(timeStr);
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }

@@ -15,6 +15,10 @@ import com.example.myowndairy.HomePage.FragmentCreateTaskToday;
 import com.example.myowndairy.HomePage.FragmentEditTask;
 import com.example.myowndairy.HomePage.HomeFragment;
 import com.example.myowndairy.R;
+import com.example.myowndairy.TasksPage.FragmentCreateTask;
+import com.example.myowndairy.TasksPage.TaskFragment;
+
+import java.util.Calendar;
 
 public class DialogWindowForConfirmTask extends DialogFragment{
 
@@ -33,6 +37,13 @@ public class DialogWindowForConfirmTask extends DialogFragment{
 
 public HomeFragment homeFragment;
 
+public TaskFragment taskFragment;
+
+    public FragmentCreateTask fragmentCreateTask;
+    public DialogWindowForConfirmTask(FragmentCreateTask fragmentCreateTask) {
+        this.fragmentCreateTask = fragmentCreateTask;
+    }
+
     public DialogWindowForConfirmTask(FragmentCreateTaskToday fragmentCreateTaskToday) {
         this.fragmentCreateTaskToday = fragmentCreateTaskToday;
     }
@@ -41,6 +52,8 @@ public HomeFragment homeFragment;
         this.fragmentEditTask = fragmentEditTask;
     }
 
+
+
     public DialogWindowForConfirmTask(){
 
     }
@@ -48,6 +61,8 @@ public HomeFragment homeFragment;
 //    public DialogWindowForConfirmTask(HomeFragment homeFragment) {
 //        this.homeFragment = homeFragment;
 //    }
+
+
 
 
 
@@ -65,15 +80,18 @@ public HomeFragment homeFragment;
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                       if(editableFragment == homeFragment.fragmentCreateTaskToday){
-                           fragmentCreateTaskToday.saveTask();
-                           fragmentCreateTaskToday.setTime.setText("");
-                           fragmentCreateTaskToday.heading.setText("");
-                           fragmentCreateTaskToday.description.setText("");
-                       } else if(editableFragment == homeFragment.editTaskFragment){
-                           fragmentEditTask.saveTask();
-                        }
-
+                       try{
+                           if(editableFragment == taskFragment.fragmentCreateTask ){
+                               fragmentCreateTask.saveTask();
+                           }
+                       }catch (RuntimeException e){
+                           if(editableFragment == homeFragment.fragmentCreateTaskToday){
+                               fragmentCreateTaskToday.setAlarm();
+                               fragmentCreateTaskToday.saveTask();
+                           }else if(editableFragment == homeFragment.editTaskFragment){
+                               fragmentEditTask.saveTask();
+                           }
+                       }
                         replaceFragment(fragment);
 
                         Toast.makeText(
@@ -92,6 +110,9 @@ public HomeFragment homeFragment;
 
         return builder.create();
     }
+
+
+
 
     public void replaceFragment(Fragment fragment){
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();

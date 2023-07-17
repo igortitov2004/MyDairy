@@ -22,6 +22,9 @@
     <string name="task_6">Задача 6</string>
     <string name="task_7">Задача 7</string>
 
+    <string name="CONST_NAME_TITLE_NOTIF"> Задачи на сегодня </string>
+    <string name="CONST_NAME_TEXT_NOTIF"> Не забудь про задачу: </string>
+
     <!--Константы для страницы Задачи-->
     <string name="CONST_NAME_TASKS_PAGE">Задачи</string>
     <string name="CONST_NAME_CALENDAR">Календарь</string>

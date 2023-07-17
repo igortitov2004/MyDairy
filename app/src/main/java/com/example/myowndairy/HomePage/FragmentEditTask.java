@@ -22,57 +22,47 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FragmentEditTask extends DialogFragment {
-    Button setTaskTime;
-    Button confirmTask;
+    private Button setTaskTime;
+    private Button confirmTask;
+    private Button returnToFragmemt;
+    private EditText setTime;
+    private EditText setDescription;
 
-    Button returnToFragmemt;
-
-
-
-
-    EditText setTime;
-
-    EditText setDescription;
-
-    String descriptionText;
-
-    String headerText;
-
-    String timeText;
-
+    // сделать геттеры и сеттерны чтобы не было хуйни
+    public String descriptionText;
+    public String headerText;
+    public String timeText;
     public int idTask;
+    private EditText headerEdit;
+    private HomeFragment homeFragment;
+    private Button deleteTask;
 
-    public  EditText headerEdit;
-
-    HomeFragment homeFragment;
-
-    Button deleteTask;
-
-    DialogWindowTime dialogWindowTime = new DialogWindowTime();
-    DialogWindowForReturn dialogWindowForReturn = new DialogWindowForReturn();
-
-    DialogWindowForDeleteTask dialogWindowForDeleteTask = new DialogWindowForDeleteTask(this);
-    DialogWindowForConfirmTask dialogWindowForConfirmTask = new DialogWindowForConfirmTask(this);
-
+    private DialogWindowTime dialogWindowTime = new DialogWindowTime();
+    private DialogWindowForReturn dialogWindowForReturn = new DialogWindowForReturn();
+    private DialogWindowForDeleteTask dialogWindowForDeleteTask = new DialogWindowForDeleteTask(this);
+    private DialogWindowForConfirmTask dialogWindowForConfirmTask = new DialogWindowForConfirmTask(this);
 
     public FragmentEditTask(HomeFragment homeFragment){
         this.homeFragment = homeFragment;
     }
 
-    public FragmentEditTask(){
 
+    public FragmentEditTask(){
     }
 
-
-    DBHelper dbHelper;
+    private DBHelper dbHelper;
 
     public SQLiteDatabase database;
+
+
 
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         dbHelper = new DBHelper(this);
         database= dbHelper.getWritableDatabase();
 
@@ -98,13 +88,8 @@ public class FragmentEditTask extends DialogFragment {
             public void onClick(View v) {
                 showDialog(dialogWindowForDeleteTask);
                 dialogWindowForDeleteTask.fragment = homeFragment;
-//                int delCount = database.delete(DBHelper.TABLE_TASKS,DBHelper.KEY_ID + "= "+ idTask , null);
-//                Log.d("mLog", "deleted rows count = " + delCount);
-
             }
         });
-
-
         returnToFragmemt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,8 +107,6 @@ public class FragmentEditTask extends DialogFragment {
             }
         });
 
-
-
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +114,6 @@ public class FragmentEditTask extends DialogFragment {
                 showDialog(dialogWindowTime);
             }
         });
-
 
         setTaskTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,20 +125,21 @@ public class FragmentEditTask extends DialogFragment {
         return view;
     }
 
-
-
-
-    public void showDialog(DialogFragment dialogFragment){
+    private void showDialog(DialogFragment dialogFragment){
         dialogFragment.show((getActivity().getSupportFragmentManager()),"custom");
     }
-
     public void saveTask(){
         Date date = new Date();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DBHelper.KEY_HEADER,headerEdit.getText().toString());
-        contentValues.put(DBHelper.KEY_DATE,new SimpleDateFormat("dd/MM/yyyy").format(date));
+        if(homeFragment.textDayTask==null){
+            contentValues.put(DBHelper.KEY_DATE,new SimpleDateFormat("dd/MM/yyyy").format(date));
+        } else{
+            contentValues.put(DBHelper.KEY_DATE,homeFragment.textDayTask);
+        }
         contentValues.put(DBHelper.KEY_TIME, setTime.getText().toString());
         contentValues.put(DBHelper.KEY_DESCRIPTION,setDescription.getText().toString());
         database.update(DBHelper.TABLE_TASKS, contentValues,DBHelper.KEY_ID + "= ?", new String[] {String.valueOf(idTask)});
+
     }
 }

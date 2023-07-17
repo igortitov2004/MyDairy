@@ -31,6 +31,7 @@
 <!--            android:drawableLeft="@drawable/baseline_access_time_24"-->
 <!--            android:drawableRight="@drawable/baseline_keyboard_arrow_right_24"-->
 <!--            android:text="Дата и время" />-->
+
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

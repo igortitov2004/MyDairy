@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myowndairy.Interfaces.RecycleViewInterface;
@@ -14,6 +15,7 @@ import com.example.myowndairy.R;
 import com.example.myowndairy.Model.Tasks;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapterForTasks extends RecyclerView.Adapter<MyAdapterForTasks.MyViewHolder> {
 
@@ -21,10 +23,10 @@ public class MyAdapterForTasks extends RecyclerView.Adapter<MyAdapterForTasks.My
 
     private RecycleViewInterface recycleViewInterface;
     Context context;
-    ArrayList<Tasks> tasksArrayList;
+    List<Tasks> tasksArrayList;
 
 
-    public MyAdapterForTasks(Context context, ArrayList<Tasks> tasksArrayList, RecycleViewInterface recycleViewInterface){
+    public MyAdapterForTasks(RecycleViewInterface recycleViewInterface, Context context, ArrayList<Tasks> tasksArrayList){
         this.context = context;
         this.tasksArrayList = tasksArrayList;
         this.recycleViewInterface = recycleViewInterface;
@@ -32,17 +34,24 @@ public class MyAdapterForTasks extends RecyclerView.Adapter<MyAdapterForTasks.My
     }
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyAdapterForTasks.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(context).inflate(R.layout.task_item,parent,false);
-        return new MyViewHolder(v);
+        return new MyAdapterForTasks.MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-         Tasks tasks = tasksArrayList.get(position);
+//         Tasks tasks = tasksArrayList.get(position);
 //         holder.numberOfTasks.setText(tasks.heading);
-         holder.date.setText(tasks.getDate());
+
+         holder.date.setText(tasksArrayList.get(position).getDate());
+        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recycleViewInterface.onItemClick(tasksArrayList.get(position));
+            }
+        });
 
     }
 
@@ -52,6 +61,7 @@ public class MyAdapterForTasks extends RecyclerView.Adapter<MyAdapterForTasks.My
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
+        public ConstraintLayout constraintLayout;
         TextView numberOfTasks;
 
         TextView date;
@@ -62,6 +72,8 @@ public class MyAdapterForTasks extends RecyclerView.Adapter<MyAdapterForTasks.My
             super(itemView);
 //            numberOfTasks = itemView.findViewById(R.id.numberOfTasks);
             date = itemView.findViewById(R.id.taskDate);
+
+            constraintLayout = itemView.findViewById((R.id.item));
         }
     }
 }

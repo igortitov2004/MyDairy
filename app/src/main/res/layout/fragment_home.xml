@@ -55,11 +55,12 @@
         android:clickable="true"
         android:src="@drawable/baseline_add_24" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewForHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        tools:listitem="@layout/task_item"/>
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/recycleViewForHome"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="60dp"
+           tools:listitem="@layout/task_item"/>
+
 
 </FrameLayout>

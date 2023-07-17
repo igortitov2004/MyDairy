@@ -31,14 +31,14 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
         final String[] languageNamesArray = {getString(R.string.CONST_NAME_ENGLISH), getString(R.string.CONST_NAME_RUSSIAN)};
-       // для установки активности языка в меню
-        getLanguage();
+//       // для установки активности языка в меню
+//        getLanguage();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle(getString(R.string.CONST_NAME_LANGUAGE_SELECTION))
                 // добавляем переключатели
-                .setSingleChoiceItems(languageNamesArray, checkedItem,
+                .setSingleChoiceItems(languageNamesArray, -1,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
@@ -93,15 +93,15 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
 
     }
 
-    private void getLanguage(){
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = sharedPreferences.getString("My_Lang","");
-        if(language=="en"){
-            checkedItem=0;
-        }else{
-            checkedItem=1;
-        }
-    }
+//    private void getLanguage(){
+//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+//        String language = sharedPreferences.getString("My_Lang","");
+//        if(language=="en"){
+//            checkedItem=0;
+//        }else if(language=="ru"){
+//            checkedItem=1;
+//        }
+//    }
 
 }
 
