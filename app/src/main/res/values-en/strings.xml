@@ -14,9 +14,24 @@
         <item>Other...</item>
     </string-array>
 
+    <string name="CONST_NAME_DONE">Сompleted</string>
+
+    <string name="CONST_NAME_NOT_DONE">Outstanding</string>
+
+    <string name="CONST_NAME_DONE_TASKS">There are no completed tasks</string>
+
+    <string name="CONST_NAME_NOT_DONE_TASKS">There are no outstanding tasks</string>
+
+    <string name="CONST_NAME_WRONG_TIME">Wrong time</string>
+
+    <string name="CONST_NAME_NO_TASKS">No tasks</string>
+
+    <string name="CONST_NAME_NO_TASKS_FOR_THE_NEXT_DAYS">No tasks for the next days</string>
+
+    <string name="CONST_NAME_ISEMPTY_FIELD">Fill in the fields!</string>
 
     <string name="CONST_NAME_TITLE_NOTIF"> Tasks for today </string>
-    <string name="CONST_NAME_TEXT_NOTIF"> Don\'t forget the task </string>
+    <string name="CONST_NAME_TEXT_NOTIF"> Don\'t forget the task: </string>
 
     <string name="task_1">Task 1</string>
     <string name="task_2">Task 2</string>
@@ -25,6 +40,8 @@
     <string name="task_5">Task 5</string>
     <string name="task_6">Task 6</string>
     <string name="task_7">Task 7</string>
+
+
 
     <!--Константы для страницы Задачи-->
     <string name="CONST_NAME_TASKS_PAGE">Tasks</string>
@@ -43,7 +60,7 @@
     <string name="CONST_NAME_ADD_TASK">Adding a task</string>
     <string name="CONST_NAME_EDIT_TASK">Editing a task</string>
     <string name="CONST_NAME_HEADER">Header</string>
-    <string name="CONST_NAME_DATE_AND_TIME">Date and time</string>
+    <string name="CONST_NAME_DATE">Date</string>
     <string name="CONST_NAME_TIME">Time</string>
     <string name="CONST_NAME_DESCRIPTION">Description</string>
     <string name="CONST_NAME_REPEAT">Repeat</string>

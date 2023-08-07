@@ -18,6 +18,7 @@ import com.example.myowndairy.R;
 import com.example.myowndairy.TasksPage.FragmentCreateTask;
 import com.example.myowndairy.TasksPage.TaskFragment;
 
+import java.io.FileNotFoundException;
 import java.util.Calendar;
 
 public class DialogWindowForConfirmTask extends DialogFragment{
@@ -83,13 +84,29 @@ public TaskFragment taskFragment;
                        try{
                            if(editableFragment == taskFragment.fragmentCreateTask ){
                                fragmentCreateTask.saveTask();
+                               try {
+                                   fragmentCreateTask.setAlarm();
+                               } catch (FileNotFoundException ex) {
+                                   throw new RuntimeException(ex);
+                               }
                            }
                        }catch (RuntimeException e){
                            if(editableFragment == homeFragment.fragmentCreateTaskToday){
-                               fragmentCreateTaskToday.setAlarm();
+
                                fragmentCreateTaskToday.saveTask();
+                               if(homeFragment.dayOfTaskFromTaskFragment==null){
+                                   try {
+                                       fragmentCreateTaskToday.setAlarm();
+                                   } catch (FileNotFoundException ex) {
+                                       throw new RuntimeException(ex);
+                                   }
+                               }
+
+
                            }else if(editableFragment == homeFragment.editTaskFragment){
                                fragmentEditTask.saveTask();
+
+
                            }
                        }
                         replaceFragment(fragment);

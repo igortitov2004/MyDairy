@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.DatePicker;
-import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -26,9 +25,10 @@ public class DialogWindowCalendarForChoiceTask extends DialogFragment implements
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-
+        DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), this, year, month, day);
+        datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
         // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(requireContext(), this, year, month, day);
+        return datePickerDialog;
     }
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -48,7 +48,7 @@ public class DialogWindowCalendarForChoiceTask extends DialogFragment implements
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        homeFragment.textDayTask = str;
+        homeFragment.dayOfTaskFromTaskFragment = str;
         replaceFragment(homeFragment);
     }
 

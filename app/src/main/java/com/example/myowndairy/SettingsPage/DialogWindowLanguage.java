@@ -23,12 +23,15 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
 
     private String selectedLanguage;
 
+
+
     private int checkedItem;
 
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
+//        getLanguage();
 
         final String[] languageNamesArray = {getString(R.string.CONST_NAME_ENGLISH), getString(R.string.CONST_NAME_RUSSIAN)};
 //       // для установки активности языка в меню
@@ -38,7 +41,7 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
 
         builder.setTitle(getString(R.string.CONST_NAME_LANGUAGE_SELECTION))
                 // добавляем переключатели
-                .setSingleChoiceItems(languageNamesArray, -1,
+                .setSingleChoiceItems(languageNamesArray,-1,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
@@ -102,6 +105,8 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
 //            checkedItem=1;
 //        }
 //    }
+
+
 
 }
 

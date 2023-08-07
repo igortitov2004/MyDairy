@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,20 +58,22 @@ public class SettingsFragment extends Fragment implements SetThemeInterface {
                 startActivity(getActivity().getIntent());
             }
         });
-
         languageEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                showSettingsDialog(new DialogWindowLanguage());
+               blockingButton(notificationsEdit);
+               showSettingsDialog(new DialogWindowLanguage());
+
             }
         });
         notificationsEdit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                blockingButton(languageEdit);
                 showSettingsDialog(new DialogWindowNotifications());
+
             }
         });
-
         return view;
     }
 
@@ -87,5 +90,20 @@ public class SettingsFragment extends Fragment implements SetThemeInterface {
             themeSwitch.setChecked(true);
         }
     }
+
+    private void blockingButton(Button button){
+        button.setEnabled(false);
+        new CountDownTimer(1000, 10) { //Set Timer for 1 seconds
+            public void onTick(long millisUntilFinished) {
+            }
+
+            @Override
+            public void onFinish() {
+                button.setEnabled(true);
+            }
+        }.start();
+    }
+
+
 
 }

@@ -57,17 +57,35 @@ public class Tasks {
 
     String description;
 
+    public int getIsDone() {
+        return isDone;
+    }
+
+    public void setIsDone(int isDone) {
+        this.isDone = isDone;
+    }
+
+    int isDone;
+
     public Tasks(int id,String heading,String date,String time,String description) {
         this.id = id;
         this.heading = heading;
         this.date = date;
         this.time = time;
         this.description = description;
+
+    }
+
+    public Tasks(int id,String heading,String date,String time,String description,int isDone) {
+        this.id = id;
+        this.heading = heading;
+        this.date = date;
+        this.time = time;
+        this.description = description;
+        this.isDone = isDone;
     }
 
     public Tasks() {
-
-
     }
 
 

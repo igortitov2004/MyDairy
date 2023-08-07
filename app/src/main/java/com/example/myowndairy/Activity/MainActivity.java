@@ -2,12 +2,17 @@ package com.example.myowndairy.Activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.MenuItem;
+import android.view.Window;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -22,14 +27,19 @@ import com.example.myowndairy.R;
 import com.example.myowndairy.SettingsPage.SettingsFragment;
 import com.example.myowndairy.TasksPage.TaskFragment;
 import com.example.myowndairy.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements SetLanguageInterface, SetThemeInterface {
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
 
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
 
+
+    private HomeFragment homeFragment;
+    private TaskFragment taskFragment;
+    private SettingsFragment settingsFragment;
 
 
     @Override
@@ -37,106 +47,66 @@ public class MainActivity extends AppCompatActivity implements SetLanguageInterf
 
         super.onCreate(savedInstanceState);
 
-//        createNotificationChannel();
+        homeFragment = new HomeFragment();
+        taskFragment = new TaskFragment();
+        settingsFragment = new SettingsFragment();
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+
+//        createNotificationChannel();
 
         loadLocale();
 
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
-
-
         setContentView(binding.getRoot());
-
-
-
-
         MenuItem startItem = binding.bottomNavigationView.getMenu().findItem(R.id.homeMainBottom);
         startItem.setChecked(true);
-
-        replaceFragment(new HomeFragment());
-
 
 
         setTheme();
 
-//        Button button = findViewById(R.id.notifButton);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Calendar calendar = Calendar.getInstance();
-////                calendar.setTimeInMillis(System.currentTimeMillis());
-//                calendar.set(Calendar.HOUR_OF_DAY,12);
-//                calendar.set(Calendar.MINUTE,10);
-//                calendar.set(Calendar.SECOND,0);
-//                calendar.set(Calendar.MILLISECOND,0);
-////                calendar.set(Calendar.MINUTE,0);
-////                calendar.set(Calendar.MILLISECOND,0);
-//
-//
-//
-//                Intent intent = new Intent(MainActivity.this, AlarmReceiver.class);
-//
-//
-//                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-//                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-//
-//
-//                long curTime = System.currentTimeMillis();
-//                long interval = 1000*10;
-//
-//                alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
-////                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-//
-//
-//
-//                Toast.makeText(MainActivity.this,"URA",Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if(R.id.homeMainBottom == item.getItemId()){
-                replaceFragment(new HomeFragment());
+                replaceFragment(homeFragment);
             }
             if(R.id.taskMainBottom == item.getItemId()){
-                replaceFragment(new TaskFragment());
+                replaceFragment(taskFragment);
             }
             if(R.id.settingsMainBottom == item.getItemId()){
-                replaceFragment(new SettingsFragment());
+                replaceFragment(settingsFragment);
             }
             return true;
         });
-
-
-
-
+//        new CountDownTimer(500, 10) { //Set Timer for 1 seconds
+//            public void onTick(long millisUntilFinished) {
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//
+//                replaceFragment(homeFragment);
+//            }
+//        }.start();
+        replaceFragment(homeFragment);
     }
 
-//    private void createNotificationChannel() {
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-//            CharSequence name = "DairyChannel";
-//            String description = "Channel for alarm manager";
-//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-//            NotificationChannel channel = new NotificationChannel("Dairy",name,importance);
-//            channel.setDescription(description);
-//
-//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-//
-//            notificationManager.createNotificationChannel(channel);
-//        }
-//    }
 
 
 
-    private void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout,fragment);
-        fragmentTransaction.commit();
+
+
+
+    public void replaceFragment(Fragment fragment){
+        FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+        fm.replace(R.id.frame_layout,fragment).commit();
     }
+
+
+
+
 
     @Override
     public void setLocal(String langCode){

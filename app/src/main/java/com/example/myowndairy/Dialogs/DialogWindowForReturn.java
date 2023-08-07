@@ -10,11 +10,27 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.myowndairy.HomePage.FragmentCreateTaskToday;
 import com.example.myowndairy.R;
+import com.example.myowndairy.TasksPage.FragmentCreateTask;
 
 public class DialogWindowForReturn extends DialogFragment {
 
     public Fragment fragment;
+
+    public FragmentCreateTaskToday fragmentCreateTaskToday;
+
+    public DialogWindowForReturn(FragmentCreateTaskToday fragmentCreateTaskToday) {
+        this.fragmentCreateTaskToday = fragmentCreateTaskToday;
+    }
+    public DialogWindowForReturn(){
+
+    }
+    public FragmentCreateTask fragmentCreateTask;
+    public DialogWindowForReturn(FragmentCreateTask fragmentCreateTask) {
+        this.fragmentCreateTask = fragmentCreateTask;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -24,6 +40,18 @@ public class DialogWindowForReturn extends DialogFragment {
                 .setPositiveButton(getString(R.string.CONST_NAME_OK), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        if(fragmentCreateTaskToday!=null){
+                            fragmentCreateTaskToday.heading.setText(null);
+                            fragmentCreateTaskToday.description.setText(null);
+                            fragmentCreateTaskToday.setTime.setText(null);
+                        }
+                        if(fragmentCreateTask!=null){
+                            fragmentCreateTask.description.setText(null);
+                            fragmentCreateTask.heading.setText(null);
+                            fragmentCreateTask.setDate.setText(null);
+                            fragmentCreateTask.setTime.setText(null);
+                        }
+
                         replaceFragment(fragment);
                     }
                 })

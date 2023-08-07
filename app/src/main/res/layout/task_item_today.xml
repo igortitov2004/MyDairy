@@ -55,12 +55,14 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <CheckBox
+        android:id="@+id/check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
         android:layout_marginRight="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <View
         android:layout_width="match_parent"

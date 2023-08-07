@@ -28,6 +28,7 @@
 
     </style>
 
+
     <style name="TEXT">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">#000</item>

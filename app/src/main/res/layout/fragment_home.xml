@@ -17,7 +17,14 @@
         >
 
 
+        <Button
+            style="@style/BUTTON"
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
+            android:background="@drawable/baseline_arrow_back_24">
+        </Button>
         <TextView
             android:id="@+id/presentDay"
             android:layout_width="wrap_content"
@@ -27,7 +34,12 @@
             android:textStyle="bold"
 
             android:textSize="22sp"
-            android:layout_marginLeft="10dp"/>
+            android:paddingLeft="10dp"
+            />
+
+
+
+
 
         <TextView
             android:id="@+id/presentDate"
@@ -42,12 +54,57 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/textDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/CONST_NAME_DONE"
+        style="@style/TEXT"
+        android:layout_marginVertical="70dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/textNotDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TEXT"
+        android:text="@string/CONST_NAME_NOT_DONE"
+        android:layout_marginVertical="70dp"
+        android:layout_marginLeft="205dp"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/notDone"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/baseline_remove_done_24"
+        android:layout_marginVertical="62dp"
+        android:layout_marginLeft="350dp"/>
+
+    <Button
+        android:id="@+id/done"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/baseline_done_all_24"
+        android:layout_marginVertical="62dp"
+        android:layout_marginLeft="137dp"/>
+
+    <TextView
+        android:id="@+id/textCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TEXT"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addTaskToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusable="true"
         android:onClick="addItem"
+
 
         android:backgroundTint="@color/color4"
         android:layout_marginTop="640dp"
@@ -58,8 +115,9 @@
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/recycleViewForHome"
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="60dp"
+           android:layout_height="match_parent"
+           android:layout_marginTop="105dp"
+
            tools:listitem="@layout/task_item"/>
 
 

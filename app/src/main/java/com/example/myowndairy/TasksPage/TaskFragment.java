@@ -12,16 +12,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myowndairy.DB.DBHelper;
 import com.example.myowndairy.Dialogs.DialogWindowCalendarForChoiceTask;
-import com.example.myowndairy.HomePage.Adapter.MyAdapterForHome;
-import com.example.myowndairy.HomePage.FragmentEditTask;
 import com.example.myowndairy.HomePage.HomeFragment;
 import com.example.myowndairy.Interfaces.RecycleViewInterface;
 import com.example.myowndairy.TasksPage.Adapter.MyAdapterForTasks;
@@ -42,18 +42,18 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
     FloatingActionButton addTask;
 
     ArrayList<Tasks> tasksArrayList = new ArrayList<>();
-    private String[] tasksHeading;
+
     private RecyclerView recyclerview;
 
-    private String[] tasksDate;
-    private String[] tasksTime;
-    private String[] tasksDescription;
 
     private DBHelper dbHelper;
     private SQLiteDatabase database;
 
+    private HomeFragment homeFragment = new HomeFragment();
 
     public FragmentCreateTask fragmentCreateTask = new FragmentCreateTask(this);
+
+    TextView textCenter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,8 +63,9 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
 
         calendarMainButton = view.findViewById(R.id.calendarMainButton);
         addTask = view.findViewById(R.id.addTask);
+        textCenter = view.findViewById(R.id.textCenter);
 
-        dataShow();
+//        dataShow();
 
         calendarMainButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +86,7 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
 //                fm.replace(R.id.frame_layout,createTaskFragment).commit();
             }
         });
+        dataShow();
         return view;
     }
 
@@ -156,7 +158,8 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerview = getActivity().findViewById(R.id.recycleView);
+
+        recyclerview = view.findViewById(R.id.recycleView);
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerview.setHasFixedSize(true);
         MyAdapterForTasks myAdapterForTasks = new MyAdapterForTasks(this, getContext(), tasksArrayList);
@@ -169,14 +172,17 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
     @Override
     public void onItemClick(Tasks tasks) {
 
-        HomeFragment homeFragment = new HomeFragment();
-        homeFragment.textDayTask = tasks.getDate();
 
-
-
+        homeFragment.dayOfTaskFromTaskFragment = tasks.getDate();
        replaceFragment(homeFragment);
 
     }
+
+    @Override
+    public void onCheckedChanged(Tasks tasks) {
+
+    }
+
     private void replaceFragment(Fragment fragment){
         FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
         fm.replace(R.id.frame_layout,fragment).commit();
@@ -184,9 +190,15 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
 
     public void dataShow() {
         tasksArrayList.clear();
-        Date date = new Date();
+//        Date date = new Date();
+
+
+
 
         Cursor cursor = database.query(DBHelper.TABLE_TASKS, null, null, null, DBHelper.KEY_DATE, null, null);
+
+        cursor.moveToLast();
+
         if (cursor.moveToFirst()) {
 
             int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
@@ -194,27 +206,68 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
             int dateIndex = cursor.getColumnIndex(DBHelper.KEY_DATE);
             int timeIndex = cursor.getColumnIndex(DBHelper.KEY_TIME);
             int descriptionIndex = cursor.getColumnIndex(DBHelper.KEY_DESCRIPTION);
+            int isDoneIndex = cursor.getColumnIndex(DBHelper.KEY_IS_DONE);
             do {
                 Tasks tasks = new Tasks(cursor.getInt(idIndex), cursor.getString(headerIndex), cursor.getString(dateIndex),
-                        cursor.getString(timeIndex), cursor.getString(descriptionIndex));
-
+                        cursor.getString(timeIndex), cursor.getString(descriptionIndex),cursor.getInt(isDoneIndex));
+//                tasksArrayList.add(tasks);
                 dataRefresh(cursor.getString(dateIndex).split("/"));
-                if(dateCheck.compareTo(new Date())>=0 ){
+//                timeRefresh(cursor.getString(timeIndex).split(":"));
+//
+//
+//////
+//                            if (cursor.getString(dateIndex).equals(new SimpleDateFormat("dd/MM/yyyy").format(date)) ) {
+//
+//                                if (dateTaskInTimeFormat.compareTo(dateInTimeFormat) >= 0) {
+//                                tasksArrayList.add(tasks);
+//                            }
+//                        }
+
+
+
+                if(dateCheck.compareTo(new Date())>0){
                     tasksArrayList.add(tasks);
+                } else {
+
                 }
-                if(tasksArrayList==null){
-                    ///
-                }
-
-
-
             } while (cursor.moveToNext());
 
+
         } else {
-            Log.d("mLog", "0 rows");
+
         }
+        if(tasksArrayList.isEmpty()){
+            textCenter.setText(getString(R.string.CONST_NAME_NO_TASKS_FOR_THE_NEXT_DAYS));
+            calendarMainButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(
+                            getActivity(),getString(R.string.CONST_NAME_NO_TASKS),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+
+
         cursor.close();
         dbHelper.close();
+    }
+
+    Date dateInTimeFormat;
+    Date dateTaskInTimeFormat;
+
+    Date date = new Date();
+
+    private void timeRefresh(String[] array){
+        String timeStr = array[0] + ":" + array[1] ;
+        String currentDayTime = new SimpleDateFormat("HH:mm").format(date);
+        try {
+            dateInTimeFormat = new SimpleDateFormat("HH:mm").parse(currentDayTime);
+            dateTaskInTimeFormat = new SimpleDateFormat("HH:mm").parse(timeStr);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
     private Date dateCheck;
     private void dataRefresh(String[] array){

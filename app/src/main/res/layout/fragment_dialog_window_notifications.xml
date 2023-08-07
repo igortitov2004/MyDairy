@@ -25,6 +25,7 @@
             android:paddingLeft="15dp"/>
 
         <Switch
+            android:key="checkbox"
             android:id="@+id/switchNotifications"
             android:layout_width="match_parent"
             android:layout_height="37dp"

@@ -1,5 +1,6 @@
 package com.example.myowndairy;
 
+import static android.nfc.NfcAdapter.EXTRA_ID;
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 import static android.provider.Telephony.Mms.Part.TEXT;
 
@@ -19,39 +20,35 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.example.myowndairy.Activity.MainActivity;
 
+import java.util.Date;
+
 public class AlarmReceiver extends BroadcastReceiver {
 
-
-
+    private NotificationCompat.Builder builder;
+    public NotificationManagerCompat notificationManagerCompat;
     @Override
     public void onReceive(Context context, Intent intent) {
 
         Bundle arg = intent.getExtras();
 
-
         Intent intent1 = new Intent(context, MainActivity.class);
         intent1.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
-//        EXTRA_MESSAGE = intent.getStringExtra(EXTRA_MESSAGE);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent1, PendingIntent.FLAG_IMMUTABLE);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "Dairy")
+         builder = new NotificationCompat.Builder(context, "Dairy")
         .setContentIntent(pendingIntent)
         .setSmallIcon(R.drawable.ic_launcher_foreground)
         .setContentTitle(intent.getStringExtra("TITLE"))
-        .setContentText(arg.get("TEXT").toString())
+        .setContentText(arg.get("TEXT").toString()+" "+arg.get("TASK").toString())
         .setAutoCancel(true)
         .setDefaults(NotificationCompat.DEFAULT_ALL)
         .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
+        notificationManagerCompat = NotificationManagerCompat.from(context);
 
         if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
-
-
 
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -61,7 +58,10 @@ public class AlarmReceiver extends BroadcastReceiver {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        notificationManagerCompat.notify(123, builder.build());
+
+        notificationManagerCompat.notify(1, builder.build());
+
+
 
 
     }
