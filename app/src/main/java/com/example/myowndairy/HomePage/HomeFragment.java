@@ -99,15 +99,11 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         databaseHome = dbHelperHome.getWritableDatabase();
 
 
-
-
         View v = LayoutInflater.from(getContext()).inflate(R.layout.task_item_today,container,false);
         checkBox = v.findViewById(R.id.check);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         BottomNavigationView navigationView = getActivity().findViewById(R.id.bottomNavigationView);
-
-
 
 
         toolbar = view.findViewById(R.id.homeToolBar);
@@ -134,8 +130,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
 //                backButton.setVisibility(View.VISIBLE);
 
                 replaceFragment(new HomeFragment(true,dayOfTaskFromTaskFragment));
-
-
             }
         });
 
@@ -145,9 +139,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
 //                backButton.setVisibility(View.VISIBLE);
 
                 replaceFragment(new HomeFragment(false,dayOfTaskFromTaskFragment));
-
-
-
             }
         });
 
@@ -186,7 +177,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
                 }
         } else {
             backButton.setVisibility(View.GONE);
-
         }
 
 
@@ -233,8 +223,8 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         }
     }
     private void firstUpperCaseDay(Date d){
-        dayText.setText(new SimpleDateFormat("EEEE", new Locale("RU")).format(d).substring(0,1).toUpperCase()
-                +new SimpleDateFormat("EEEE", new Locale("RU")).format(d).substring(1));
+        dayText.setText(new SimpleDateFormat("EEEE", new Locale(getString(R.string.CONST_NAME_TODAY_DATA))).format(d).substring(0,1).toUpperCase()
+                +new SimpleDateFormat("EEEE", new Locale(getString(R.string.CONST_NAME_TODAY_DATA))).format(d).substring(1));
     }
     CheckBox checkBox;
 

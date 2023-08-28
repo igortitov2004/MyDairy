@@ -33,6 +33,7 @@
     <string name="CONST_NAME_ISEMPTY_FIELD">Fill in the fields!</string>
 
     <string name="CONST_NAME_TITLE_NOTIF"> Tasks for today </string>
+
     <string name="CONST_NAME_TEXT_NOTIF"> Don\'t forget the task: </string>
 
     <string name="task_1">Task 1</string>
@@ -51,6 +52,8 @@
 
     <!--Константы для страницы Главная-->
     <string name="CONST_NAME_HOME_PAGE">Home</string>
+    <string name="CONST_NAME_TODAY_DATA">EN</string>
+
 
     <!--Константы для страницы Настройки-->
     <string name="CONST_NAME_SETTINGS_PAGE">Settings</string>
