@@ -14,7 +14,7 @@
         style="@style/TOOLBAR">
 
         <TextView
-            android:id="@+id/textSettingsToolBar"
+            android:id="@+id/textEditToolBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/CONST_NAME_EDIT_TASK"

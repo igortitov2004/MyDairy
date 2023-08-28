@@ -35,11 +35,14 @@ public class DialogWindowCalendar extends DialogFragment implements DatePickerDi
 
     public DialogWindowTime dialogWindowTime;
 
+    FragmentCreateTask fragmentCreateTask;
+
 
 
     public DialogWindowCalendar(FragmentCreateTask fragmentCreateTask) {
         this.setTaskTime = fragmentCreateTask.setTaskTime;
         this.eTsetTime = fragmentCreateTask.setTime;
+        this.fragmentCreateTask = fragmentCreateTask;
     }
 
 
@@ -60,10 +63,12 @@ public class DialogWindowCalendar extends DialogFragment implements DatePickerDi
 
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
+        fragmentCreateTask.getDialogWindowTime().setNotif_month(month);
+        fragmentCreateTask.getDialogWindowTime().setNotif_day(dayOfMonth);
 
-        notif_month = month;
-        notif_day = dayOfMonth;
-        dialogWindowTime  = new DialogWindowTime(notif_month,notif_day);
+//        notif_month = month;
+//        notif_day = dayOfMonth;
+//        dialogWindowTime  = new DialogWindowTime(notif_month,notif_day);
         //КРУТОЙ КОСТЫЛЬ
         if(month==12){
             month=1;
@@ -75,13 +80,15 @@ public class DialogWindowCalendar extends DialogFragment implements DatePickerDi
 //        dialogWindowTime =  new DialogWindowTime(notif_month,notif_day);
 
         String dateStr = "" + dayOfMonth + "/" + month + "/" + year;
+        Date date;
         try {
-            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateStr);
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(dateStr);
             setTextDate = getActivity().findViewById(R.id.setDate);
             setTextDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+        fragmentCreateTask.getDialogWindowTime().setDateStr(new SimpleDateFormat("dd/MM/yyyy").format(date));
         setTaskTime.setVisibility(View.VISIBLE);
         eTsetTime.setVisibility(View.VISIBLE);
 //        eTsetTime = getActivity().findViewById(R.id.setTime);

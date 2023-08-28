@@ -143,16 +143,18 @@ public class FragmentCreateTaskToday extends DialogFragment {
             }
         });
 
+        Toast toast = Toast.makeText(
+                getActivity(),
+                getString(R.string.CONST_NAME_ISEMPTY_FIELD),
+                Toast.LENGTH_SHORT);
+
         confirmTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
                 if(isEmpty(heading,description,setTime)){
-                    Toast.makeText(
-                            getActivity(),
-                            getString(R.string.CONST_NAME_ISEMPTY_FIELD),
-                            Toast.LENGTH_SHORT).show();
+                    toast.show();
                 }else {
                     showDialog(dialogWindowForConfirmTask);
                     dialogWindowForConfirmTask.fragment = homeFragment;
@@ -306,7 +308,8 @@ public class FragmentCreateTaskToday extends DialogFragment {
     AlarmReceiver alarmReceiver;
     public void setAlarm() throws FileNotFoundException {
 
-
+        Tasks tasks = getDataForNotification();
+        String str = tasks.getHeading();
         alarmReceiver = new AlarmReceiver();
 
         int m = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
@@ -319,8 +322,7 @@ public class FragmentCreateTaskToday extends DialogFragment {
 //            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
-        Tasks tasks = getDataForNotification();
-        String str = tasks.getHeading();
+
 //        cancelAlarm(tasks.getId());
         intent.putExtra("TEXT",getString(R.string.CONST_NAME_TEXT_NOTIF));
         intent.putExtra("TITLE",getString(R.string.CONST_NAME_TITLE_NOTIF));
@@ -336,7 +338,7 @@ public class FragmentCreateTaskToday extends DialogFragment {
 //
 //            alarmManager.setAlarmClock(alarmClockInfo,pendingIntent);
             alarmManager.set(AlarmManager.RTC_WAKEUP,dialogWindowTime.calendar.getTimeInMillis(),pendingIntent);
-            Toast.makeText(getContext(),"URA",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(),"URA",Toast.LENGTH_SHORT).show();
     }
 
 //    private PendingIntent getAlarmInfoPendingIntent(){

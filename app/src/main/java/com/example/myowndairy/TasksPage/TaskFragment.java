@@ -238,12 +238,15 @@ public class TaskFragment extends Fragment implements RecycleViewInterface {
         }
         if(tasksArrayList.isEmpty()){
             textCenter.setText(getString(R.string.CONST_NAME_NO_TASKS_FOR_THE_NEXT_DAYS));
+            Toast toast = Toast.makeText(
+                    getActivity(),getString(R.string.CONST_NAME_NO_TASKS),
+                    Toast.LENGTH_SHORT);
             calendarMainButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(
-                            getActivity(),getString(R.string.CONST_NAME_NO_TASKS),
-                            Toast.LENGTH_SHORT).show();
+                    toast.show();
+
+
                 }
             });
         }

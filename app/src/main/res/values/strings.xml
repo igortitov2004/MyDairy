@@ -22,6 +22,8 @@
     <string name="task_6">Задача 6</string>
     <string name="task_7">Задача 7</string>
 
+    <string name="CONST_NAME_VIEWING_A_TASK">Просмотр задачи</string>viewing a task
+
     <string name="CONST_NAME_DONE">Выполненные</string>
 
     <string name="CONST_NAME_NOT_DONE">Невыполненные</string>

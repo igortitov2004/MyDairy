@@ -51,7 +51,12 @@ public class FragmentCreateTask extends DialogFragment {
 
 
    public DialogWindowCalendar dialogWindowCalendar ;
-    private DialogWindowTime dialogWindowTime = new DialogWindowTime(this);
+
+    public DialogWindowTime getDialogWindowTime() {
+        return dialogWindowTime;
+    }
+
+    private DialogWindowTime dialogWindowTime;
    private DialogWindowForReturn dialogWindowForReturn = new DialogWindowForReturn(this);
    private DialogWindowForConfirmTask dialogWindowForConfirmTask = new DialogWindowForConfirmTask(this);
 
@@ -76,7 +81,6 @@ public class FragmentCreateTask extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
 
         dbHelper = new DBHelper(this);
         database = dbHelper.getWritableDatabase();
@@ -103,6 +107,10 @@ public class FragmentCreateTask extends DialogFragment {
         setTaskTime.setVisibility(View.GONE);
 
         dialogWindowCalendar = new DialogWindowCalendar(this);
+
+
+
+
 
 
 
@@ -149,19 +157,15 @@ public class FragmentCreateTask extends DialogFragment {
             @Override
             public void onClick(View v) {
                 showDialog(dialogWindowCalendar);
-
+                dialogWindowTime = new DialogWindowTime();
             }
         });
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                dialogWindowCalendar.dialogWindowTime.timeField = R.id.setTime;
-                showDialog(dialogWindowCalendar.dialogWindowTime);
-
-
-
+                dialogWindowTime.timeField = R.id.setTime;
+                showDialog(dialogWindowTime);
 
             }
         });
@@ -171,6 +175,7 @@ public class FragmentCreateTask extends DialogFragment {
             @Override
             public void onClick(View v){
                 showDialog(dialogWindowCalendar);
+                dialogWindowTime = new DialogWindowTime();
 
             }
         });
@@ -179,8 +184,8 @@ public class FragmentCreateTask extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-                dialogWindowCalendar.dialogWindowTime.timeField = R.id.setTime;
-                showDialog(dialogWindowCalendar.dialogWindowTime);
+                dialogWindowTime.timeField = R.id.setTime;
+                showDialog(dialogWindowTime);
 //                dialogWindowTime.notif_month=dialogWindowCalendar.notif_month;
 //                dialogWindowTime.notif_day=dialogWindowCalendar.notif_day;
             }
@@ -255,7 +260,7 @@ public class FragmentCreateTask extends DialogFragment {
 
         alarmReceiver = new AlarmReceiver();
 
-        int m = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
+
 
 
         Intent intent = new Intent(getActivity(), alarmReceiver.getClass());
@@ -281,8 +286,8 @@ public class FragmentCreateTask extends DialogFragment {
 //            AlarmManager.AlarmClockInfo alarmClockInfo = new AlarmManager.AlarmClockInfo(dialogWindowTime.calendar.getTimeInMillis(),getAlarmInfoPendingIntent());
 //
 //            alarmManager.setAlarmClock(alarmClockInfo,pendingIntent);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,dialogWindowCalendar.dialogWindowTime.calendar.getTimeInMillis(),pendingIntent);
-            Toast.makeText(getContext(),"URA",Toast.LENGTH_SHORT).show();
+        alarmManager.set(AlarmManager.RTC_WAKEUP,dialogWindowTime.calendar.getTimeInMillis(),pendingIntent);
+//            Toast.makeText(getContext(),"URA",Toast.LENGTH_SHORT).show();
     }
 
     private void createNotificationChannel() {

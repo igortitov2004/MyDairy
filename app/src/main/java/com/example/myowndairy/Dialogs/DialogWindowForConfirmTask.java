@@ -82,17 +82,7 @@ public TaskFragment taskFragment;
                     public void onClick(DialogInterface dialog, int id) {
 
                        try{
-                           if(editableFragment == taskFragment.fragmentCreateTask ){
-                               fragmentCreateTask.saveTask();
-                               try {
-                                   fragmentCreateTask.setAlarm();
-                               } catch (FileNotFoundException ex) {
-                                   throw new RuntimeException(ex);
-                               }
-                           }
-                       }catch (RuntimeException e){
                            if(editableFragment == homeFragment.fragmentCreateTaskToday){
-
                                fragmentCreateTaskToday.saveTask();
                                if(homeFragment.dayOfTaskFromTaskFragment==null){
                                    try {
@@ -101,12 +91,26 @@ public TaskFragment taskFragment;
                                        throw new RuntimeException(ex);
                                    }
                                }
-
-
                            }else if(editableFragment == homeFragment.editTaskFragment){
+
                                fragmentEditTask.saveTask();
+//                               fragmentEditTask.setAlarm();
+                               try{
+                                   fragmentEditTask.setAlarm();
+                               }catch (RuntimeException e){
 
+                               }
 
+                           }
+                       }catch (RuntimeException e){
+
+                           if(editableFragment == taskFragment.fragmentCreateTask ){
+                               fragmentCreateTask.saveTask();
+                               try {
+                                   fragmentCreateTask.setAlarm();
+                               } catch (FileNotFoundException ex) {
+                                   throw new RuntimeException(ex);
+                               }
                            }
                        }
                         replaceFragment(fragment);

@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
 
 
 
-    public HomeFragment(boolean isDone,String dayOfTaskFromTaskFragment) {
+    public HomeFragment(Boolean isDone,String dayOfTaskFromTaskFragment) {
         this.isDone = isDone;
         this.dayOfTaskFromTaskFragment = dayOfTaskFromTaskFragment;
     }
@@ -154,8 +154,14 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new TaskFragment());
-                navigationView.setVisibility(View.VISIBLE);
+                if(isDone!=null){
+                    replaceFragment(new HomeFragment(null,dayOfTaskFromTaskFragment));
+                }else{
+                    replaceFragment(new TaskFragment());
+                    navigationView.setVisibility(View.VISIBLE);
+
+                }
+
             }
         });
 
@@ -166,9 +172,9 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         if(dayOfTaskFromTaskFragment!=null ){
             navigationView.setVisibility(View.GONE);
             backButton.setVisibility(View.VISIBLE);
-            done.setVisibility(View.GONE);
+//            done.setVisibility(View.GONE);
             notDone.setVisibility(View.GONE);
-            textDone.setVisibility(View.GONE);
+//            textDone.setVisibility(View.GONE);
             textNotDone.setVisibility(View.GONE);
 
             if(dayOfTaskFromTaskFragment.equals(new SimpleDateFormat("dd/MM/yyyy").format(date))){
@@ -251,7 +257,7 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
 
     @Override
     public void onItemClick(Tasks tasks) {
-        FragmentEditTask fragmentEditTask = new FragmentEditTask(this);
+        FragmentEditTask fragmentEditTask = new FragmentEditTask(this,isDone);
 
         fragmentEditTask.idTask = tasks.getId();
         fragmentEditTask.headerText = tasks.getHeading();
@@ -305,12 +311,16 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
 //                    correctArrayFillingForNotDone(tasks,cursor,dateIndex,timeIndex);
 
                     }else if(isDone==false){
-                        correctArrayFillingForNotDone(tasks,cursor,dateIndex,timeIndex);
+                        if(cursor.getInt(isDoneIndex)==0){
+                            correctArrayFillingForNotDone(tasks,cursor,dateIndex,timeIndex);
+                        }
+
                     }
                     else {
-                        if(cursor.getInt(isDoneIndex)==1){
-                            tasksArrayList.add(tasks);
-                        }
+                        correctArrayFillingForDone(tasks,cursor,dateIndex,isDoneIndex);
+//                        if(cursor.getInt(isDoneIndex)==1){
+//                            tasksArrayList.add(tasks);
+//                        }
                     }
 
 
@@ -386,6 +396,27 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
             }
         }
     }
+
+    private void correctArrayFillingForDone(Tasks tasks,Cursor cursor,int dateIndex,int isDoneIndex){
+        if (dayOfTaskFromTaskFragment == null) {
+            if (cursor.getString(dateIndex).equals(new SimpleDateFormat("dd/MM/yyyy").format(date)) && cursor.getInt(isDoneIndex)==1) {
+
+                    tasksArrayList.add(tasks);
+                    textCenter.setText(null);
+
+            }
+        }else{
+            if (cursor.getString(dateIndex).equals(dayOfTaskFromTaskFragment) && cursor.getInt(isDoneIndex)==1) {
+
+                        tasksArrayList.add(tasks);
+                        textCenter.setText(null);
+                    }
+                }
+
+
+    }
+
+
 
 
 

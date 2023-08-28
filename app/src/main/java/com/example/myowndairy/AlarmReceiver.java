@@ -19,13 +19,17 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.myowndairy.Activity.MainActivity;
+import com.example.myowndairy.Model.Tasks;
 
 import java.util.Date;
 
 public class AlarmReceiver extends BroadcastReceiver {
-
+    int m = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
     private NotificationCompat.Builder builder;
     public NotificationManagerCompat notificationManagerCompat;
+
+
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -40,7 +44,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         .setContentIntent(pendingIntent)
         .setSmallIcon(R.drawable.ic_launcher_foreground)
         .setContentTitle(intent.getStringExtra("TITLE"))
-        .setContentText(arg.get("TEXT").toString()+" "+arg.get("TASK").toString())
+        .setContentText(intent.getStringExtra("TEXT")+" "+arg.get("TASK").toString())
         .setAutoCancel(true)
         .setDefaults(NotificationCompat.DEFAULT_ALL)
         .setPriority(NotificationCompat.PRIORITY_HIGH);
@@ -59,7 +63,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             return;
         }
 
-        notificationManagerCompat.notify(1, builder.build());
+        notificationManagerCompat.notify(m, builder.build());
 
 
 

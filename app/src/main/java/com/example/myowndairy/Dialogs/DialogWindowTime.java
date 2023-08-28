@@ -9,8 +9,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import com.example.myowndairy.HomePage.FragmentCreateTaskToday;
+import com.example.myowndairy.HomePage.FragmentEditTask;
 import com.example.myowndairy.R;
 import com.example.myowndairy.TasksPage.FragmentCreateTask;
 
@@ -47,13 +49,29 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
         this.fragmentCreateTaskToday = fragmentCreateTaskToday;
     }
 
+    public void setNotif_month(int notif_month) {
+        this.notif_month = notif_month;
+    }
+
     public int notif_month;
+
+    public void setNotif_day(int notif_day) {
+        this.notif_day = notif_day;
+    }
+
     public int notif_day;
 
-    public DialogWindowTime(int month, int dayOfMonth) {
-        this.notif_month = month;
-        this.notif_day = dayOfMonth;
+//    public DialogWindowTime(int month, int dayOfMonth) {
+//        this.notif_month = month;
+//        this.notif_day = dayOfMonth;
+//    }
+
+    FragmentEditTask fragmentEditTask;
+    public DialogWindowTime(FragmentEditTask fragmentEditTask) {
+        this.fragmentEditTask = fragmentEditTask;
     }
+
+
 
 
     public EditText getSetTextTime() {
@@ -63,7 +81,11 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
     EditText setTextTime;
     public int timeField;
 
-    String dateStr;
+    public void setDateStr(String dateStr) {
+        this.dateStr = dateStr;
+    }
+
+    public String dateStr=null;
 
     final Calendar c = Calendar.getInstance();
     int hour = c.get(Calendar.HOUR_OF_DAY);
@@ -74,22 +96,32 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        try{
-            setTextDate = fragmentCreateTask.setDate;
-            dateStr = setTextDate.getText().toString();
-        }catch (RuntimeException e){
-            try {
-                if(fragmentCreateTaskToday.getHomeFragment().dayOfTaskFromTaskFragment==null){
-                    dateStr=new SimpleDateFormat("dd/MM/yyyy").format(currentDay);
-                }else{
-                    dateStr = fragmentCreateTaskToday.getHomeFragment().dayOfTaskFromTaskFragment;
-                }
 
-            }catch (RuntimeException runtimeException){
+//        try{
+//            setTextDate = fragmentCreateTask.setDate;
+//            dateStr = setTextDate.getText().toString();
+//        }catch (RuntimeException e){
+//
+//
+//        }
+        try {
 
+            if(fragmentCreateTaskToday.getHomeFragment().dayOfTaskFromTaskFragment==null) {
+                dateStr=new SimpleDateFormat("dd/MM/yyyy").format(currentDay);
+            }else{
+                dateStr = fragmentCreateTaskToday.getHomeFragment().dayOfTaskFromTaskFragment;
             }
 
+        }catch (RuntimeException runtimeException){
+
         }
+
+
+//        if(fragmentEditTask.homeFragment.dayOfTaskFromTaskFragment==null){
+//
+//        }
+
+
 
         // Use the current time as the default values for the picker
 //        if(setTextDate!=null){
@@ -111,12 +143,13 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
+        Toast toast = Toast.makeText(getActivity(), getString(R.string.CONST_NAME_WRONG_TIME),
+                Toast.LENGTH_SHORT);
        try{
-           if (dateStr.equals(new SimpleDateFormat("dd/MM/yyyy").format(currentDay))) {
+           if (dateStr.equals(new SimpleDateFormat("dd/MM/yyyy").format(currentDay)) ) {
                if (hourOfDay <= hour){
                    if(minute <= this.minute){
-                       Toast.makeText(getActivity(), getString(R.string.CONST_NAME_WRONG_TIME),
-                               Toast.LENGTH_SHORT).show();
+                       toast.show();
                    }else{
                        String timeStr = "" + hourOfDay + ":" + minute;
                        try {
@@ -154,22 +187,44 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
                }
 
 
+           }else{
+               String timeStr = "" + hourOfDay + ":" + minute;
+               try {
+                   calendar.set(Calendar.MONTH, notif_month);
+                   calendar.set(Calendar.DAY_OF_MONTH,notif_day);
+                   calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                   calendar.set(Calendar.MINUTE, minute);
+                   calendar.set(Calendar.SECOND, 0);
+                   calendar.set(Calendar.MILLISECOND, 0);
+                   Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
+                   setTextTime = getActivity().findViewById(timeField);
+                   setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
+               } catch (ParseException exception) {
+                   throw new RuntimeException(exception);
+               }
            }
        }catch (RuntimeException e){
-           String timeStr = "" + hourOfDay + ":" + minute;
-           try {
-               calendar.set(Calendar.MONTH, notif_month);
-               calendar.set(Calendar.DAY_OF_MONTH,notif_day);
-               calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-               calendar.set(Calendar.MINUTE, minute);
-               calendar.set(Calendar.SECOND, 0);
-               calendar.set(Calendar.MILLISECOND, 0);
-               Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
-               setTextTime = getActivity().findViewById(timeField);
-               setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
-           } catch (ParseException exception) {
-               throw new RuntimeException(exception);
+           if(dateStr==null){
+               String timeStr = "" + hourOfDay + ":" + minute;
+               try {
+                   calendar.set(Calendar.MONTH, notif_month);
+                   calendar.set(Calendar.DAY_OF_MONTH,notif_day);
+                   calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                   calendar.set(Calendar.MINUTE, minute);
+                   calendar.set(Calendar.SECOND, 0);
+                   calendar.set(Calendar.MILLISECOND, 0);
+                   Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
+                   setTextTime = getActivity().findViewById(timeField);
+                   setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
+               } catch (ParseException exception) {
+                   throw new RuntimeException(exception);
+               }
            }
+
+
+
+
+
        }
 
 

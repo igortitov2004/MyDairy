@@ -48,8 +48,11 @@ public class DialogWindowCalendarForChoiceTask extends DialogFragment implements
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        homeFragment.dayOfTaskFromTaskFragment = str;
+
+
         replaceFragment(homeFragment);
+        homeFragment.dayOfTaskFromTaskFragment = str;
+
     }
 
     private void replaceFragment(Fragment fragment){
