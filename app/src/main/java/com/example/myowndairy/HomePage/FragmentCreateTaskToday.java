@@ -257,7 +257,6 @@ public class FragmentCreateTaskToday extends DialogFragment {
         if (editText1.getText().toString().matches(".*\\w.*") || editText2.getText().toString().matches(".*\\w.*") || editText3.getText().toString().matches(".*\\w.*")){
             return false;
         }
-
         return true;
 
 
@@ -306,7 +305,7 @@ public class FragmentCreateTaskToday extends DialogFragment {
 //    }
 
     AlarmReceiver alarmReceiver;
-    public void setAlarm() throws FileNotFoundException {
+    public void setAlarm()  {
 
         Tasks tasks = getDataForNotification();
         String str = tasks.getHeading();
@@ -331,7 +330,7 @@ public class FragmentCreateTaskToday extends DialogFragment {
 
 
 
-            pendingIntent = PendingIntent.getBroadcast(getContext(), tasks.getId(), intent, PendingIntent.FLAG_IMMUTABLE);
+            pendingIntent = PendingIntent.getBroadcast(getContext(), tasks.getId(), intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
             alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 
 //            AlarmManager.AlarmClockInfo alarmClockInfo = new AlarmManager.AlarmClockInfo(dialogWindowTime.calendar.getTimeInMillis(),getAlarmInfoPendingIntent());
@@ -367,7 +366,7 @@ public class FragmentCreateTaskToday extends DialogFragment {
         }
         alarmManager.cancel(pendingIntent);
 
-        Toast.makeText(getContext(),"ALARM OFF",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),"ALARM OFF",Toast.LENGTH_SHORT).show();
     }
 
 

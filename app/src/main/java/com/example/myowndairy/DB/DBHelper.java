@@ -17,8 +17,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String KEY_DESCRIPTION = "description";
 
     public static final String KEY_IS_DONE = "done";
-
-
     public DBHelper(Fragment fragment) {
         super(fragment.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
     }

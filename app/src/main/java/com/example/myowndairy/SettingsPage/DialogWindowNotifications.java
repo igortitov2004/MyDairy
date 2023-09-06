@@ -35,6 +35,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DialogWindowNotifications extends DialogFragment {
     Date date = new Date();
@@ -140,15 +142,15 @@ public class DialogWindowNotifications extends DialogFragment {
     AlarmManager alarmManager;
 
     public void cancelAlarm(int notifId){
-        Intent intent = new Intent(getActivity(), AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(getContext(), notifId, intent, PendingIntent.FLAG_IMMUTABLE);
-        if(alarmManager == null){
-            alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-
+        try{
+            Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+            pendingIntent = PendingIntent.getBroadcast(getContext(), notifId, intent, PendingIntent.FLAG_IMMUTABLE);
+            if(alarmManager == null){
+                alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+            }
+            alarmManager.cancel(pendingIntent);
+        }catch (RuntimeException e){
         }
-        alarmManager.cancel(pendingIntent);
-
-//        Toast.makeText(getContext(),"ALARM OFF",Toast.LENGTH_SHORT).show();
     }
 
     public void alarmOff(){
@@ -217,7 +219,13 @@ public class DialogWindowNotifications extends DialogFragment {
         intent.putExtra("TASK", str);
 
 
-        pendingIntent = PendingIntent.getBroadcast(getContext(), notifId, intent, PendingIntent.FLAG_IMMUTABLE);
+
+
+
+
+
+
+        pendingIntent = PendingIntent.getBroadcast(getContext(), notifId, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 
 //            AlarmManager.AlarmClockInfo alarmClockInfo = new AlarmManager.AlarmClockInfo(dialogWindowTime.calendar.getTimeInMillis(),getAlarmInfoPendingIntent());

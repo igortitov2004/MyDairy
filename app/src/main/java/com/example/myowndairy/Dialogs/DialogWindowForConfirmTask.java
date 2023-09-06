@@ -3,7 +3,9 @@ package com.example.myowndairy.Dialogs;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import com.example.myowndairy.TasksPage.FragmentCreateTask;
 import com.example.myowndairy.TasksPage.TaskFragment;
 
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.util.Calendar;
 
 public class DialogWindowForConfirmTask extends DialogFragment{
@@ -73,6 +76,8 @@ public TaskFragment taskFragment;
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.CONST_NAME_CONFIRMATION))
@@ -80,46 +85,35 @@ public TaskFragment taskFragment;
                 .setPositiveButton(getString(R.string.CONST_NAME_OK), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-
                        try{
                            if(editableFragment == homeFragment.fragmentCreateTaskToday){
                                fragmentCreateTaskToday.saveTask();
                                if(homeFragment.dayOfTaskFromTaskFragment==null){
-                                   try {
+                                   if(preferences.contains("checked") && preferences.getBoolean("checked",false) == true) {
                                        fragmentCreateTaskToday.setAlarm();
-                                   } catch (FileNotFoundException ex) {
-                                       throw new RuntimeException(ex);
                                    }
                                }
                            }else if(editableFragment == homeFragment.editTaskFragment){
-
                                fragmentEditTask.saveTask();
-//                               fragmentEditTask.setAlarm();
-                               try{
+                               if(preferences.contains("checked") && preferences.getBoolean("checked",false) == true) {
                                    fragmentEditTask.setAlarm();
-                               }catch (RuntimeException e){
-
                                }
-
                            }
                        }catch (RuntimeException e){
-
                            if(editableFragment == taskFragment.fragmentCreateTask ){
                                fragmentCreateTask.saveTask();
-                               try {
+                               if(preferences.contains("checked") && preferences.getBoolean("checked",false) == true) {
                                    fragmentCreateTask.setAlarm();
-                               } catch (FileNotFoundException ex) {
-                                   throw new RuntimeException(ex);
                                }
                            }
+                       } catch (ParseException e) {
+                           throw new RuntimeException(e);
                        }
                         replaceFragment(fragment);
-
                         Toast.makeText(
                                 getActivity(),
                                 getString(R.string.CONST_NAME_TASK_SAVED),
                                 Toast.LENGTH_SHORT).show();
-
                     }
                 })
                 .setNegativeButton(getString(R.string.CONST_NAME_CANCEL), new DialogInterface.OnClickListener() {

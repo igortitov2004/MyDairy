@@ -71,7 +71,7 @@ public class MyAdapterForHome extends RecyclerView.Adapter<MyAdapterForHome.MyVi
 
                 recycleViewInterface.onCheckedChanged(tasksArrayList.get(position));
                 deleteItem(holder,position);
-                Toast.makeText(context,"ura",Toast.LENGTH_SHORT).show();
+
             }
         });
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {

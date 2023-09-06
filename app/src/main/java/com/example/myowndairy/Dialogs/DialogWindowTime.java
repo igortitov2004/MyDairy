@@ -106,8 +106,8 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
 //        }
         try {
 
-            if(fragmentCreateTaskToday.getHomeFragment().dayOfTaskFromTaskFragment==null) {
-                dateStr=new SimpleDateFormat("dd/MM/yyyy").format(currentDay);
+            if(fragmentCreateTaskToday.getHomeFragment().dayOfTaskFromTaskFragment == null) {
+                dateStr = new SimpleDateFormat("dd/MM/yyyy").format(currentDay);
             }else{
                 dateStr = fragmentCreateTaskToday.getHomeFragment().dayOfTaskFromTaskFragment;
             }
@@ -145,89 +145,80 @@ public class DialogWindowTime extends DialogFragment implements TimePickerDialog
 
         Toast toast = Toast.makeText(getActivity(), getString(R.string.CONST_NAME_WRONG_TIME),
                 Toast.LENGTH_SHORT);
-       try{
-           if (dateStr.equals(new SimpleDateFormat("dd/MM/yyyy").format(currentDay)) ) {
-               if (hourOfDay <= hour){
-                   if(minute <= this.minute){
-                       toast.show();
-                   }else{
-                       String timeStr = "" + hourOfDay + ":" + minute;
-                       try {
+        try{
+            if (dateStr.equals(new SimpleDateFormat("dd/MM/yyyy").format(currentDay)) ) {
+                if (hourOfDay <= hour){
+                    if(minute <= this.minute){
+                        toast.show();
+                    }else{
+                        String timeStr = "" + hourOfDay + ":" + minute;
+                        try {
+                            calendar.set(Calendar.MONTH,calendar.get(Calendar.MONTH));
+                            calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
+                            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                            calendar.set(Calendar.MINUTE, minute);
+                            calendar.set(Calendar.SECOND, 0);
+                            calendar.set(Calendar.MILLISECOND, 0);
+                            Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
+                            setTextTime = getActivity().findViewById(timeField);
+                            setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
 
-                           calendar.set(Calendar.MONTH,calendar.get(Calendar.MONTH));
-                           calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
-                           calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                           calendar.set(Calendar.MINUTE, minute);
-                           calendar.set(Calendar.SECOND, 0);
-                           calendar.set(Calendar.MILLISECOND, 0);
-                           Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
-                           setTextTime = getActivity().findViewById(timeField);
-                           setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
-                       } catch (ParseException e) {
-                           throw new RuntimeException(e);
-                       }
-                   }
+                } else {
 
-               } else {
-
-                   String timeStr = "" + hourOfDay + ":" + minute;
-                   try {
-                       calendar.set(Calendar.MONTH,calendar.get(Calendar.MONTH));
-                       calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
-                       calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                       calendar.set(Calendar.MINUTE, minute);
-                       calendar.set(Calendar.SECOND, 0);
-                       calendar.set(Calendar.MILLISECOND, 0);
-                       Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
-                       setTextTime = getActivity().findViewById(timeField);
-                       setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
-                   } catch (ParseException e) {
-                       throw new RuntimeException(e);
-                   }
-               }
-
-
-           }else{
-               String timeStr = "" + hourOfDay + ":" + minute;
-               try {
-                   calendar.set(Calendar.MONTH, notif_month);
-                   calendar.set(Calendar.DAY_OF_MONTH,notif_day);
-                   calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                   calendar.set(Calendar.MINUTE, minute);
-                   calendar.set(Calendar.SECOND, 0);
-                   calendar.set(Calendar.MILLISECOND, 0);
-                   Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
-                   setTextTime = getActivity().findViewById(timeField);
-                   setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
-               } catch (ParseException exception) {
-                   throw new RuntimeException(exception);
-               }
-           }
-       }catch (RuntimeException e){
-           if(dateStr==null){
-               String timeStr = "" + hourOfDay + ":" + minute;
-               try {
-                   calendar.set(Calendar.MONTH, notif_month);
-                   calendar.set(Calendar.DAY_OF_MONTH,notif_day);
-                   calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                   calendar.set(Calendar.MINUTE, minute);
-                   calendar.set(Calendar.SECOND, 0);
-                   calendar.set(Calendar.MILLISECOND, 0);
-                   Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
-                   setTextTime = getActivity().findViewById(timeField);
-                   setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
-               } catch (ParseException exception) {
-                   throw new RuntimeException(exception);
-               }
-           }
+                    String timeStr = "" + hourOfDay + ":" + minute;
+                    try {
+                        calendar.set(Calendar.MONTH,calendar.get(Calendar.MONTH));
+                        calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
+                        calendar.set(Calendar.SECOND, 0);
+                        calendar.set(Calendar.MILLISECOND, 0);
+                        Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
+                        setTextTime = getActivity().findViewById(timeField);
+                        setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
 
 
-
-
-
-       }
-
-
-
+            }else{
+                String timeStr = "" + hourOfDay + ":" + minute;
+                try {
+                    calendar.set(Calendar.MONTH, notif_month);
+                    calendar.set(Calendar.DAY_OF_MONTH,notif_day);
+                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    calendar.set(Calendar.MINUTE, minute);
+                    calendar.set(Calendar.SECOND, 0);
+                    calendar.set(Calendar.MILLISECOND, 0);
+                    Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
+                    setTextTime = getActivity().findViewById(timeField);
+                    setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
+                } catch (ParseException exception) {
+                    throw new RuntimeException(exception);
+                }
+            }
+        }catch (RuntimeException e){
+            if(dateStr == null){
+                String timeStr = "" + hourOfDay + ":" + minute;
+                try {
+                    calendar.set(Calendar.MONTH, notif_month);
+                    calendar.set(Calendar.DAY_OF_MONTH,notif_day);
+                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                    calendar.set(Calendar.MINUTE, minute);
+                    calendar.set(Calendar.SECOND, 0);
+                    calendar.set(Calendar.MILLISECOND, 0);
+                    Date date = new SimpleDateFormat("HH:mm").parse(timeStr);
+                    setTextTime = getActivity().findViewById(timeField);
+                    setTextTime.setText(new SimpleDateFormat("HH:mm").format(date));
+                } catch (ParseException exception) {
+                    throw new RuntimeException(exception);
+                }
+            }
+        }
     }
 }

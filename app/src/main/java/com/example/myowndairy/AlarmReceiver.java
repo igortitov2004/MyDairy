@@ -29,11 +29,15 @@ public class AlarmReceiver extends BroadcastReceiver {
     public NotificationManagerCompat notificationManagerCompat;
 
 
-
+    private boolean isEdit;
     @Override
-    public void onReceive(Context context, Intent intent) {
 
-        Bundle arg = intent.getExtras();
+    public void onReceive(Context context, Intent intent) {
+        Bundle arg;
+        arg = intent.getExtras();
+
+
+
 
         Intent intent1 = new Intent(context, MainActivity.class);
         intent1.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -44,7 +48,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         .setContentIntent(pendingIntent)
         .setSmallIcon(R.drawable.ic_launcher_foreground)
         .setContentTitle(intent.getStringExtra("TITLE"))
-        .setContentText(intent.getStringExtra("TEXT")+" "+arg.get("TASK").toString())
+        .setContentText(arg.get("TEXT").toString()+" "+arg.get("TASK").toString())
         .setAutoCancel(true)
         .setDefaults(NotificationCompat.DEFAULT_ALL)
         .setPriority(NotificationCompat.PRIORITY_HIGH);
@@ -62,8 +66,12 @@ public class AlarmReceiver extends BroadcastReceiver {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+//        isEdit = arg.getBoolean("ISEDIT");
 
-        notificationManagerCompat.notify(m, builder.build());
+
+            notificationManagerCompat.notify(m, builder.build());
+
+
 
 
 

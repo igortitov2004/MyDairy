@@ -1,6 +1,10 @@
 package com.example.myowndairy.HomePage;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.opengl.Visibility;
@@ -22,6 +26,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.example.myowndairy.AlarmReceiver;
 import com.example.myowndairy.DB.DBHelper;
 import com.example.myowndairy.Interfaces.RecycleViewInterface;
 import com.example.myowndairy.HomePage.Adapter.MyAdapterForHome;
@@ -88,7 +93,8 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
     private TextView textDone;
     private TextView textNotDone;
 
-
+    private PendingIntent pendingIntent;
+    private AlarmManager alarmManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -233,8 +239,8 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         }
     }
     private void firstUpperCaseDay(Date d){
-        dayText.setText(new SimpleDateFormat("EEEE", new Locale("RU")).format(d).substring(0,1).toUpperCase()
-                +new SimpleDateFormat("EEEE", new Locale("RU")).format(d).substring(1));
+        dayText.setText(new SimpleDateFormat("EEEE", new Locale(getString(R.string.CONST_NAME_TODAY_DATA))).format(d).substring(0,1).toUpperCase()
+                +new SimpleDateFormat("EEEE", new Locale(getString(R.string.CONST_NAME_TODAY_DATA))).format(d).substring(1));
     }
     CheckBox checkBox;
 
@@ -282,8 +288,20 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         contentValues.put(DBHelper.KEY_DESCRIPTION, tasks.getDescription());
         contentValues.put(DBHelper.KEY_IS_DONE,1);
         databaseHome.update(DBHelper.TABLE_TASKS, contentValues,DBHelper.KEY_ID + "= ?", new String[] {String.valueOf(tasks.getId())});
+        cancelAlarm(tasks.getId());
     }
 
+    public void cancelAlarm(int idTask){
+
+        Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(getContext(), idTask, intent, PendingIntent.FLAG_IMMUTABLE);
+        if(alarmManager == null){
+            alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        }
+        alarmManager.cancel(pendingIntent);
+//            Toast.makeText(getContext(),"ALARM OFF",Toast.LENGTH_SHORT).show();
+
+    }
 
     public void dataShow() {
 

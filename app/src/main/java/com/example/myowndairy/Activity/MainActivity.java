@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MenuItem;
 import android.view.Window;
+import android.window.SplashScreen;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements SetLanguageInterf
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
+//        new SplashSreen();
         homeFragment = new HomeFragment();
         taskFragment = new TaskFragment();
         settingsFragment = new SettingsFragment();

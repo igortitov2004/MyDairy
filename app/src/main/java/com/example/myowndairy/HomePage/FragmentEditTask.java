@@ -1,12 +1,15 @@
 package com.example.myowndairy.HomePage;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -32,7 +35,10 @@ import com.example.myowndairy.Model.Tasks;
 import com.example.myowndairy.R;
 
 import java.io.FileNotFoundException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class FragmentEditTask extends DialogFragment {
@@ -89,7 +95,7 @@ public class FragmentEditTask extends DialogFragment {
 
 
 
-
+    private final Calendar calendar = Calendar.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -204,6 +210,7 @@ public class FragmentEditTask extends DialogFragment {
         }
 
 
+
         return view;
     }
 
@@ -283,47 +290,68 @@ public class FragmentEditTask extends DialogFragment {
 
     }
 
+//    private void createNotificationChannel() {
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+//            CharSequence name = "DairyChannel";
+//            String description = "Channel for alarm manager";
+//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+//            NotificationChannel channel = new NotificationChannel("Dairy",name,importance);
+//            channel.setDescription(description);
+//
+//            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
+//
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//    }
+
 
 
     AlarmReceiver alarmReceiver;
-    public void setAlarm(){
+    public void setAlarm() throws ParseException {
         cancelAlarm();
-
         Tasks tasks = getDataForNotification();
-
-
         String str = tasks.getHeading();
+        String[] arrayListTime =  tasks.getTime().split(":");
+
+        String[] arrayListDate =  tasks.getDate().split("/");
+
 
         alarmReceiver = new AlarmReceiver();
 
-
         int m = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
-
-
         Intent intent = new Intent(getActivity(), alarmReceiver.getClass());
         alarmReceiver.notificationManagerCompat = NotificationManagerCompat.from(getContext());
-
-
 //            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-
-
 //        cancelAlarm(tasks.getId());
+        intent.putExtra("ISEDIT",true);
         intent.putExtra("TEXT",getString(R.string.CONST_NAME_TEXT_NOTIF));
         intent.putExtra("TITLE",getString(R.string.CONST_NAME_TITLE_NOTIF));
         intent.putExtra("TASK", str);
-
-
-
-
-        pendingIntent = PendingIntent.getBroadcast(getContext(), idTask, intent, PendingIntent.FLAG_IMMUTABLE);
+        pendingIntent = PendingIntent.getBroadcast(getContext(), idTask, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-
 //            AlarmManager.AlarmClockInfo alarmClockInfo = new AlarmManager.AlarmClockInfo(dialogWindowTime.calendar.getTimeInMillis(),getAlarmInfoPendingIntent());
-//
 //            alarmManager.setAlarmClock(alarmClockInfo,pendingIntent);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,dialogWindowTime.calendar.getTimeInMillis(),pendingIntent);
-//            Toast.makeText(getContext(),"URA",Toast.LENGTH_SHORT).show();
+
+//        try{
+//            alarmManager.set(AlarmManager.RTC_WAKEUP,dialogWindowTime.calendar.getTimeInMillis(),pendingIntent);
+//        }catch (RuntimeException e){
+            if(Build.VERSION.SDK_INT>=19){
+                calendar.set(Calendar.MONTH,Integer.parseInt(arrayListDate[1])-1);
+                calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(arrayListDate[0]));
+                calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(arrayListTime[0]));
+                calendar.set(Calendar.MINUTE,Integer.parseInt(arrayListTime[1]));
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
+            }else{
+                alarmManager.set(AlarmManager.RTC_WAKEUP,dialogWindowTime.calendar.getTimeInMillis(),pendingIntent);
+
+            }
+
+//        }
+
+
+
     }
 
 //    private PendingIntent getAlarmInfoPendingIntent(){
@@ -343,16 +371,16 @@ public class FragmentEditTask extends DialogFragment {
 
 
 
+
     public void cancelAlarm(){
-        Intent intent = new Intent(getActivity(), AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(getContext(), idTask, intent, PendingIntent.FLAG_IMMUTABLE);
-        if(alarmManager == null){
-            alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 
-        }
-        alarmManager.cancel(pendingIntent);
+            Intent intent = new Intent(getActivity(), AlarmReceiver.class);
+            pendingIntent = PendingIntent.getBroadcast(getContext(), idTask, intent, PendingIntent.FLAG_IMMUTABLE);
+            if(alarmManager == null){
+                alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+            }
+            alarmManager.cancel(pendingIntent);
+//            Toast.makeText(getContext(),"ALARM OFF",Toast.LENGTH_SHORT).show();
 
-
-        Toast.makeText(getContext(),"ALARM OFF",Toast.LENGTH_SHORT).show();
     }
 }

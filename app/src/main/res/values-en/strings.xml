@@ -51,6 +51,7 @@
 
     <!--Константы для страницы Главная-->
     <string name="CONST_NAME_HOME_PAGE">Home</string>
+    <string name="CONST_NAME_TODAY_DATA">EN</string>
 
     <!--Константы для страницы Настройки-->
     <string name="CONST_NAME_SETTINGS_PAGE">Settings</string>

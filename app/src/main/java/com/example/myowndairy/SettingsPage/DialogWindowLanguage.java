@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.myowndairy.Interfaces.SetLanguageInterface;
@@ -24,10 +25,6 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
     private String selectedLanguage;
 
 
-
-    private int checkedItem;
-
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -37,11 +34,16 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
 //       // для установки активности языка в меню
 //        getLanguage();
 
+
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+
+
 
         builder.setTitle(getString(R.string.CONST_NAME_LANGUAGE_SELECTION))
                 // добавляем переключатели
-                .setSingleChoiceItems(languageNamesArray,-1,
+                .setSingleChoiceItems(languageNamesArray,isEnLanguage(),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
@@ -58,14 +60,19 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
                                     getString(R.string.CONST_NAME_SELECTED_LANGUAGE)+": "
                                             + selectedLanguage,
                                     Toast.LENGTH_SHORT).show();
-                            if(selectedLanguage == getString(R.string.CONST_NAME_ENGLISH)){
-                                setLocal("en");
-                                getActivity().finish();
-                                startActivity(getActivity().getIntent());
+                            if(selectedLanguage == getString(R.string.CONST_NAME_ENGLISH) ){
+                                if(isEnLanguage()==1){
+                                    setLocal("en");
+                                    getActivity().finish();
+                                    startActivity(getActivity().getIntent());
+                                }
+
                             }else if(selectedLanguage == getString(R.string.CONST_NAME_RUSSIAN)){
-                                setLocal("ru");
-                                getActivity().finish();
-                                startActivity(getActivity().getIntent());
+                                if(isEnLanguage()==0){
+                                    setLocal("ru");
+                                    getActivity().finish();
+                                    startActivity(getActivity().getIntent());
+                                }
                             }
                         }
                     }
@@ -80,7 +87,6 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
     }
     @Override
     public void setLocal(String langCode){
-
         // назначение языка
         Locale locale = new Locale(langCode);
         locale.setDefault(locale);
@@ -93,6 +99,17 @@ public class DialogWindowLanguage extends DialogFragment implements SetLanguageI
         SharedPreferences.Editor editor = getContext().getSharedPreferences("Settings", Context.MODE_PRIVATE).edit();
         editor.putString("My_Lang",langCode);
         editor.apply();
+
+    }
+
+    private int isEnLanguage(){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = sharedPreferences.getString("My_Lang","");
+        if(language.equals("en")){
+            return 0;
+        }else{
+            return 1;
+        }
 
     }
 

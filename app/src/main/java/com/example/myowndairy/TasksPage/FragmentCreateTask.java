@@ -245,17 +245,14 @@ public class FragmentCreateTask extends DialogFragment {
         int isDoneIndex = cursor.getColumnIndex(DBHelper.KEY_IS_DONE);
         Tasks tasks = new Tasks(cursor.getInt(idIndex),cursor.getString(headerIndex),cursor.getString(dateIndex),
                 cursor.getString(timeIndex),cursor.getString(descriptionIndex),cursor.getInt(isDoneIndex));
-
         cursor.close();
         dbHelper.close();
         return tasks;
-
-
     }
 
 
     AlarmReceiver alarmReceiver;
-    public void setAlarm() throws FileNotFoundException {
+    public void setAlarm() {
 
 
         alarmReceiver = new AlarmReceiver();
