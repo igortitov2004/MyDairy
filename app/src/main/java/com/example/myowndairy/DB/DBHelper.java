@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.fragment.app.Fragment;
 
-public class DBHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper{
 
     public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "Dairy";
