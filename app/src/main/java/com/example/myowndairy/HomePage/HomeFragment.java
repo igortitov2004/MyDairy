@@ -105,15 +105,11 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
         databaseHome = dbHelperHome.getWritableDatabase();
 
 
-
-
         View v = LayoutInflater.from(getContext()).inflate(R.layout.task_item_today,container,false);
         checkBox = v.findViewById(R.id.check);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         BottomNavigationView navigationView = getActivity().findViewById(R.id.bottomNavigationView);
-
-
 
 
         toolbar = view.findViewById(R.id.homeToolBar);
@@ -140,8 +136,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
 //                backButton.setVisibility(View.VISIBLE);
 
                 replaceFragment(new HomeFragment(true,dayOfTaskFromTaskFragment));
-
-
             }
         });
 
@@ -151,9 +145,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
 //                backButton.setVisibility(View.VISIBLE);
 
                 replaceFragment(new HomeFragment(false,dayOfTaskFromTaskFragment));
-
-
-
             }
         });
 
@@ -192,7 +183,6 @@ public class HomeFragment extends Fragment implements RecycleViewInterface {
                 }
         } else {
             backButton.setVisibility(View.GONE);
-
         }
 
 
